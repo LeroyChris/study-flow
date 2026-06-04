@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#f4f3ef] p-10">
-    <div class="bg-white rounded-[32px] p-8 mx-auto max-w-5xl">
+    <div class="bg-white rounded-[32px] p-8 mx-auto max-w-6xl">
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-4xl font-bold text-[#1f2340]">
@@ -21,78 +21,181 @@
         </div>
 
         <!-- Content -->
-        <div class="w-full">
-            <!-- Calendar -->
-            <div class="border rounded-[24px] overflow-hidden bg-white">
-                <!-- Month Header -->
-                <div class="flex justify-between items-center p-6 border-b">
-                    <button class="w-10 h-10 rounded-xl border flex items-center justify-center hover:bg-gray-50"> ‹ </button>
-                    <h2 class="text-3xl font-bold text-[#1f2340]"> June 2026 </h2>
-                    <button class="w-10 h-10 rounded-xl border flex items-center justify-center hover:bg-gray-50"> › </button>
-                </div>
-
-                <!-- Week Days -->
-                <div class="grid grid-cols-7 border-b bg-white">
-                    <div class="text-center py-4 text-gray-500 font-medium">Sun</div>
-                    <div class="text-center py-4 text-gray-500 font-medium">Mon</div>
-                    <div class="text-center py-4 text-gray-500 font-medium">Tue</div>
-                    <div class="text-center py-4 text-gray-500 font-medium">Wed</div>
-                    <div class="text-center py-4 text-gray-500 font-medium">Thu</div>
-                    <div class="text-center py-4 text-gray-500 font-medium">Fri</div>
-                    <div class="text-center py-4 text-gray-500 font-medium">Sat</div>
-                </div>
-
-                <!-- Calendar Grid -->
-                <div class="grid grid-cols-7 text-gray-700">
-                    <!-- Row 1 -->
-                    <div class="h-28 border p-3 bg-gray-50/50 flex items-center justify-center"><span class="text-gray-400">31</span></div>
-                    <div class="h-28 border p-3 flex items-center justify-center">1</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">2</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">3</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">4</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">5</div>
+        <div class="grid grid-cols-12 gap-6">
+            <!-- Calendar (9 Kolom) -->
+            <div class="col-span-9">
+                <div class="border rounded-[24px] overflow-hidden bg-white">
+                    <!-- Month Header -->
+                    <div class="flex justify-between items-center p-6 border-b">
+                        <button class="w-10 h-10 rounded-xl border flex items-center justify-center hover:bg-gray-50"> ‹ </button>
+                        <h2 class="text-3xl font-bold text-[#1f2340]"> June 2026 </h2>
+                        <button class="w-10 h-10 rounded-xl border flex items-center justify-center hover:bg-gray-50"> › </button>
                     </div>
-                    <div class="h-28 border p-3 flex items-center justify-center">6</div>
 
-                    <!-- Row 2 -->
-                    <div class="h-28 border p-3 flex items-center justify-center">7</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">8</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">9</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">10</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">11</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">12</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">13</div>
+                    <!-- Week Days -->
+                    <div class="grid grid-cols-7 border-b bg-white">
+                        <div class="text-center py-4 text-gray-500 font-medium">Sun</div>
+                        <div class="text-center py-4 text-gray-500 font-medium">Mon</div>
+                        <div class="text-center py-4 text-gray-500 font-medium">Tue</div>
+                        <div class="text-center py-4 text-gray-500 font-medium">Wed</div>
+                        <div class="text-center py-4 text-gray-500 font-medium">Thu</div>
+                        <div class="text-center py-4 text-gray-500 font-medium">Fri</div>
+                        <div class="text-center py-4 text-gray-500 font-medium">Sat</div>
+                    </div>
 
-                    <!-- Row 3 -->
-                    <div class="h-28 border p-3 flex items-center justify-center">14</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">15</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">16</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">17</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">18</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">19</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">20</div>
+                    <!-- Calendar Grid -->
+                    <div class="grid grid-cols-7 text-gray-700" id="calendar-grid">
+                        <!-- Tanggal otomatis via JS -->
+                    </div>
+                </div>
+            </div>
 
-                    <!-- Row 4 -->
-                    <div class="h-28 border p-3 flex items-center justify-center">21</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">22</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">23</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">24</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">25</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">26</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">27</div>
+            <!-- Right Panel (3 Kolom - Desain Kamu + Logika JS) -->
+            <div class="col-span-3">
+                <div class="border rounded-[24px] p-6 h-full bg-white flex flex-col justify-between min-h-[500px]">
+                    <div>
+                        <!-- Header Panel -->
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 id="active-date-title" class="text-2xl font-bold text-[#1f2340]"> Fri, Jun 5 </h3>
+                            <button class="text-gray-400 hover:text-gray-600 text-xl"> ✕ </button>
+                        </div>
 
-                    <!-- Row 5 -->
-                    <div class="h-28 border p-3 flex items-center justify-center">28</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">29</div>
-                    <div class="h-28 border p-3 flex items-center justify-center">30</div>
-                    <div class="h-28 border p-3 text-gray-400 bg-gray-50/50 flex items-center justify-center">1</div>
-                    <div class="h-28 border p-3 text-gray-400 bg-gray-50/50 flex items-center justify-center">2</div>
-                    <div class="h-28 border p-3 text-gray-400 bg-gray-50/50 flex items-center justify-center">3</div>
-                    <div class="h-28 border p-3 text-gray-400 bg-gray-50/50 flex items-center justify-center">4</div>
+                        <!-- Task Section -->
+                        <div class="mb-4">
+                            <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider"> Tasks Today </h4>
+                        </div>
+
+                        <!-- Tempat Daftar Tugas Cantik Kamu Muncul (Diatur Dinamis) -->
+                        <div id="task-list" class="space-y-3 max-h-[320px] overflow-y-auto pr-1">
+                            <!-- Diisi oleh JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Input Form Mini untuk Tambah Tugas Secara Nyata -->
+                    <div class="mt-4 space-y-2">
+                        <input type="text" id="task-input" placeholder="Tulis tugas baru..." 
+                            class="w-full px-3 py-2 text-sm border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-50">
+                        
+                        <button onclick="addNewTask()" class="w-full py-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium transition shadow-sm">
+                            Manage Tasks →
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+
+    <!-- LOGIKA PROGRAM JAVASCRIPT -->
+    <script>
+        // Simulasi database tugas harian yang terintegrasi dengan kalender
+        let calendarData = {
+            selectedDate: 5, // Default aktif tanggal 5 Juni
+            tasks: [
+                { id: 1, date: 5, text: "UI/UX Assignment", time: "09:00 AM", color: "blue" },
+                { id: 2, date: 5, text: "Study WebSocket", time: "01:00 PM", color: "green" },
+                { id: 3, date: 5, text: "Team Meeting", time: "07:00 PM", color: "purple" }
+            ]
+        };
+
+        // 1. Fungsi merender grid tanggal kalender
+        function renderCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            grid.innerHTML = '';
+            const emptySlots = 1; // 31 Mei
+            const totalDays = 30; // Juni
+
+            for(let e = 0; e < emptySlots; e++) {
+                grid.innerHTML += `<div class="h-28 border p-3 bg-gray-50/50 flex items-center justify-center text-gray-400">31</div>`;
+            }
+
+            for(let day = 1; day <= totalDays; day++) {
+                const isSelected = calendarData.selectedDate === day;
+                const hasTask = calendarData.tasks.some(t => t.date === day);
+                
+                let dayBox = `<div onclick="selectDate(${day})" class="h-28 border p-3 flex flex-col items-center justify-center cursor-pointer hover:bg-blue-50/50 transition relative">`;
+                
+                if (isSelected) {
+                    dayBox += `<div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">${day}</div>`;
+                } else {
+                    dayBox += `<span class="text-sm font-medium">${day}</span>`;
+                }
+
+                // Penanda titik biru kecil jika tanggal tersebut memiliki tugas
+                if (hasTask && !isSelected) {
+                    dayBox += `<span class="absolute bottom-2 w-1.5 h-1.5 bg-blue-600 rounded-full"></span>`;
+                }
+
+                dayBox += `</div>`;
+                grid.innerHTML += dayBox;
+            }
+        }
+
+        // 2. Fungsi saat tanggal diklik
+        window.selectDate = function(day) {
+            calendarData.selectedDate = day;
+            
+            const daysName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            const currentDayName = daysName[(day + 0) % 7]; // Menyesuaikan nama hari Juni 2026
+            document.getElementById('active-date-title').innerText = `${currentDayName}, Jun ${day}`;
+            
+            renderCalendar();
+            renderTasks();
+        };
+
+        // 3. Fungsi merender kartu tugas estetik buatanmu secara dinamis
+        function renderTasks() {
+            const listContainer = document.getElementById('task-list');
+            listContainer.innerHTML = '';
+
+            const currentTasks = calendarData.tasks.filter(t => t.date === calendarData.selectedDate);
+
+            if (currentTasks.length === 0) {
+                listContainer.innerHTML = `<p class="text-gray-400 text-sm text-center py-10">No tasks this day</p>`;
+            } else {
+                currentTasks.forEach(task => {
+                    // Penyesuaian kelas CSS warna kartu berdasarkan kategori penambahan
+                    let bgClass = 'bg-blue-50 border-blue-100 text-blue-700';
+                    let textSpan = 'text-blue-500';
+                    
+                    if (task.color === 'green') {
+                        bgClass = 'bg-green-50 border-green-100 text-green-700';
+                        textSpan = 'text-green-500';
+                    } else if (task.color === 'purple') {
+                        bgClass = 'bg-purple-50 border-purple-100 text-purple-700';
+                        textSpan = 'text-purple-500';
+                    }
+
+                    listContainer.innerHTML += `
+                        <div class="${bgClass} border rounded-xl p-4 flex justify-between items-center group transition shadow-sm">
+                            <div>
+                                <p class="font-medium">${task.text}</p>
+                                <span class="text-xs ${textSpan}">${task.time}</span>
+                            </div>
+                            <button onclick="deleteTask(${task.id})" class="text-gray-400 hover:text-red-500 text-sm font-bold ml-2">✕</button>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        // 4. Fungsi aksi menambahkan tugas baru via input
+        window.addNewTask = function() {
+            const input = document.getElementById('task-input');
+            if (input.value.trim() === '') return;
+
+            // Rotasi warna otomatis untuk tugas baru agar bervariasi (blue -> green -> purple)
+            const colors = ['blue', 'green', 'purple'];
+            const randomColor = colors[calendarData.tasks.length % 3];
+
+            // Ambil waktu jam sekarang secara otomatis
+            const now = new Date();
+            let hours = now.getHours();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // Jam '0' diubah jadi '12'
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes} ${ampm}`;
+
+            calendarData.tasks.push({
+                id: Date.now(),
+                date: calendarData.selectedDate,
