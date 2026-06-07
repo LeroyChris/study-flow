@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcards Dashboard</title>
-  </head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flashcards Dashboard</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
 
-  <div>
+    <body>
 
-    <aside>
-      <nav>
-        <ul>
-          <li><a href="#">Nav 1</a></li>
-          <li><a href="#">Nav 2</a></li>
-        </ul>
-      </nav>
-    </aside>
+        <div class="min-h-screen flex">
 
-    <div>
-      
-      <header>
-        <div>
-          <span>Icon Menu</span>
-          <h2>Flashcards</h2>
-        </div>
-        <div>
-          <button>Notif</button>
-        </div>
-      </header>
+            <aside class="w-64 bg-white border-r border-gray-200">
+                <nav>
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../task-calendar/index.html">Task Calendar</a></li>
+                        <li><a href="../pomodoro/index.html">Pomodoro</a></li>
+                        <li><a href="./index.html">Flashcards</a></li>
+                    </ul>
+                </nav>
+            </aside>
 
-      <main>
-        <div>
-          <h1>Flashcards</h1>
-          <button>+ New Deck</button>
-        </div>
+            <div class="flex-1 flex flex-col">
+            
+                <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+                    <div>
+                        <span>Icon Menu</span>
+                        <h2>Flashcards</h2>
+                    </div>
 
-        <section>
-          <div>
-            <span>📚</span> 
-            <h3>No decks yet</h3>
-            <p>Create your first flashcard deck to start studying.</p>
-            <button>Create Deck</button>
-          </div>
-        </section>
-      </main>
+                    <div>
+                        <button>Notif</button>
+                    </div>
+                </header>
 
+                <main class="flex-1 bg-[#f4f3ef] p-8">
+                    <div>
+                        <h1>Flashcards</h1>
+                        <button>+ New Deck</button>
+                    </div>
+
+                    <section>
+                        <div>
+                            <span>📚</span> 
+                            <h3>No decks yet</h3>
+                            <p>Create your first flashcard deck to start studying.</p>
+                            <button>Create Deck</button>
+                        </div>
+                    </section>
+                </main>
+
+            </div>
     </div>
-  </div>
 
-</body>
+    </body>
 </html>
