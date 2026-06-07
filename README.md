@@ -81,6 +81,13 @@ fitur/task-calendar/index.html
 6. Buat Pull Request ke `development`.
 7. Repo owner melakukan review dan merge.
 
+## Development Workflow
+1. Buat branch fitur dari development.
+2. Kerjakan fitur pada branch masing-masing.
+3. Push branch ke GitHub.
+4. Buat Pull Request ke development.
+5. Setelah development stabil, merge development ke main.
+
 ## Dokumentasi Internal Tim
 - `docs/CONTRIBUTING.md` - panduan cara kerja tim.
 - `docs/BRANCH_AND_COMMIT_GUIDE.md` - panduan penamaan branch dan commit.
