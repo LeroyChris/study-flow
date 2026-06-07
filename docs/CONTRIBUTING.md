@@ -14,6 +14,15 @@ Sebelum mulai kerja:
 git switch development
 git pull origin development
 ```
+Selalu buat branch baru dari development terbaru jika belum.
+
+```bash
+git switch development
+git pull origin development
+git switch -c feat/nama-fitur
+git push -u origin feat/nama-fitur
+```
+Kalau sudah ada branch,
 Masuk ke branch fitur masing-masing:
 ```bash
 git switch feat/nama-fitur
