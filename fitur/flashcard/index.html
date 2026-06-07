@@ -8,9 +8,7 @@
     </head>
 
     <body>
-
         <div class="min-h-screen flex">
-
             <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between p-4 h-screen sticky top-0">
                 <nav>
                     <ul class="space-y-2">
@@ -39,7 +37,7 @@
                     </div>
 
                     <div class="flex items-center gap-3 px-4 py-2">
-                        <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white fount-bold text-sm">
+                        <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
                             S
                         </div>
 
@@ -69,23 +67,26 @@
                 </header>
 
                 <main class="flex-1 bg-[#f4f3ef] p-8">
-                    <div class="flex items-center justify-between mb-8">
-                        <h1>Flashcards</h1>
-                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">+ New Deck</button>
+                    <div class="max-w-5xl mx-auto flex items-center justify-between mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900 font-serif">Flashcards</h1>
+                        <button class="bg-[#6d00e7] text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">
+                            + New Deck
+                        </button>
                     </div>
 
-                    <section class="bg-white border border-gray-200 rounded-2xl p-16 flex flex-col items-center justify-center text-center max-w-4xl mx-auto mt-4 min-h-[400px]">
+                    <section class="bg-white border border-gray-200 rounded-2xl p-16 flex flex-col items-center justify-center text-center max-w-5xl mx-auto min-h-[345px]">
                         <div class="space-y-4">
-                            <span>📚</span> 
-                            <h3>No decks yet</h3>
-                            <p>Create your first flashcard deck to start studying.</p>
-                            <button class="bg-blue-600 text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition">Create Deck</button>
+                            <div class="text-4xl">📚</div>
+                            <h3 class="text-lg font-semibold text-gray-900">No decks yet</h3>
+                            <p class="text-gray-500">Create your first flashcard deck to start studying.</p>
+                            <button class="bg-[#6d00e7] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">
+                                Create Deck
+                            </button>
                         </div>
                     </section>
                 </main>
-
             </div>
-    </div>
+        </div>
 
     </body>
 </html>
