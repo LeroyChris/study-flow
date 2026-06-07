@@ -7,13 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<!-- PENTING: Pading 'p-10' dipindah dari body ke area 'main' agar sidebar tetap penuh menempel di pinggir layar -->
 <body class="bg-[#f4f3ef]">
 
-     <!-- BUNGKUS FLEX UTAMA (Sidebar & Konten di sampingnya) -->
      <div class="min-h-screen flex">
         
-            <!-- SIDEBAR TEMEN LU (Tidak diubah) -->
             <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between p-4 h-screen sticky top-0">
                 <nav>
                     <ul class="space-y-2">
@@ -50,12 +47,9 @@
                 </div>
             </aside>
 
-            <!-- WADAH BARU: Untuk area konten di sebelah kanan sidebar -->
-            <!-- flex-1: Membikin area ini mengambil sisa layar yang kosong -->
-            <!-- max-w-md mx-auto p-10: Membikin kotak pomodoro lu tetap presisi di tengah area kanan -->
+
             <main class="flex-1 p-10">
 
-                <!-- KOTAK POMODORO LU (Tidak diubah, ditambahkan 'max-w-md' biar lebarnya proporsional) -->
                 <div class="bg-white rounded-[32px] mx-auto max-w-md p-8 text-center shadow-sm">
 
                     <div class="flex bg-gray-100 p-1 rounded-full justify-between items-center mb-8">
@@ -96,7 +90,7 @@
 
             </main>
 
-     </div> <!-- Penutup flex utama dipindahkan ke paling bawah -->
+     </div> 
     
 </body>
 </html>
