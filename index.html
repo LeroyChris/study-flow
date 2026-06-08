@@ -8,7 +8,7 @@
        <link rel="stylesheet" href="">
        <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#B8E3E9] text-[#0B2E33] min-h-screen">
+<body class="bg-slate-50 text-[#0B2E33] min-h-screen">
        <header class="sticky top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/20 border-b border-white/10 px-8 py-4 flex justify-between items-center">
               <img class="rounded-xl" src="\study-flow\assets\images\Logo_Selasar.png" alt="selasar" width="50"></img>
                 <nav class="flex space-x-4 font-Poppins font-semibold">
@@ -19,13 +19,16 @@
        </header>
        
        <main>
-       <section class="bg-grey-100 m-4 text-center py-8">
-              <h1 class="text-[50px] font-Poppins font-bold ">Your Space to Achive</h1>
-              <p class="text-sm font-medium pb-8">StudyFlow combines task management, focus timers, and flashcards into one elegant workspace — built for the modern university student.</p>
-              <button class="bg-[#4F7C82] hover:bg-[#0B2E33] text-white font-semibold px-6 py-3 rounded-lg shadow-md shadow-[#0B2E33]/10 transition-colors duration-300">
+       <section class="mx-auto justify-items-center text-center mt-80 max-w-4xl px-5">
+              <h1 class="font-Poppins font-bold text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.1] mb-6 text-slate-900">Your Space to 
+                     <span id="typewriter-text" class="text-blue-600"></span>
+                     <span class="inline-block w-[3px] h-[1em] bg-blue-600 ml-1 animate-pulse align-middle"></span>
+              </h1>
+              <p class="text-sm font-medium pt-7 pb-8">StudyFlow combines task management, focus timers, and<br> flashcards into one elegant workspace — built for the<br> modern university student.</p>
+              <button class="bg-white-300 hover:bg-[#2563EB] text-gray hover:text-white font-semibold px-6 py-3 rounded-lg  shadow-lg shadow-[#2563EB]/50 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
                      Enter App →
               </button>
-              <button class="bg-[#4F7C82] hover:bg-[#0B2E33] text-white font-semibold px-6 py-3 rounded-lg shadow-md shadow-[#0B2E33]/10 transition-colors duration-300 ml-4">
+              <button class="hover:border-2 hover:border-blue-400 text-black bg-transparent border-2 border-slate-400 font-semibold px-6 py-3 rounded-lg  transition-all duration-300  cursor-pointer ml-4">
                      See Features
               </button>
        </section>
@@ -35,7 +38,7 @@
                             <p class="text-sm font-medium">Four powerful tools designed to work together seamlessly in your academic journey.</p>
               </div>
        </section>
-       <section class=" flex py-2 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-4xl mx-auto px-6 justify-items-center">
+       <section class=" flex py-5 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-4xl mx-auto px-5 justify-items-center">
               <div class="max-w-xs backdrop-blur-xl bg-[#93B1B5]/30 border border-white/20 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:bg-[#93B1B5] hover:shadow-xl hover:shadow-black/35 group cursor-pointer">
                      <h4 class="text-xl font-Poppins font-bold">Time Management</h4>
                      <p>Smart task lists, calendar views, and reminders to keep you on track every day.</p>
@@ -48,22 +51,19 @@
                      <h4 class="text-xl font-Poppins font-bold">Flashcards Systems</h4>
                      <p>Create decks, study with spaced repetition, and track your mastery over time.</p>
               </div>
-              <div class="max-w-xs backdrop-blur-xl bg-[#93B1B5]/30 border border-white/20 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:bg-[#93B1B5] hover:shadow-xl hover:shadow-black/35 group cursor-pointer">
-                     <h4 class="text-xl font-Poppins font-bold">Progress tracking</h4>
-                     <p>Visual dashboards, streak calendars, and weekly charts to celebrate your growth.</p>
-              </div>
+              
        </section>
-       <section class="flex bg-[#111319] text-white py-16 px-4 py-2 grid grid-cols-1 md:grid-cols-4 gap-y-8 gap-x-5 max-w-4xl mx-auto px-6 justify-items-center text-center">
+       <section class="mb-16 py-20 bg-gray-400 text-white px-6  grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto  justify-items-center text-center">
               <div>
-                     <h2>10K+</h2>
+                     <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">10K+</h2>
                      <p>Students Trusted</p>
               </div>
               <div>
-                     <h2>500K+</h2>
+                     <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2 ">500K+</h2>
                      <p>Task Completed</p>
               </div>
               <div>
-                     <h2>2.0M+</h2>
+                     <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">2.0M+</h2>
                      <p>Study Minutes</p>
               </div>
        </section>
@@ -82,6 +82,8 @@
               </div>
        </section>
        </main>
+       <script src="app.js"></script>
+
        <footer class="bg-[#111319] text-white py-6 text-center">
               <p>&copy; 2024 StudyFlow. All rights reserved.</p>
 </body>
