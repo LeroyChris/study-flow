@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flashcards Dashboard</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body>
+        <div class="min-h-screen flex">
+            <aside class="w-64 bg-white border-r border-gray-200 flex flex-col justify-between p-4 h-screen sticky top-0">
+                <nav>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="../../index.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition text-sm font-medium">Home</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../task-calendar/index.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition text-sm font-medium">Task Calendar</a>
+                        </li>
+                        
+                        <li>
+                            <a href="../pomodoro/index.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition text-sm font-medium">Pomodoro</a>
+                        </li>
+                        
+                        <li>
+                            <a href="./index.html" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition text-sm font-medium">Flashcards</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="space-y-4 border-t border-gray-100 pt-4">
+                    <div class="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 cursor-pointer hover:bg-gray-50 rounded-lg transition">
+                        <span>🌙</span>
+                        <span class="font-medium">Dark Mode</span>                        
+                    </div>
+
+                    <div class="flex items-center gap-3 px-4 py-2">
+                        <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
+                            S
+                        </div>
+
+                        <div class="flex flex-col">
+                            <span class="text-sm font-semibold text-gray-700 leading-none">Scholar</span>
+                            <span class="text-xs text-gray-400 mt-1">University Student</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="flex-1 flex flex-col">
+            
+                <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6">
+                    <div class="flex items-center gap-3">
+                        <span class="text-gray-500">☰</span>
+                        <h2 class="font-semibold text-gray-700">Flashcards</h2>
+                    </div>
+
+                    <div>
+                        <button class="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition relative focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                            </svg>
+                        </button>
+                    </div>
+                </header>
+
+                <main class="flex-1 bg-[#f4f3ef] p-8">
+                    <div class="max-w-5xl mx-auto flex items-center justify-between mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900 font-serif">Flashcards</h1>
+                        <button class="bg-[#6d00e7] text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">
+                            + New Deck
+                        </button>
+                    </div>
+
+                    <section class="bg-white border border-gray-200 rounded-2xl p-16 flex flex-col items-center justify-center text-center max-w-5xl mx-auto min-h-[345px]">
+                        <div class="space-y-4">
+                            <div class="text-4xl">📚</div>
+                            <h3 class="text-lg font-semibold text-gray-900">No decks yet</h3>
+                            <p class="text-gray-500">Create your first flashcard deck to start studying.</p>
+                            <button class="bg-[#6d00e7] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">
+                                Create Deck
+                            </button>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
