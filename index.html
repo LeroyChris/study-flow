@@ -20,7 +20,7 @@
        
        <main>
        <section class="mx-auto justify-items-center text-center mt-80 max-w-4xl px-5">
-              <h1 class="font-Poppins font-bold text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.1] mb-6 text-slate-900">Your Space to 
+              <h1 class="font-Poppins font-bold text-[clamp(3.5rem,8vw,9.5rem)] leading-[1.1] mb-6 text-slate-900">Your Space to 
                      <span id="typewriter-text" class="text-blue-600"></span>
                      <span class="inline-block w-[3px] h-[1em] bg-blue-600 ml-1 animate-pulse align-middle"></span>
               </h1>
@@ -39,34 +39,53 @@
               </div>
        </section>
        <section class=" flex py-5 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-4xl mx-auto px-5 justify-items-center">
-              <div class="max-w-xs backdrop-blur-xl bg-[#93B1B5]/30 border border-white/20 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:bg-[#93B1B5] hover:shadow-xl hover:shadow-black/35 group cursor-pointer">
+              <div class="max-w-xs border-2 border-slate-400 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:shadow-xl hover:shadow-black/35 group cursor-pointer relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[4px] after:w-full after:bg-blue-500 after:origin-left after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100">
+                     <img src="assets/icons/clock.svg" class="w-8 h-8 ms-3 mb-4" alt="Icon Kalender">
                      <h4 class="text-xl font-Poppins font-bold">Time Management</h4>
                      <p>Smart task lists, calendar views, and reminders to keep you on track every day.</p>
               </div>
-              <div class="max-w-xs backdrop-blur-xl bg-[#93B1B5]/30 border border-white/20 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:bg-[#93B1B5] hover:shadow-xl hover:shadow-black/35 group cursor-pointer">
+              <div class="max-w-xs border-2 border-slate-400 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:shadow-xl hover:shadow-black/35 group cursor-pointer relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[4px] after:w-full after:bg-blue-500 after:origin-left after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100">
+                     <img src="assets/icons/pomodoro.svg" class="w-8 h-8 ms-3 mb-4" alt="Icon Pomodoro">
                      <h4 class="text-xl font-Poppins font-bold">Pomodoro Timer</h4>
                      <p>Boost focus with timed work sessions, ambient audio, and weekly progress charts.</p>
               </div>
-              <div class="max-w-xs backdrop-blur-xl bg-[#93B1B5]/30 border border-white/20 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:bg-[#93B1B5] hover:shadow-xl hover:shadow-black/35 group cursor-pointer">
+              <div class="max-w-xs border-2 border-slate-400 rounded-2xl p-8 opacity-60 transform transition-all duration-300 hover:opacity-100 hover:-translate-y-2 hover:shadow-xl hover:shadow-black/35 group cursor-pointer relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:h-[4px] after:w-full after:bg-blue-500 after:origin-left after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100">
+                     <img src="assets/icons/flashcard.svg" class="w-8 h-8 ms-3 mb-4" alt="Icon Flashcards">
                      <h4 class="text-xl font-Poppins font-bold">Flashcards Systems</h4>
                      <p>Create decks, study with spaced repetition, and track your mastery over time.</p>
               </div>
               
        </section>
-       <section class="mb-16 py-20 bg-gray-400 text-white px-6  grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto  justify-items-center text-center">
-              <div>
-                     <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">10K+</h2>
-                     <p>Students Trusted</p>
-              </div>
-              <div>
-                     <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2 ">500K+</h2>
-                     <p>Task Completed</p>
-              </div>
-              <div>
-                     <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">2.0M+</h2>
-                     <p>Study Minutes</p>
-              </div>
-       </section>
+       <section class="mb-16 py-20 bg-gray-400 text-white px-6 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto justify-items-center text-center">
+  
+  <!-- Kotak 1 -->
+  <div>
+    <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
+      <!-- Angka murni di dalam span, simbol '+' di luar span -->
+      <span class="count-number" data-target="10">0</span>K+
+    </h2>
+    <p>Students Trusted</p>
+  </div>
+
+  <!-- Kotak 2 -->
+  <div>
+    <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
+      <span class="count-number" data-target="500">0</span>M+
+    </h2>
+    <p>Task Completed</p>
+  </div>
+
+  <!-- Kotak 3 -->
+  <div>
+    <h2 class="text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
+      <!-- Untuk 2.0M+, kita set targetnya angka 2, lalu huruf 'M+' ditaruh di luar -->
+      <span class="count-number" data-target="2000">0</span><span class="count-suffix">K+</span>
+    </h2>
+    <p>Study Minutes</p>
+  </div>
+
+</section>
+
        <section>
               <div>
                      <h3 class="text-[30px] font-Poppins font-bold text-center">Ready to boost your productivity?</h3>
