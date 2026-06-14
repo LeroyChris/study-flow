@@ -1,19 +1,19 @@
 # Branch and Commit Guide
 
-## Branch Utama
-| Branch | Fungsi |
-|---|---|
-| `main` | Versi stabil / demo |
-| `development` | Integrasi progress fitur |
-| `feat/...` | Branch fitur |
-| `fix/...` | Branch perbaikan bug |
-| `docs/...` | Branch dokumentasi |
-| `chore/...` | Branch setup/struktur teknis |
-| `style/...` | Branch perubahan tampilan |
+## Main Branches
+| Branch        | Purpose                     |
+|---------------|-----------------------------|
+| `main`        | Stable version / demo       |
+| `development` | Integration of feature progress |
+| `feat/...`    | Feature branches            |
+| `fix/...`     | Bug fix branches            |
+| `docs/...`    | Documentation updates       |
+| `chore/...`   | Technical setup/structure   |
+| `style/...`   | UI/UX-related changes       |
 
-## Nama Branch Fitur
-Gunakan huruf kecil dan tanda hubung.
-Contoh benar:
+## Feature Branch Naming
+Use lowercase letters and hyphens.
+Correct Examples:
 ```txt
 feat/landing-page
 feat/flashcard-page
@@ -24,7 +24,8 @@ fix/navbar-link
 style/pomodoro-layout
 chore/restructure-folder
 ```
-Contoh kurang tepat:
+
+Incorrect Examples:
 ```txt
 Fitur-Pomodoro
 featureCalendar
@@ -33,31 +34,32 @@ coba-coba
 final-fix
 ```
 
-## Format Commit
-Gunakan format:
+## Commit Message Format
+Use the format:
 ```txt
-type: deskripsi singkat
-```
-Contoh:
-```txt
-feat: create pomodoro page structure
-style: improve pomodoro timer layout
-fix: fix task calendar link
-docs: update README workflow
-chore: restructure feature folders
+type: short description
 ```
 
-## Jenis Commit
-| Type | Kegunaan |
-|---|---|
-| `feat` | Menambahkan fitur baru |
-| `style` | Mengubah tampilan/layout |
-| `fix` | Memperbaiki bug |
-| `docs` | Mengubah dokumentasi |
-| `chore` | Setup teknis/struktur folder |
+Example:
+```txt
+feat: create structure for Pomodoro page
+style: improve Pomodoro timer layout
+fix: correct task calendar link
+docs: revise README for new structure
+chore: reorganize feature folders
+```
 
-## Tips Commit
-- Satu commit sebaiknya fokus pada satu perubahan.
-- Jangan commit file yang tidak relevan.
-- Commit message harus bisa dipahami tanpa membuka kode.
-- Jangan gunakan message seperti `update`, `fix lagi`, atau `coba`.
+## Commit Types
+| Type   | Description               |
+|--------|---------------------------|
+| `feat` | Adding new features       |
+| `style`| Modifying UI/UX layout    |
+| `fix`  | Fixing bugs               |
+| `docs` | Updating documentation    |
+| `chore`| Technical setups/cleanups |
+
+## Commit Tips
+- Each commit should focus on a single change.
+- Do not commit unrelated or irrelevant files.
+- Commit messages should convey changes without needing the reviewer to open the code.
+- Avoid vague messages like `update`, `fix again`, or `test`. Let's keep our history clean and understandable!

@@ -1,66 +1,65 @@
 # Contributing Guide - StudyFlow
-Dokumen ini menjelaskan cara anggota tim mengerjakan project StudyFlow.
 
-## Prinsip Utama
-- Jangan kerja langsung di `main`.
-- Jangan kerja langsung di `development`, kecuali repo owner untuk kondisi tertentu.
-- Setiap fitur dikerjakan di branch masing-masing.
-- Semua hasil kerja masuk ke `development` melalui Pull Request.
-- `main` hanya digunakan untuk versi stabil atau demo.
+This document provides guidelines for team members working on the StudyFlow project.
 
-## Workflow Harian
-Sebelum mulai kerja:
+## Core Principles
+- Never work directly on `main`.
+- Avoid direct work on `development`, except by repository owners in specific cases.
+- Each feature must be developed in its own separate branch.
+- All work merges into `development` through Pull Requests.
+- `main` is reserved for stable versions or demos only.
+
+## Daily Workflow
+Before starting any work:
 ```bash
 git switch development
 git pull origin development
 ```
-Selalu buat branch baru dari development terbaru jika belum.
-
+Always create a new feature branch from the latest development version if no branch exists:
 ```bash
 git switch development
 git pull origin development
-git switch -c feat/nama-fitur
-git push -u origin feat/nama-fitur
+git switch -c feat/<feature-name>
+git push -u origin feat/<feature-name>
 ```
-Kalau sudah ada branch,
-Masuk ke branch fitur masing-masing:
+If your branch already exists, switch to it:
 ```bash
-git switch feat/nama-fitur
+git switch feat/<feature-name>
 ```
-Kalau branch belum ada di lokal tapi sudah ada di remote:
+If the branch exists on remote but not locally:
 ```bash
 git fetch --all --prune
-git switch -c feat/nama-fitur origin/feat/nama-fitur
+git switch -c feat/<feature-name> origin/feat/<feature-name>
 ```
-Update branch fitur dengan perubahan terbaru dari `development`:
+Update your feature branch with the latest changes from `development`:
 ```bash
 git merge development
 ```
-Setelah coding:
+After completing your work:
 ```bash
 git status
 git add .
-git commit -m "type: deskripsi perubahan"
+git commit -m "type: brief description of changes"
 git push
 ```
-Lalu buat Pull Request ke `development`.
+Then create a Pull Request to `development`.
 
-## Target Pull Request
-Untuk fitur:
+## Pull Request Target
+For feature work:
 ```txt
 base: development
-compare: feat/nama-fitur
+compare: feat/<feature-name>
 ```
-Untuk release final:
+For final release:
 ```txt
 base: main
 compare: development
 ```
 
-## Testing Sebelum PR
-Sebelum membuat PR, pastikan:
-- Project bisa dibuka di Live Server.
-- Halaman yang diubah tidak error.
-- Link antar halaman berjalan.
-- Tampilan tidak rusak.
-- Tidak ada file tidak penting yang ikut commit.
+## Testing Before PR
+Before submitting a Pull Request, ensure that:
+- The project runs successfully using the build tools (`npm run dev`).
+- Modified pages load without error.
+- Page links navigate correctly.
+- The UI appears as intended, free of layout issues.
+- Irrelevant or unnecessary files are not included in the commit.

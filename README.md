@@ -1,97 +1,60 @@
 # StudyFlow
-StudyFlow adalah project final mata kuliah Web Client Development berupa prototype website produktivitas belajar
-untuk mahasiswa. Project ini membantu pengguna mengatur waktu belajar, menggunakan Pomodoro, dan mengulang materi dengan flashcard.
 
-## Tujuan Project
-Project ini digunakan sebagai latihan penerapan:
-- HTML semantic
-- Tailwind CSS via CDN
-- JavaScript dasar
-- Git dan GitHub workflow dalam tim
-- Pull Request dan branch-based collaboration
+## Project Overview
+StudyFlow is a modern Single Page Application (SPA) designed for students to optimize their study schedules and habits. It is built with React 19, powered by Vite for an exceptionally fast and lean development experience, and styled with Tailwind CSS for an effortlessly customizable UI.
 
-## Fitur Utama
-| Fitur | Folder | Branch |
-|---|---|---|
-| Landing Page | `index.html` | `feat/landing-page` |
-| Flashcard | `fitur/flashcard/` | `feat/flashcard-page` |
-| Pomodoro | `fitur/pomodoro/` | `feat/pomodoro-page` |
-| Task Calendar | `fitur/task-calendar/` | `feat/task-calendar-page` |
+## Architecture & File Structure
+The project follows a clean and modular architecture to ensure ease of development and scalability. Here's an overview of the primary folders inside the `src/` directory:
 
-## Tech Stack
-- HTML5
-- Tailwind CSS CDN
-- JavaScript dasar
-- GitHub untuk version control dan kolaborasi
-- Live Server untuk menjalankan project secara lokal
+- **`src/components/`**: Contains reusable React components, such as those used on the landing page.
+- **`src/views/`**: Includes the implementation of the key feature-specific views: Flashcards, Pomodoro with countdown logic, and Calendar.
+- **`src/hooks/`**: Custom React hooks for managing state and shared logic across the application.
+- **`src/assets/`**: Assets like images and icons, organized in subfolders.
 
-## Struktur Folder
-```txt
-study-flow/
-├── index.html
-├── fitur/
-│ ├── flashcard/
-│ ├── pomodoro/
-│ └── task-calendar/
-├── docs/
-└── .github/
-```
+## Features Implemented
+1. **Flashcards**: Create, review, and manage flashcards for effective learning.
+2. **Pomodoro Timer**: A countdown timer implementing the Pomodoro technique to enhance focus and productivity.
+3. **Calendar**: A fully interactive calendar view, preloaded with the month of June 2026.
 
-## Cara Menjalankan Project
-1. Clone repository:
-```bash
-git clone https://github.com/LeroyChris/study-flow.git
-```
+## Local Setup & Installation
+Follow these steps to set up the project locally:
 
-2. Masuk ke folder project:
-```bash
-cd study-flow
-```
-
-3. Buka project di VS Code:
-```bash
-code .
-```
-
-4. Jalankan menggunakan extension Live Server.
-
-5. Buka halaman utama:
-```txt
-index.html
-```
-
-Atau buka halaman fitur:
-```txt
-fitur/flashcard/index.html
-fitur/pomodoro/index.html
-fitur/task-calendar/index.html
-```
-
-## Branch Utama
-- `main` = branch stabil / baseline demo.
-- `development` = branch integrasi untuk progress fitur.
-- `feat/...` = branch kerja masing-masing fitur.
-
-## Workflow Singkat
-1. Selalu mulai dari `development`.
-2. Buat branch fitur dari `development`.
-3. Kerjakan fitur di branch masing-masing.
-4. Commit perubahan dengan message yang jelas.
-5. Push branch ke GitHub.
-6. Buat Pull Request ke `development`.
-7. Repo owner melakukan review dan merge.
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd study-flow
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. To build the project for production:
+   ```bash
+   npm run build
+   ```
 
 ## Development Workflow
-1. Buat branch fitur dari development.
-2. Kerjakan fitur pada branch masing-masing.
-3. Push branch ke GitHub.
-4. Buat Pull Request ke development.
-5. Setelah development stabil, merge development ke main.
+To maintain a clean codebase and avoid merge conflicts, follow these practices:
 
-## Dokumentasi Internal Tim
-- `docs/CONTRIBUTING.md` - panduan cara kerja tim.
-- `docs/BRANCH_AND_COMMIT_GUIDE.md` - panduan penamaan branch dan commit.
-- `docs/TASK_DIVISION.md` - pembagian tugas fitur.
+1. Create a new feature branch from `development` before starting work:
+   ```bash
+   git checkout development
+   git pull origin development
+   git checkout -b feat/<your-feature-name>
+   ```
+2. Work on your respective feature inside the appropriate files.
+   - For instance, if you're working on the Flashcards feature, modify files inside `src/views/` and utilize any shared components or hooks from `src/components/` and `src/hooks/`.
+3. Regularly pull the latest changes from `development` into your branch to stay updated.
+   ```bash
+   git pull origin development
+   ```
+4. Push your changes to the remote repository and create a pull request for review.
 
-## Status Project
-Project ini masih dalam tahap pengembangan awal dan digunakan untuk pembelajaran Web Client Development.
+Let's keep StudyFlow evolving smoothly!

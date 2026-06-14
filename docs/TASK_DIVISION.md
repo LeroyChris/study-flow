@@ -1,49 +1,50 @@
 # Task Division - StudyFlow
-Dokumen ini menjelaskan pembagian tugas anggota tim berdasarkan fitur.
 
-## Pembagian Fitur
-| Role | Fitur | Folder | Branch |
-|---|---|---|---|
-| Landing Page | Halaman utama | `index.html` | `feat/landing-page` |
-| Flashcard | Fitur kartu belajar | `fitur/flashcard/` | `feat/flashcard-page` |
-| Pomodoro | Timer belajar | `fitur/pomodoro/` | `feat/pomodoro-page` |
-| Task Calendar | Task dan kalender belajar | `fitur/task-calendar/` | `feat/task-calendar-page` |
+This document outlines the division of tasks among team members based on features.
 
-## Scope Awal Tiap Fitur
+## Feature Assignment
+| Feature         | Description             | Folder            | Branch              |
+|-----------------|-------------------------|-------------------|---------------------|
+| Landing Page    | Main homepage           | `src/components/` | `feat/landing-page` |
+| Flashcards      | Study flashcard feature | `src/views/`      | `feat/flashcard`    |
+| Pomodoro Timer  | Study timer feature     | `src/views/`      | `feat/pomodoro`     |
+| Task Calendar   | Task tracking calendar  | `src/views/`      | `feat/calendar`     |
+
+## Initial Scope for Each Feature
 
 ### Landing Page
-Target awal:
+Initial targets:
 - Navbar
 - Hero section
-- Ringkasan fitur
-- Link ke halaman fitur
+- Overview of features
+- Links to feature pages
 - Footer
 
-### Flashcard
-Target awal:
-- Tampilan halaman flashcard
-- Kartu pertanyaan dan jawaban
-- Tombol flip
-- Tombol next
-- Progress sederhana
+### Flashcards
+Initial targets:
+- Flashcard view layout
+- Question and answer cards
+- Flip button
+- Next button
+- Basic progress display
 
-### Pomodoro
-Target awal:
-- Tampilan timer
-- Tombol focus
-- Tombol short break
-- Tombol long break
-- Tombol start/pause/reset jika memungkinkan
+### Pomodoro Timer
+Initial targets:
+- Timer display
+- Focus button
+- Short break button
+- Long break button
+- Start/Pause/Reset buttons (if possible)
 
 ### Task Calendar
-Target awal:
-- Tampilan task list
-- Tampilan kalender sederhana
-- Input task dasar jika memungkinkan
-- Layout yang konsisten dengan desain StudyFlow
+Initial targets:
+- Task list display
+- Simple calendar view
+- Basic task input (if possible)
+- Consistent layout with StudyFlow design
 
-## Aturan Kerja
-- Setiap anggota fokus di folder fiturnya masing-masing.
-- Jika ingin mengubah file milik fitur lain, diskusikan dulu.
-- Jika mengubah `index.html` utama, beri tahu tim.
-- Semua fitur masuk ke `development` melalui Pull Request.
+## Working Rules
+- Each team member should focus on their respective feature folder.
+- If you need to modify files from another feature, discuss with the owner first.
+- Notify the team if you make changes to shared files, such as `src/components/`.
+- All features should be merged into `development` through Pull Requests.
