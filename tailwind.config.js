@@ -13,9 +13,11 @@ export default {
         'brand-footer': '#111319',
         'brand-purple': '#6d00e7',
         'brand-warm': '#f4f3ef',
+        'brand-mist': '#F8FAFB',
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
+        'Jakarta': ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       animation: {
         'marquee': 'marquee 25s linear infinite',

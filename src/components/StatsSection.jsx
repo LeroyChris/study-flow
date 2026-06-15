@@ -11,7 +11,7 @@ function StatItem({ target, label }) {
 
   return (
     <div>
-      <h2 className="text-gray-500 text-xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-2">
+      <h2 className="text-gray-500 text-xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-2">
         <span>{value}</span>
         {suffix}
       </h2>
@@ -22,7 +22,7 @@ function StatItem({ target, label }) {
 
 export default function StatsSection() {
   return (
-    <section className="mb-16 py-20 bg-mist-100 border-black-100 text-black px-6 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto justify-items-center text-center">
+    <section className="mb-16 py-20 bg-brand-warm border-black-100 text-black px-6 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto justify-items-center text-center">
       {STATS.map((s) => (
         <StatItem key={s.label} target={s.target} label={s.label} />
       ))}
