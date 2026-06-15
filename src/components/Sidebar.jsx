@@ -1,10 +1,11 @@
 import
-  { House, CalendarDays, Timer, Book } from 'lucide-react'
+  { House, ListTodo, CalendarDays, Timer, Book } from 'lucide-react'
 
 
 const NAV_ITEMS = [
   { label: 'Home', view: 'landing', icon: House},
-  { label: 'Task Calendar', view: 'calendar', icon: CalendarDays},
+  { label: 'Task', view: 'task', icon: ListTodo},
+  { label: 'Calendar', view: 'calendar', icon: CalendarDays},
   { label: 'Pomodoro', view: 'pomodoro', icon: Timer},
   { label: 'Flashcards', view: 'flashcard', icon: Book},
 ]

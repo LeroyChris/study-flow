@@ -1,6 +1,7 @@
 import clockIcon from '../assets/icons/clock.svg'
 import pomodoroIcon from '../assets/icons/Pomodoro.svg'
 import flashcardIcon from '../assets/icons/flashcard.svg'
+import taskicon from '../assets/icons/list-todo.svg'
 
 const FEATURES = [
   {
@@ -21,6 +22,12 @@ const FEATURES = [
     description:
       'Create decks, study with spaced repetition, and track your mastery over time.',
   },
+  {
+    icon: taskicon,
+    title: 'To Do List',
+    description:
+      'Helping you prioritize tasks—from the most important ones to those you can take it easy on',
+  },
 ]
 
 function FeatureCard({ icon, title, description, onNavigate }) {
@@ -28,6 +35,7 @@ function FeatureCard({ icon, title, description, onNavigate }) {
     'Time Management': 'calendar',
     'Pomodoro Timer': 'pomodoro',
     'Flashcards Systems': 'flashcard',
+    'To Do List' : 'task',
   }
   return (
     <div
@@ -56,7 +64,7 @@ export default function FeaturesSection({ onNavigate }) {
           </p>
         </div>
       </section>
-      <section className="flex bg-brand-warm py-5 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto px-5 justify-items-center">
+      <section className="flex bg-brand-warm py-5 grid grid-cols-1 md:grid-cols-4 gap-y-8 gap-x-5 max-w-full mx-auto px-5 justify-items-center">
         {FEATURES.map((f) => (
           <FeatureCard key={f.title} {...f} onNavigate={onNavigate} />
         ))}

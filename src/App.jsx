@@ -17,6 +17,7 @@ function App() {
   if (view === 'flashcard') return <FlashcardView onNavigate={setView} />
   if (view === 'pomodoro') return <PomodoroView onNavigate={setView} />
   if (view === 'calendar') return <CalendarView onNavigate={setView} />
+  if (view === 'task') return <TaskView onNavigate={setView} />
 
   return (
     <>
