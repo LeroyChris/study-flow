@@ -12,15 +12,9 @@ export default function CTASection({ onNavigate }) {
         <div className="flex justify-center mt-6">
           <button
             onClick={() => onNavigate?.('flashcard')}
-            className="bg-brand-teal hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-lg shadow-md shadow-brand-dark/10 transition-colors duration-300 cursor-pointer"
+            className="bg-white hover:bg-[#2563EB] text-gray hover:text-white font-semibold px-6 py-3 rounded-lg shadow-lg shadow-[#2563EB]/50 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
           >
-            Get Started →
-          </button>
-          <button
-            onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-brand-teal hover:bg-brand-dark text-white font-semibold px-6 py-3 rounded-lg shadow-md shadow-brand-dark/10 transition-colors duration-300 cursor-pointer ml-4"
-          >
-            See Features
+            Get Started → For Free
           </button>
         </div>
       </div>

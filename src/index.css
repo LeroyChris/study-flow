@@ -10,6 +10,12 @@
   --color-brand-purple: #6d00e7;
   --color-brand-warm: #f4f3ef;
   --font-family-poppins: 'Poppins', sans-serif;
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-100%); }
+  }
 }
 
 

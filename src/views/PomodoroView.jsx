@@ -2,10 +2,31 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Sidebar from '../components/Sidebar'
 
 const TABS = [
-  { label: 'Focus', minutes: 25 },
-  { label: 'Short Break', minutes: 5 },
-  { label: 'Long Break', minutes: 15 },
+  { label: 'Focus', value: 'focus', minutes: 25 },
+  { label: 'Short Break', value: 'short', minutes: 5 },
+  { label: 'Long Break', value: 'long', minutes: 15 },
 ]
+
+const MODE_COLORS = {
+  focus: {
+    primary: 'bg-teal-600',
+    hover: 'hover:bg-teal-700',
+    text: 'text-teal-600',
+    stroke: '#0d9488',
+  },
+  short: {
+    primary: 'bg-blue-600',
+    hover: 'hover:bg-blue-700',
+    text: 'text-blue-600',
+    stroke: '#2563eb',
+  },
+  long: {
+    primary: 'bg-purple-600',
+    hover: 'hover:bg-purple-700',
+    text: 'text-purple-600',
+    stroke: '#9333ea',
+  },
+}
 
 export default function PomodoroView({ onNavigate }) {
   const [activeTab, setActiveTab] = useState(0)
@@ -25,6 +46,9 @@ export default function PomodoroView({ onNavigate }) {
     setActiveTab(index)
     setTimeLeft(TABS[index].minutes * 60)
   }
+
+  const currentMode = TABS[activeTab].value
+  const colors = MODE_COLORS[currentMode]
 
   const togglePlay = () => {
     setIsRunning((prev) => !prev)
@@ -62,15 +86,15 @@ export default function PomodoroView({ onNavigate }) {
       <Sidebar currentView="pomodoro" onNavigate={onNavigate} />
 
       <main className="flex-1 bg-brand-warm flex items-center justify-center p-10">
-        <div className="bg-white rounded-[32px] mx-auto p-8 text-center max-w-md w-full">
-          <div className="flex bg-gray-100 p-1 rounded-full justify-between items-center mb-8">
+        <div className="bg-white rounded-[50px] mx-auto p-8 text-center max-w-md w-full">
+          <div className="flex bg-blue-100 p-1 rounded-full justify-between items-center mb-8">
             {TABS.map((tab, i) => (
               <button
                 key={tab.label}
                 onClick={() => switchTab(i)}
                 className={`font-semibold py-2 px-6 rounded-full text-sm transition-all cursor-pointer ${
                   i === activeTab
-                    ? 'bg-blue-600 text-white shadow-sm'
+                    ? `${colors.primary} text-white shadow-sm` //ini adalah tab
                     : 'text-gray-500 font-medium'
                 }`}
               >
@@ -94,7 +118,7 @@ export default function PomodoroView({ onNavigate }) {
                 cy="125"
                 r="115"
                 fill="none"
-                stroke="#2563EB"
+                stroke={colors.stroke}
                 strokeWidth="10"
                 strokeLinecap="round"
                 strokeDasharray={circumference}
@@ -106,7 +130,7 @@ export default function PomodoroView({ onNavigate }) {
               <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
                 {minutes}:{seconds}
               </h1>
-              <p className="text-xs text-gray-400 font-semibold mt-1 capitalize tracking-widest">
+              <p className={`text-xs font-semibold mt-1 capitalize tracking-widest ${colors.text}`}>
                 {TABS[activeTab].label}
               </p>
             </div>
@@ -115,14 +139,14 @@ export default function PomodoroView({ onNavigate }) {
           <div className="flex items-center justify-center gap-6 mb-8">
             <button
               onClick={resetTimer}
-              className="w-14 h-14 bg-[#f0efe9] rounded-2xl flex items-center justify-center text-gray-500 text-2xl cursor-pointer hover:bg-gray-200 transition"
+              className={`w-16 h-16 text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer transition ${colors.primary} ${colors.hover}`}
             >
               ↺
             </button>
 
             <button
               onClick={togglePlay}
-              className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-blue-200 cursor-pointer hover:bg-blue-700 transition"
+              className={`w-16 h-16 text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer transition ${colors.primary} ${colors.hover}`}
             >
               {isRunning ? (
                 <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
@@ -138,10 +162,13 @@ export default function PomodoroView({ onNavigate }) {
 
             <button
               onClick={() => {
-                clearInterval(intervalRef.current)
-                setIsRunning(false)
-                setTimeLeft(TABS[activeTab].minutes * 60)
-              }}
+              const nextTab = (activeTab + 1) % TABS.length
+
+              clearInterval(intervalRef.current)
+              setIsRunning(false)
+              setActiveTab(nextTab)
+              setTimeLeft(TABS[nextTab].minutes * 60)
+            }}
               className="w-14 h-14 bg-[#f0efe9] rounded-2xl flex items-center justify-center text-gray-500 text-2xl cursor-pointer hover:bg-gray-200 transition"
             >
               ⇥

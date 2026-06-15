@@ -1,16 +1,24 @@
+import
+  { House, CalendarDays, Timer, Book } from 'lucide-react'
+
+
 const NAV_ITEMS = [
-  { label: 'Home', view: 'landing' },
-  { label: 'Task Calendar', view: 'calendar' },
-  { label: 'Pomodoro', view: 'pomodoro' },
-  { label: 'Flashcards', view: 'flashcard' },
+  { label: 'Home', view: 'landing', icon: House},
+  { label: 'Task Calendar', view: 'calendar', icon: CalendarDays},
+  { label: 'Pomodoro', view: 'pomodoro', icon: Timer},
+  { label: 'Flashcards', view: 'flashcard', icon: Book},
 ]
 
 export default function Sidebar({ currentView, onNavigate }) {
   return (
     <aside className="w-64 bg-white border-r border-gray-200 flex flex-col justify-between p-4 h-screen sticky top-0">
+      <span></span>
       <nav>
         <ul className="space-y-2">
-          {NAV_ITEMS.map((item) => (
+          {NAV_ITEMS.map((item) => {
+            const Icon = item.icon
+
+            return (
             <li key={item.view}>
               <button
                 onClick={() => onNavigate(item.view)}
@@ -20,14 +28,19 @@ export default function Sidebar({ currentView, onNavigate }) {
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                {item.label}
+                <Icon size={18} 
+                className={currentView === item.view
+                  ? 'text-blue-600'
+                  : 'text-gray-400'
+                  }/>
+                <span>{item.label}</span>
               </button>
             </li>
-          ))}
+          )})}
         </ul>
       </nav>
 
-      <div className="space-y-4 border-t border-gray-100 pt-4">
+      <div className="mt-auto space-y-4 border-t border-gray-100 pt-4">
         <div className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 cursor-pointer hover:bg-gray-50 rounded-lg transition">
           <span>🌙</span>
           <span className="font-medium">Dark Mode</span>
