@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import FlashcardView from './views/FlashcardView'
 import PomodoroView from './views/PomodoroView'
 import CalendarView from './views/CalendarView'
+import { Marquee } from './components/Marquee'
 
 function App() {
   const [view, setView] = useState('landing')
@@ -21,6 +22,7 @@ function App() {
       <Header onNavigate={setView} />
       <main>
         <HeroSection onNavigate={setView} />
+        <Marquee />
         <FeaturesSection onNavigate={setView} />
         <StatsSection />
         <CTASection onNavigate={setView} />

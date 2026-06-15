@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
+@theme {
+  --color-brand-dark: #0B2E33;
+  --color-brand-blue: #2563EB;
+  --color-brand-teal: #4F7C82;
+  --color-brand-footer: #111319;
+  --color-brand-purple: #6d00e7;
+  --color-brand-warm: #f4f3ef;
+  --font-family-poppins: 'Poppins', sans-serif;
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-100%); }
+  }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
