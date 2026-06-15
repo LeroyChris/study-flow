@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import FlashcardView from './views/FlashcardView'
 import PomodoroView from './views/PomodoroView'
 import CalendarView from './views/CalendarView'
+import TaskView from './views/TaskView'
 import { Marquee } from './components/Marquee'
 
 function App() {
