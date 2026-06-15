@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
+import HeroCards from './components/HeroCards'
 import FeaturesSection from './components/FeaturesSection'
 import StatsSection from './components/StatsSection'
 import CTASection from './components/CTASection'

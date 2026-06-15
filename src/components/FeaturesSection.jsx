@@ -56,7 +56,7 @@ export default function FeaturesSection({ onNavigate }) {
           </p>
         </div>
       </section>
-      <section className="flex bg-mist-100 py-5 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto px-5 justify-items-center">
+      <section className="flex bg-brand-warm py-5 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto px-5 justify-items-center">
         {FEATURES.map((f) => (
           <FeatureCard key={f.title} {...f} onNavigate={onNavigate} />
         ))}
