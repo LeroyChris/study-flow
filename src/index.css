@@ -1,25 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
-@theme {
-  --color-brand-dark: #0B2E33;
-  --color-brand-blue: #2563EB;
-  --color-brand-teal: #4F7C82;
-  --color-brand-footer: #111319;
-  --color-brand-purple: #6d00e7;
-  --color-brand-warm: #f4f3ef;
-  --font-family-poppins: 'Poppins', sans-serif;
-  --animate-marquee: marquee 25s linear infinite;
-
-  @keyframes marquee {
-    from { transform: translateX(0%); }
-    to { transform: translateX(-100%); }
-  }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 
 /* Pola Grid Halus Transparan Menyesuaikan Tema Selasar */
 body {
@@ -35,32 +18,6 @@ body::before {
   height: 100%;
   /* Garis grid berwarna gelap transparan (opacity 3%) agar serasi dengan latar belakang biru muda Selasar */
   background-image:
-    linear-gradient(to right, rgba(11, 46, 51, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(11, 46, 51, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  /* Efek memudar radial agar grid di bagian tengah terlihat jelas, dan memudar di ujung layar */
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 60%, transparent 100%);
-  pointer-events: none;
-  z-index: -1;
-}
-
-
-
-/* Pola Grid Halus Transparan Menyesuaikan Tema Selasar */
-body {
-  position: relative;
-  min-height: 100vh;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  /* Garis grid berwarna gelap transparan (opacity 3%) agar serasi dengan latar belakang biru muda Selasar */
-  background-image: 
     linear-gradient(to right, rgba(11, 46, 51, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(11, 46, 51, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;

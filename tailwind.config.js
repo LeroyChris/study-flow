@@ -17,6 +17,15 @@ export default {
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
       },
+      animation: {
+        'marquee': 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          'from': { transform: 'translateX(0%)' },
+          'to': { transform: 'translateX(-100%)' },
+        },
+      },
     },
   },
   plugins: [],
