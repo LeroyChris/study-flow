@@ -2,6 +2,7 @@ import { useState, useEffect, useId } from 'react';
 import Sidebar from '../components/Sidebar';
 import FlashcardList from '../components/flashcards/FlashcardList';
 import StudyComplete from '../components/flashcards/StudyComplete';
+import TiltCard from '../components/TiltCard'
 
 /* ─── Constants ─── */
 const STORAGE_KEY_DECKS = 'flashcard-decks';
@@ -17,6 +18,7 @@ const BULLET_COLORS = [
   'bg-pink-500',
 ];
 
+//#region dummy flashcard
 const SEED_DECKS = [
   {
     id: 'seed-1',
@@ -64,6 +66,8 @@ const SEED_DECKS = [
   },
 ];
 
+//#endregion
+
 /* ─── Helpers ─── */
 function loadDecks() {
   try {
@@ -92,6 +96,7 @@ let cardIdCounter = Date.now();
 function nextCardId() {
   return `card-${++cardIdCounter}`;
 }
+
 
 /* ─── Component ─── */
 export default function FlashcardView({ onNavigate }) {
@@ -360,7 +365,7 @@ export default function FlashcardView({ onNavigate }) {
             <div className="max-w-6xl mx-auto">
               {/* Header row */}
               <div className="flex items-center justify-between mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 font-serif">Flashcards</h1>
+                <h1 className="text-3xl font-bold text-gray-900 font-poppins">Flashcards</h1>
                 <button
                   onClick={() => {
                     setShowNewDeckForm((v) => !v);
@@ -381,46 +386,116 @@ export default function FlashcardView({ onNavigate }) {
               </div>
 
               {/* New Deck Form */}
-              {showNewDeckForm && (
-                <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 mb-8 max-w-lg">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Create a New Deck</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-600 mb-1">Title *</label>
+           {showModal && (
+                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+                  <div className="
+                    bg-white
+                    border border-gray-100
+                    rounded-2xl
+                    shadow-xl
+                    p-6
+                    w-full
+                    max-w-md
+                    mx-4
+                  ">
+
+                    <h2 className="text-xl font-bold text-gray-800 mb-5">
+                      Create New Task
+                    </h2>
+
+                    <div className="space-y-4">
+
                       <input
                         type="text"
-                        value={newDeckTitle}
-                        onChange={(e) => setNewDeckTitle(e.target.value)}
-                        placeholder="e.g. JavaScript Basics"
-                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+                        placeholder="Task Title"
+                        value={newTask.title}
+                        onChange={(e) =>
+                          setNewTask({
+                            ...newTask,
+                            title: e.target.value,
+                          })
+                        }
+                        className="
+                          w-full
+                          border border-gray-200
+                          rounded-xl
+                          px-4 py-3
+                        "
                       />
-                      {renderError('deckTitle')}
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-600 mb-1">Description</label>
+
                       <input
                         type="text"
-                        value={newDeckDesc}
-                        onChange={(e) => setNewDeckDesc(e.target.value)}
-                        placeholder="e.g. Core concepts and fundamentals"
-                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+                        placeholder="Subject"
+                        value={newTask.subject}
+                        onChange={(e) =>
+                          setNewTask({
+                            ...newTask,
+                            subject: e.target.value,
+                          })
+                        }
+                        className="
+                          w-full
+                          border border-gray-200
+                          rounded-xl
+                          px-4 py-3
+                        "
                       />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-600 mb-1">Category</label>
+
                       <input
-                        type="text"
-                        value={newDeckCategory}
-                        onChange={(e) => setNewDeckCategory(e.target.value)}
-                        placeholder="e.g. Web Development"
-                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+                        type="date"
+                        value={newTask.deadline}
+                        onChange={(e) =>
+                          setNewTask({
+                            ...newTask,
+                            deadline: e.target.value,
+                          })
+                        }
+                        className="
+                          w-full
+                          border border-gray-200
+                          rounded-xl
+                          px-4 py-3
+                        "
                       />
+
                     </div>
-                    <div className="flex gap-3 pt-1">
-                      <button onClick={createDeck} className="bg-brand-purple text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Create</button>
-                      <button onClick={() => { setShowNewDeckForm(false); setNewDeckTitle(''); setNewDeckDesc(''); setNewDeckCategory(''); setErrors({}); }} className="bg-gray-100 text-gray-600 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition">Cancel</button>
+
+                    <div className="flex justify-end gap-3 mt-6">
+
+                      <button
+                        onClick={() => setShowModal(false)}
+                        className="
+                          bg-gray-100
+                          text-gray-600
+                          px-4 py-2
+                          rounded-lg
+                          hover:bg-gray-200
+                        "
+                      >
+                        Cancel
+                      </button>
+
+                      <button
+                        onClick={() => setShowModal(true)}
+                        className="
+                          bg-brand-purple
+                          text-white
+                          px-5 py-2.5
+                          rounded-lg
+                          text-sm
+                          font-medium
+                          hover:bg-[#5b00c2]
+                          transition
+                        "
+                      >
+                        + New Task
+                      </button>
+
                     </div>
+
                   </div>
+
                 </div>
               )}
 
@@ -480,10 +555,10 @@ export default function FlashcardView({ onNavigate }) {
                     const cardCount = deck.cards.length;
                     const dueCount = Math.max(0, cardCount - 2);
                     return (
-                      <div
+                      <TiltCard
                         key={deck.id}
-                        className="group bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all p-5 flex flex-col cursor-pointer"
                         onClick={() => setActiveDeckId(deck.id)}
+                        className="group bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 p-5 flex flex-col cursor-pointer"
                       >
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2.5 min-w-0">
@@ -519,7 +594,7 @@ export default function FlashcardView({ onNavigate }) {
                         >
                           Open Deck →
                         </button>
-                      </div>
+                      </TiltCard>
                     );
                   })}
                 </div>

@@ -1,10 +1,13 @@
 import { useTypewriter } from '../hooks/useTypewriter'
 import HeroCards from './HeroCards'
+import { useTilt } from '../hooks/useTilt'
 
 const WORDS = ['focus', 'learn', 'grow', 'achieve']
 
+
 export default function HeroSection({ onNavigate }) {
   const { display } = useTypewriter(WORDS)
+  const { rotation, handleMouseMove, reset,} = useTilt(60)
 
   return (
     <section className="min-h-screen px-8">
@@ -41,8 +44,17 @@ export default function HeroSection({ onNavigate }) {
 
           <div className="flex gap-4">
             <button
+              onMouseMove={handleMouseMove}
+              onMouseLeave={reset}
+              style={{
+                transform: `
+                  perspective(1000px)
+                  rotateY(${rotation.x}deg)
+                  rotateX(${-rotation.y}deg)
+                `
+              }}
               onClick={() => onNavigate?.('flashcard')}
-              className="bg-white hover:bg-[#2563EB] text-black hover:text-white font-semibold px-6 py-3 rounded-lg shadow-lg shadow-[#2563EB]/30 transition-all duration-300 hover:-translate-y-2"
+              className="bg-white hover:bg-[#2563EB] text-black hover:text-white transition-transform duration-100 will-change-transform font-semibold px-6 py-3 rounded-lg shadow-lg shadow-[#2563EB]/30 transition-all duration-300 hover:-translate-y-2"
             >
               Enter App →
             </button>
