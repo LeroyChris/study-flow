@@ -1,9 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Sidebar from '../components/Sidebar'
 
-// ==========================================
-// KONFIGURASI DATA TAB & WARNA DINAMIS (PAS FIGMA)
-// ==========================================
+// KONFIGURASI DATA TAB & WARNA DINAMIS
 const TABS = [
   { label: 'Focus', value: 'focus', minutes: 25 },
   { label: 'Short Break', value: 'short', minutes: 5 },
@@ -13,7 +11,7 @@ const TABS = [
 const MODE_COLORS = {
   focus: {
     primary: 'bg-blue-600',
-    hover: 'hover:bg-blue-700', // Biru lebih tua
+    hover: 'hover:bg-blue-700', 
     text: 'text-blue-600',
     stroke: '#2563eb',
     bgLight: 'bg-blue-50',
@@ -22,7 +20,7 @@ const MODE_COLORS = {
   },
   short: {
     primary: 'bg-[#00bfa5]',
-    hover: 'hover:bg-[#00a68f]', // Hijau toska lebih tua (Bukan asal tebak)
+    hover: 'hover:bg-[#00a68f]', 
     text: 'text-[#00bfa5]',
     stroke: '#00bfa5',
     bgLight: 'bg-[#00bfa5]/10',
@@ -31,7 +29,7 @@ const MODE_COLORS = {
   },
   long: {
     primary: 'bg-[#9333ea]',
-    hover: 'hover:bg-[#7c3aed]', // Diubah ke Ungu yang lebih pekat/tua (Hex figma)
+    hover: 'hover:bg-[#7c3aed]', 
     text: 'text-[#9333ea]',
     stroke: '#9333ea',
     bgLight: 'bg-[#9333ea]/10',
@@ -41,9 +39,7 @@ const MODE_COLORS = {
 }
 
 export default function PomodoroView({ onNavigate }) {
-  // ==========================================
   // STATE MANAGEMENT TIMERS
-  // ==========================================
   const [activeTab, setActiveTab] = useState(0)
   const [timeLeft, setTimeLeft] = useState(TABS[0].minutes * 60)
   const [isRunning, setIsRunning] = useState(false)
@@ -121,9 +117,9 @@ export default function PomodoroView({ onNavigate }) {
         {/* LAYOUT DUA KOLOM */}
         <div className="flex flex-col lg:flex-row justify-center items-start gap-8 max-w-5xl mx-auto">
 
-          {/* ========================================== */}
-          {/* KARTU 1: BOX POMODORO TIMER UTAMA          */}
-          {/* ========================================== */}
+         
+          {/* KARTU 1: BOX POMODORO TIMER UTAMA */}
+    
           <div className="bg-white rounded-[32px] w-full max-w-md p-8 text-center shadow-sm">
             
             {/* CONTAINER TAB SELECTION (WAKTU & BG TOMBOL BERUBAH SEUAI MODE) */}
@@ -170,7 +166,7 @@ export default function PomodoroView({ onNavigate }) {
               </div>
             </div>
 
-            {/* ACTION BUTTON CONTROLS (POSISI DI BAWAH TIMER PAS FIGMA) */}
+            {/* ACTION BUTTON CONTROLS (POSISI DI BAWAH TIMEr) */}
             <div className="flex items-center justify-center gap-6 mb-6">
               <button
                 onClick={resetTimer}
@@ -225,9 +221,9 @@ export default function PomodoroView({ onNavigate }) {
           {/* LAYOUT STRUKTUR SEBELAH KANAN (LO-FI PLAYER & HISTORI) */}
           <div className="w-full max-w-md space-y-6">
             
-            {/* ========================================== */}
+          
             {/* KARTU 2: BOX LO-FI PLAYER UTAMA            */}
-            {/* ========================================== */}
+            
             <div className="bg-white rounded-[32px] p-8 shadow-sm">
               <h2 className="text-xl font-bold text-gray-900 mb-5">Lo-Fi Player</h2>
               
