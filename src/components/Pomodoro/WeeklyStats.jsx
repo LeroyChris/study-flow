@@ -12,7 +12,7 @@ export default function WeeklyStats({ weeklyData, colors }) {
 
           return (
             <div key={i} className="flex flex-col items-center flex-1 group">
-              <span className={`text-xs font-bold mb-2 transition-colors ${sessions > 0 ? colors.text : 'text-gray-300'}`}>{sessions}</span>
+              <span className={`text-xs font-bold mb-2 transition-colors ${sessions > 0 ? colors.text : 'text-gray-300 dark:text-gray-600'}`}>{sessions}</span>
               <div className="w-3 bg-gray-100 dark:bg-gray-700 rounded-full h-24 relative overflow-hidden mb-2">
                 <div className={`absolute bottom-0 left-0 right-0 rounded-full transition-all duration-500 ease-out ${colors.primary}`} style={{ height: `${barHeightPercent}%` }}></div>
               </div>

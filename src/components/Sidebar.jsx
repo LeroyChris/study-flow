@@ -59,7 +59,7 @@ export default function Sidebar({ currentView, onNavigate }) {
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 leading-none">Scholar</span>
-            <span className="text-xs text-gray-400 mt-1">University Student</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500 mt-1">University Student</span>
           </div>
         </div>
       </div>

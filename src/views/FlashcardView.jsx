@@ -435,36 +435,36 @@ export default function FlashcardView({ onNavigate }) {
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">Edit Deck</h3>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-600 mb-1">Title *</label>
+                      <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Title *</label>
                       <input
                         type="text"
                         value={editDeckTitle}
                         onChange={(e) => setEditDeckTitle(e.target.value)}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+                        className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
                       {renderError('editDeckTitle')}
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-600 mb-1">Description</label>
+                      <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Description</label>
                       <input
                         type="text"
                         value={editDeckDesc}
                         onChange={(e) => setEditDeckDesc(e.target.value)}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+                        className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-600 mb-1">Category</label>
+                      <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Category</label>
                       <input
                         type="text"
                         value={editDeckCategory}
                         onChange={(e) => setEditDeckCategory(e.target.value)}
-                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+                        className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
                     </div>
                     <div className="flex gap-3 pt-1">
                       <button onClick={saveEditDeck} className="bg-brand-purple text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Save</button>
-                      <button onClick={() => { setEditingDeckId(null); setErrors({}); }} className="bg-gray-100 text-gray-600 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition">Cancel</button>
+                      <button onClick={() => { setEditingDeckId(null); setErrors({}); }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
                     </div>
                   </div>
                 </div>
@@ -475,7 +475,7 @@ export default function FlashcardView({ onNavigate }) {
                 <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-sm p-16 flex flex-col items-center justify-center text-center">
                   <div className="text-6xl mb-4">📚</div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">No decks yet</h3>
-                  <p className="text-gray-400 max-w-sm mb-6">Create your first flashcard deck to get started with studying.</p>
+                  <p className="text-gray-400 dark:text-gray-500 max-w-sm mb-6">Create your first flashcard deck to get started with studying.</p>
                   <button onClick={() => setShowNewDeckForm(true)} className="bg-brand-purple text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Create Your First Deck</button>
                 </div>
               ) : (
@@ -492,7 +492,7 @@ export default function FlashcardView({ onNavigate }) {
                       >
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2.5 min-w-0">
-                            <span className={`flex-shrink-0 w-2.5 h-2.5 rounded-full ${BULLET_COLORS[deck.colorIndex] || 'bg-gray-300'}`} />
+                            <span className={`flex-shrink-0 w-2.5 h-2.5 rounded-full ${BULLET_COLORS[deck.colorIndex] || 'bg-gray-300 dark:bg-gray-600'}`} />
                             <h3 className="text-base font-bold text-gray-800 dark:text-gray-100 truncate">{deck.title}</h3>
                           </div>
                           <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity" onClick={(e) => e.stopPropagation()}>
@@ -506,13 +506,13 @@ export default function FlashcardView({ onNavigate }) {
                         </div>
 
                         {deck.category && (
-                          <span className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-1">{deck.category}</span>
+                          <span className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-1">{deck.category}</span>
                         )}
                         {deck.description && (
-                          <p className="text-sm text-gray-400 mb-3 line-clamp-2">{deck.description}</p>
+                          <p className="text-sm text-gray-400 dark:text-gray-500 mb-3 line-clamp-2">{deck.description}</p>
                         )}
 
-                        <div className="text-sm text-gray-500 mb-4">
+                        <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
                           {cardCount} {cardCount === 1 ? 'card' : 'cards'} &middot; {dueCount} due
                         </div>
 
@@ -694,7 +694,7 @@ export default function FlashcardView({ onNavigate }) {
                               </div>
                               <div className="flex gap-2">
                                 <button onClick={saveEditCard} className="bg-brand-purple text-white px-3 py-2 rounded-lg text-xs font-medium hover:bg-[#5b00c2] transition">Save</button>
-                                <button onClick={() => { setEditingCardId(null); setErrors({}); }} className="bg-gray-100 text-gray-600 px-3 py-2 rounded-lg text-xs font-medium hover:bg-gray-200 transition">Cancel</button>
+                                <button onClick={() => { setEditingCardId(null); setErrors({}); }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-2 rounded-lg text-xs font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
                               </div>
                             </div>
                           ) : (

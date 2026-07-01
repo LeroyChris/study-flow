@@ -23,7 +23,7 @@ function App() {
     return (
       <>
         <Header onNavigate={setView} />
-        <main>
+        <main className="bg-brand-warm dark:bg-gray-900">
           <HeroSection onNavigate={setView} />
           <Marquee />
           <FeaturesSection onNavigate={setView} />

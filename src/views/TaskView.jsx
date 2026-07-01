@@ -375,7 +375,7 @@ function TaskCard({
 
         <button
           onClick={() => onComplete(task.id)}
-          className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition"
+          className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition"
         >
           ✓
         </button>

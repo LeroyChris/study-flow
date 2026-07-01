@@ -53,7 +53,7 @@ export default function HeroCards() {
             top-12
             w-[300px]
             rounded-[40px]
-            bg-white
+            bg-white dark:bg-gray-800 dark:border dark:border-gray-700
             p-8
             shadow-[0_20px_60px_rgba(0,0,0,0.08)]
             transition-all
@@ -65,22 +65,22 @@ export default function HeroCards() {
           }}
         >
           <div className="flex items-center justify-between">
-            <span className="text-gray-500 font-bold tracking-wide">
+            <span className="text-gray-500 dark:text-gray-400 font-bold tracking-wide">
               FOKUS
             </span>
 
             <div className="h-4 w-4 rounded-full bg-amber-400"></div>
           </div>
 
-          <h2 className="mt-4 text-7xl font-black text-slate-900">
+          <h2 className="mt-4 text-7xl font-black text-slate-900 dark:text-white">
             24:18
           </h2>
 
-          <div className="mt-2 h-3 rounded-full bg-stone-200">
+          <div className="mt-2 h-3 rounded-full bg-stone-200 dark:bg-gray-700">
             <div className="h-full w-[60%] rounded-full bg-teal-600"></div>
           </div>
 
-          <p className="mt-5 text-gray-500">
+          <p className="mt-5 text-gray-500 dark:text-gray-400">
             🎵 Rainy Café — lo-fi
           </p>
         </div>
@@ -90,7 +90,7 @@ export default function HeroCards() {
           className="
             absolute
             right-6
-            top-10
+            top-12
             w-[280px]
             rounded-[42px]
             bg-teal-700
@@ -129,7 +129,7 @@ export default function HeroCards() {
             bottom-8
             w-[300px]
             rounded-[36px]
-            bg-white
+            bg-white dark:bg-gray-800 dark:border dark:border-gray-700
             p-8
             shadow-[0_20px_60px_rgba(0,0,0,0.08)]
             transition-all
@@ -140,7 +140,7 @@ export default function HeroCards() {
             transform: 'translateZ(100px)',
           }}
         >
-          <h4 className="font-bold text-gray-500">
+          <h4 className="font-bold text-gray-500 dark:text-gray-400">
             HARI INI
           </h4>
 
@@ -150,23 +150,23 @@ export default function HeroCards() {
                 ✓
               </div>
 
-              <span className="text-gray-500 line-through">
+              <span className="text-gray-500 dark:text-gray-400 line-through">
                 Baca Bab 3
               </span>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="h-7 w-7 rounded-full border-2 border-gray-300"></div>
+              <div className="h-7 w-7 rounded-full border-2 border-gray-300 dark:border-gray-600"></div>
 
-              <span className="text-lg text-slate-700">
+              <span className="text-lg text-slate-700 dark:text-gray-300">
                 Latihan soal
               </span>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="h-7 w-7 rounded-full border-2 border-gray-300"></div>
+              <div className="h-7 w-7 rounded-full border-2 border-gray-300 dark:border-gray-600"></div>
 
-              <span className="text-lg text-slate-700">
+              <span className="text-lg text-slate-700 dark:text-gray-300">
                 Review flash card
               </span>
             </div>
