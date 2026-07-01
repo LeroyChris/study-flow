@@ -86,7 +86,6 @@ export default function CalendarView({ onNavigate }) {
                 <div>
                   <h1 className="text-2xl font-bold text-[#1f2340] dark:text-gray-100 font-poppins">Calendar</h1>
                   <p className="text-gray-400 dark:text-gray-500 text-xs mt-0.5">Manage deadlines and study schedules</p>
-                  <p className="text-gray-400 text-xs mt-0.5">Manage deadlines and study schedules</p>
                 </div>
               </div>
 
