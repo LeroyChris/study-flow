@@ -22,7 +22,7 @@ function StatItem({ target, label }) {
 
 export default function StatsSection() {
   return (
-    <section className="mb-16 py-20 bg-brand-warm border-black-100 text-black px-6 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto justify-items-center text-center">
+    <section className="mb-16 py-20 bg-brand-warm dark:bg-gray-900 border-black-100 text-black dark:text-gray-100 px-6 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-5 max-w-full mx-auto justify-items-center text-center">
       {STATS.map((s) => (
         <StatItem key={s.label} target={s.target} label={s.label} />
       ))}

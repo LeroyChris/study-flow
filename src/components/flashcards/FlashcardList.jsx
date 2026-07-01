@@ -115,14 +115,14 @@ const FlashcardList = ({ cards = [], onComplete }) => {
       {/* Progress */}
       <div className="w-full max-w-md">
         <div className="flex items-center justify-between text-xs font-semibold tracking-wider text-gray-400 uppercase mb-2">
-          <span>Card {currentIndex + 1} of {cards.length}</span>
+          <span className="dark:text-gray-400">Card {currentIndex + 1} of {cards.length}</span>
           <span>
             {knownCount + unknownCount > 0 && (
               <>Known: {knownCount} &middot; Unknown: {unknownCount}</>
             )}
           </span>
         </div>
-        <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+        <div className="w-full h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
           <div
             className="h-full bg-brand-purple rounded-full transition-all duration-300"
             style={{ width: `${((answered.size) / cards.length) * 100}%` }}
@@ -173,14 +173,14 @@ const FlashcardList = ({ cards = [], onComplete }) => {
           <button
             onClick={() => goToCard(currentIndex - 1)}
             disabled={currentIndex === 0}
-            className="bg-gray-50 text-gray-500 hover:bg-gray-100 disabled:text-gray-300 disabled:cursor-not-allowed px-5 py-2 rounded-xl text-sm font-medium transition-colors"
+            className="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:text-gray-300 dark:disabled:text-gray-600 disabled:cursor-not-allowed px-5 py-2 rounded-xl text-sm font-medium transition-colors"
           >
             ← Previous
           </button>
           <button
             onClick={() => goToCard(currentIndex + 1)}
             disabled={currentIndex >= cards.length - 1}
-            className="bg-gray-50 text-gray-500 hover:bg-gray-100 disabled:text-gray-300 disabled:cursor-not-allowed px-5 py-2 rounded-xl text-sm font-medium transition-colors"
+            className="bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:text-gray-300 dark:disabled:text-gray-600 disabled:cursor-not-allowed px-5 py-2 rounded-xl text-sm font-medium transition-colors"
           >
             Next →
           </button>
@@ -188,7 +188,7 @@ const FlashcardList = ({ cards = [], onComplete }) => {
       )}
 
       {/* Overall score */}
-      <div className="text-xs font-semibold tracking-wider text-gray-400 uppercase">
+      <div className="text-xs font-semibold tracking-wider text-gray-400 dark:text-gray-500 uppercase">
         {score.total > 0 && <>Session score: {Math.round((knownCount / Math.max(1, knownCount + unknownCount)) * 100)}% correct</>}
       </div>
     </div>
