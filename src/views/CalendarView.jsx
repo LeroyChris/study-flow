@@ -84,13 +84,8 @@ export default function CalendarView({ onNavigate }) {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
               <div className="flex justify-between items-center mb-5">
                 <div>
-<<<<<<< Updated upstream
-                  <h1 className="text-2xl font-bold text-[#1f2340] dark:text-gray-100">Calendar</h1>
-                  <p className="text-gray-400 text-xs mt-0.5">Manage deadlines and study schedules</p>
-=======
                   <h1 className="text-2xl font-bold text-[#1f2340] dark:text-gray-100 font-poppins">Calendar</h1>
                   <p className="text-gray-400 dark:text-gray-500 text-xs mt-0.5">Manage deadlines and study schedules</p>
->>>>>>> Stashed changes
                 </div>
               </div>
 
