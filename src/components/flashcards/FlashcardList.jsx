@@ -102,8 +102,8 @@ const FlashcardList = ({ cards = [], onComplete }) => {
     return (
       <div className="flex flex-col items-center justify-center w-full max-w-lg mx-auto py-16 space-y-4">
         <div className="text-5xl">🃏</div>
-        <h3 className="text-lg font-semibold text-gray-800">No cards in this deck</h3>
-        <p className="text-sm text-gray-400 text-center">
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">No cards in this deck</h3>
+        <p className="text-sm text-gray-400 dark:text-gray-500 text-center">
           Add some flashcards to start studying.
         </p>
       </div>
@@ -114,8 +114,8 @@ const FlashcardList = ({ cards = [], onComplete }) => {
     <div className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto space-y-8">
       {/* Progress */}
       <div className="w-full max-w-md">
-        <div className="flex items-center justify-between text-xs font-semibold tracking-wider text-gray-400 uppercase mb-2">
-          <span className="dark:text-gray-400">Card {currentIndex + 1} of {cards.length}</span>
+        <div className="flex items-center justify-between text-xs font-semibold tracking-wider text-gray-400 dark:text-gray-500 uppercase mb-2">
+          <span>Card {currentIndex + 1} of {cards.length}</span>
           <span>
             {knownCount + unknownCount > 0 && (
               <>Known: {knownCount} &middot; Unknown: {unknownCount}</>
@@ -146,7 +146,7 @@ const FlashcardList = ({ cards = [], onComplete }) => {
               e.stopPropagation();
               handleFeedback('correct');
             }}
-            className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200/60 px-6 py-2.5 rounded-full text-sm font-medium transition-all"
+            className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 border border-emerald-200/60 dark:border-emerald-800/50 px-6 py-2.5 rounded-full text-sm font-medium transition-all"
           >
             Easy / Got it Right
           </button>
@@ -155,7 +155,7 @@ const FlashcardList = ({ cards = [], onComplete }) => {
               e.stopPropagation();
               handleFeedback('review');
             }}
-            className="bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200/60 px-6 py-2.5 rounded-full text-sm font-medium transition-all"
+            className="bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300 hover:bg-rose-100 dark:hover:bg-rose-900/30 border border-rose-200/60 dark:border-rose-800/50 px-6 py-2.5 rounded-full text-sm font-medium transition-all"
           >
             Hard / Review Again
           </button>
@@ -164,7 +164,7 @@ const FlashcardList = ({ cards = [], onComplete }) => {
 
       {/* Already answered indicator */}
       {flipped && answered.has(currentIndex) && (
-        <p className="text-sm text-gray-400 italic">Card already answered — navigating...</p>
+        <p className="text-sm text-gray-400 dark:text-gray-500 italic">Card already answered — navigating...</p>
       )}
 
       {/* Navigation */}

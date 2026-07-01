@@ -67,7 +67,7 @@ export default function TimerBox({
         <button onClick={onReset} className="w-12 h-12 bg-[#f0efe9]/80 dark:bg-gray-700/80 text-gray-500 dark:text-gray-400 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition">
           ↺
         </button>
-        <button onClick={onTogglePlay} className={`w-16 h-16 text-white rounded-full flex items-center justify-center shadow-lg ${colors.shadow} ${colors.primary} ${colors.hover} cursor-pointer transition`}>
+        <button onClick={onTogglePlay} className={`w-16 h-16 text-white rounded-full flex items-center justify-center shadow-lg ${colors.shadow} dark:shadow-black/40 ${colors.primary} ${colors.hover} cursor-pointer transition`}>
           {isRunning ? (
             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg>
           ) : (
@@ -88,7 +88,7 @@ export default function TimerBox({
 
       <div className="flex items-center justify-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
         <div onClick={onToggleAutoSwitch} className={`w-9 h-5 rounded-full p-0.5 flex items-center cursor-pointer transition-colors ${autoSwitch ? colors.primary : 'bg-[#e4e3dd]'}`}>
-          <div className={`w-4 h-4 bg-white rounded-full shadow-sm transform transition-transform ${autoSwitch ? 'translate-x-4' : 'translate-x-0'}`}></div>
+          <div className={`w-4 h-4 bg-white dark:bg-gray-200 rounded-full shadow-sm transform transition-transform ${autoSwitch ? 'translate-x-4' : 'translate-x-0'}`}></div>
         </div>
         <span className="text-sm font-semibold text-gray-400 dark:text-gray-500">Auto-switch</span>
       </div>

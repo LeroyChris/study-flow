@@ -84,8 +84,13 @@ export default function CalendarView({ onNavigate }) {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
               <div className="flex justify-between items-center mb-5">
                 <div>
+<<<<<<< Updated upstream
                   <h1 className="text-2xl font-bold text-[#1f2340] dark:text-gray-100">Calendar</h1>
                   <p className="text-gray-400 text-xs mt-0.5">Manage deadlines and study schedules</p>
+=======
+                  <h1 className="text-2xl font-bold text-[#1f2340] dark:text-gray-100 font-poppins">Calendar</h1>
+                  <p className="text-gray-400 dark:text-gray-500 text-xs mt-0.5">Manage deadlines and study schedules</p>
+>>>>>>> Stashed changes
                 </div>
               </div>
 
@@ -93,8 +98,8 @@ export default function CalendarView({ onNavigate }) {
               <div className="grid grid-cols-4 gap-3 mb-5">
                 {priorityStats.map((stat) => (
                   <div key={stat.key} className={`border rounded-xl p-3 ${stat.styles}`}>
-                    <p className="text-xs font-medium">{stat.label}</p>
-                    <h3 className="text-xl font-bold mt-1 text-gray-900">
+                    <p className="text-xs font-medium text-gray-500 dark:text-gray-400">{stat.label}</p>
+                    <h3 className="text-xl font-bold mt-1 text-gray-900 dark:text-gray-100">
                       {tasks.filter((t) => t.priority === stat.key && !t.isCompleted).length}
                     </h3>
                   </div>
@@ -150,7 +155,7 @@ export default function CalendarView({ onNavigate }) {
                             <div
                               key={task.id}
                               className={`w-1.5 h-1.5 rounded-full ${
-                                task.isCompleted ? 'bg-gray-300' : priorityStyles[task.priority]?.dot || 'bg-yellow-500'
+                                task.isCompleted ? 'bg-gray-300 dark:bg-gray-600' : priorityStyles[task.priority]?.dot || 'bg-yellow-500'
                               }`}
                             />
                           ))}
@@ -207,10 +212,10 @@ export default function CalendarView({ onNavigate }) {
                           type="checkbox"
                           checked={task.isCompleted}
                           onChange={() => toggleTaskCompletion(task.id)}
-                          className="mt-1 w-3.5 h-3.5 rounded border-gray-300 text-blue-600 cursor-pointer shrink-0"
+                          className="mt-1 w-3.5 h-3.5 rounded border-gray-300 dark:border-gray-600 text-blue-600 cursor-pointer shrink-0"
                         />
                         <div className="min-w-0 flex-1">
-                          <span className={`text-[10px] font-bold ${task.isCompleted ? 'text-gray-400' : style.text}`}>
+                          <span className={`text-[10px] font-bold ${task.isCompleted ? 'text-gray-400 dark:text-gray-500' : style.text}`}>
                             {task.isCompleted ? '✓ Completed' : `🕒 ${task.time}`}
                           </span>
                           <h4 className={`text-xs font-bold text-gray-800 dark:text-gray-200 truncate mt-0.5 ${task.isCompleted ? 'line-through text-gray-400 dark:text-gray-500' : ''}`}>{task.title}</h4>
@@ -221,7 +226,7 @@ export default function CalendarView({ onNavigate }) {
                         <div className="flex items-center gap-2">
                           <button onClick={() => handleEditClick(task)} className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded text-gray-500 dark:text-gray-400 hover:text-blue-600 text-[11px]">✏️</button>
                           <button onClick={() => handleDeleteTask(task.id)} className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded text-gray-500 dark:text-gray-400 hover:text-red-600 text-[11px]">❌</button>
-                          <div className={`w-2 h-2 rounded-full flex-shrink-0 ml-1 ${task.isCompleted ? 'bg-gray-300' : style.dot}`} />
+                          <div className={`w-2 h-2 rounded-full flex-shrink-0 ml-1 ${task.isCompleted ? 'bg-gray-300 dark:bg-gray-600' : style.dot}`} />
                         </div>
                       </div>
                     </div>

@@ -13,9 +13,9 @@ export default function LofiPlayer({
   const volumePercent = volume * 100
 
   // Fallback warna jika properti colors belum nge-load dengan benar
-  const activeBorder = colors?.border || 'border-purple-500'
-  const activeBg = colors?.bgLight || 'bg-purple-50'
-  const activeText = colors?.text || 'text-purple-600'
+  const activeBorder = colors?.border || 'border-purple-500 dark:border-purple-400'
+  const activeBg = colors?.bgLight || 'bg-purple-50 dark:bg-purple-900/30'
+  const activeText = colors?.text || 'text-purple-600 dark:text-purple-300'
   const strokeColor = colors?.stroke || '#8B5CF6' // Warna ungu/biru tema aktif
 
   return (
