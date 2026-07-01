@@ -27,7 +27,7 @@ const StudyComplete = ({ result, onStudyAgain, onBackToDeck, onBackToDashboard }
 
       {/* Title */}
       <div className="text-center space-y-1">
-        <h2 className="text-2xl font-bold text-gray-900">Study Complete</h2>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 font-poppins">Study Complete</h2>
         <p className="text-gray-500">{getGradeText()}</p>
       </div>
 

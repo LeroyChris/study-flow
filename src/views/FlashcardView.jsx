@@ -580,7 +580,7 @@ export default function FlashcardView({ onNavigate }) {
                 <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-sm p-6">
                   <div className="flex items-start justify-between">
                     <div className="space-y-1">
-                      <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{activeDeck.title}</h2>
+                      <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 font-poppins">{activeDeck.title}</h2>
                       {activeDeck.category && (
                         <span className="inline-block text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider bg-gray-50 dark:bg-gray-700 px-2.5 py-1 rounded-full">{activeDeck.category}</span>
                       )}
@@ -750,7 +750,7 @@ function HeaderShell({ title }) {
 
 function StatCard({ label, value }) {
   return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-sm p-4 text-center">
+    <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-sm p-4 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
       <p className="text-xl font-bold text-gray-800 dark:text-gray-100">{value}</p>
       <p className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider mt-1">{label}</p>
     </div>
