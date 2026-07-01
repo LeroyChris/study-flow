@@ -10,28 +10,32 @@ import PomodoroView from './views/PomodoroView'
 import CalendarView from './views/CalendarView'
 import TaskView from './views/TaskView'
 import { Marquee } from './components/Marquee'
+import { DarkModeProvider } from './hooks/useDarkMode'
 
 function App() {
   const [view, setView] = useState('landing')
 
-  if (view === 'flashcard') return <FlashcardView onNavigate={setView} />
-  if (view === 'pomodoro') return <PomodoroView onNavigate={setView} />
-  if (view === 'calendar') return <CalendarView onNavigate={setView} />
-  if (view === 'task') return <TaskView onNavigate={setView} />
+  const content = (() => {
+    if (view === 'flashcard') return <FlashcardView onNavigate={setView} />
+    if (view === 'pomodoro') return <PomodoroView onNavigate={setView} />
+    if (view === 'calendar') return <CalendarView onNavigate={setView} />
+    if (view === 'task') return <TaskView onNavigate={setView} />
+    return (
+      <>
+        <Header onNavigate={setView} />
+        <main>
+          <HeroSection onNavigate={setView} />
+          <Marquee />
+          <FeaturesSection onNavigate={setView} />
+          <StatsSection />
+          <CTASection onNavigate={setView} />
+        </main>
+        <Footer />
+      </>
+    )
+  })()
 
-  return (
-    <>
-      <Header onNavigate={setView} />
-      <main>
-        <HeroSection onNavigate={setView} />
-        <Marquee />
-        <FeaturesSection onNavigate={setView} />
-        <StatsSection />
-        <CTASection onNavigate={setView} />
-      </main>
-      <Footer />
-    </>
-  )
+  return <DarkModeProvider>{content}</DarkModeProvider>
 }
 
 export default App

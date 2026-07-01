@@ -386,116 +386,46 @@ export default function FlashcardView({ onNavigate }) {
               </div>
 
               {/* New Deck Form */}
-           {showModal && (
-                <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-
-                  <div className="
-                    bg-white
-                    border border-gray-100
-                    rounded-2xl
-                    shadow-xl
-                    p-6
-                    w-full
-                    max-w-md
-                    mx-4
-                  ">
-
-                    <h2 className="text-xl font-bold text-gray-800 mb-5">
-                      Create New Task
-                    </h2>
-
-                    <div className="space-y-4">
-
+              {showNewDeckForm && (
+                <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-6 mb-8 max-w-lg">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Create New Deck</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600 mb-1">Title *</label>
                       <input
                         type="text"
-                        placeholder="Task Title"
-                        value={newTask.title}
-                        onChange={(e) =>
-                          setNewTask({
-                            ...newTask,
-                            title: e.target.value,
-                          })
-                        }
-                        className="
-                          w-full
-                          border border-gray-200
-                          rounded-xl
-                          px-4 py-3
-                        "
+                        value={newDeckTitle}
+                        onChange={(e) => setNewDeckTitle(e.target.value)}
+                        placeholder="My Awesome Deck"
+                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
-
+                      {renderError('deckTitle')}
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600 mb-1">Description</label>
                       <input
                         type="text"
-                        placeholder="Subject"
-                        value={newTask.subject}
-                        onChange={(e) =>
-                          setNewTask({
-                            ...newTask,
-                            subject: e.target.value,
-                          })
-                        }
-                        className="
-                          w-full
-                          border border-gray-200
-                          rounded-xl
-                          px-4 py-3
-                        "
+                        value={newDeckDesc}
+                        onChange={(e) => setNewDeckDesc(e.target.value)}
+                        placeholder="A deck about..."
+                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
-
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600 mb-1">Category</label>
                       <input
-                        type="date"
-                        value={newTask.deadline}
-                        onChange={(e) =>
-                          setNewTask({
-                            ...newTask,
-                            deadline: e.target.value,
-                          })
-                        }
-                        className="
-                          w-full
-                          border border-gray-200
-                          rounded-xl
-                          px-4 py-3
-                        "
+                        type="text"
+                        value={newDeckCategory}
+                        onChange={(e) => setNewDeckCategory(e.target.value)}
+                        placeholder="Web Development, Science, etc."
+                        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
-
                     </div>
-
-                    <div className="flex justify-end gap-3 mt-6">
-
-                      <button
-                        onClick={() => setShowModal(false)}
-                        className="
-                          bg-gray-100
-                          text-gray-600
-                          px-4 py-2
-                          rounded-lg
-                          hover:bg-gray-200
-                        "
-                      >
-                        Cancel
-                      </button>
-
-                      <button
-                        onClick={() => setShowModal(true)}
-                        className="
-                          bg-brand-purple
-                          text-white
-                          px-5 py-2.5
-                          rounded-lg
-                          text-sm
-                          font-medium
-                          hover:bg-[#5b00c2]
-                          transition
-                        "
-                      >
-                        + New Task
-                      </button>
-
+                    <div className="flex gap-3 pt-1">
+                      <button onClick={createDeck} className="bg-brand-purple text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Create</button>
+                      <button onClick={() => { setShowNewDeckForm(false); setErrors({}); }} className="bg-gray-100 text-gray-600 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 transition">Cancel</button>
                     </div>
-
                   </div>
-
                 </div>
               )}
 
