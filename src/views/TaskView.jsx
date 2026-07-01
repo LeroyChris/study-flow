@@ -120,7 +120,7 @@ export default function TaskView({ onNavigate }) {
   }
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen bg-slate-50 dark:bg-gray-900">
 
       <Sidebar
         currentView="task"
@@ -130,13 +130,13 @@ export default function TaskView({ onNavigate }) {
       <main className="flex-1 overflow-hidden">
 
         {/* Header */}
-        <div className="bg-white border-b px-8 py-5 flex justify-between">
+        <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-8 py-5 flex justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-gray-100">
               Tasks Board
             </h1>
 
-            <p className="text-slate-500 mt-1">
+            <p className="text-slate-500 dark:text-gray-400 mt-1">
               Priorities are automatically calculated from deadlines.
             </p>
           </div>
@@ -204,11 +204,11 @@ export default function TaskView({ onNavigate }) {
         </div>
 
       {showModal && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/40 dark:bg-black/60 flex items-center justify-center z-50">
 
-          <div className="bg-white rounded-2xl p-6 w-full max-w-md">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-md">
 
-            <h2 className="text-xl font-bold mb-5">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-5">
               New Task
             </h2>
 
@@ -224,7 +224,7 @@ export default function TaskView({ onNavigate }) {
                     title: e.target.value,
                   })
                 }
-                className="w-full border rounded-xl px-4 py-3"
+                className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-3"
               />
 
               <input
@@ -237,7 +237,7 @@ export default function TaskView({ onNavigate }) {
                     subject: e.target.value,
                   })
                 }
-                className="w-full border rounded-xl px-4 py-3"
+                className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-3"
               />
 
               <input
@@ -249,7 +249,7 @@ export default function TaskView({ onNavigate }) {
                     deadline: e.target.value,
                   })
                 }
-                className="w-full border rounded-xl px-4 py-3"
+                className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-3"
               />
 
             </div>
@@ -261,7 +261,7 @@ export default function TaskView({ onNavigate }) {
                 className="
                   px-4 py-2
                   rounded-xl
-                  border
+                  border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700
                 "
               >
                 Cancel
@@ -320,7 +320,7 @@ function KanbanColumn({
       <div className="space-y-4">
 
         {tasks.length === 0 && (
-          <div className="bg-white rounded-xl border border-dashed border-slate-300 p-4 text-center text-sm text-slate-400">
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-dashed border-slate-300 dark:border-gray-600 p-4 text-center text-sm text-slate-400 dark:text-gray-500">
             No tasks
           </div>
         )}
@@ -359,16 +359,16 @@ function TaskCard({
   }
 
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 hover:shadow-md transition">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-gray-700 hover:shadow-md transition">
 
       <div className="flex justify-between items-start">
 
         <div>
-          <h3 className="font-semibold text-slate-900">
+          <h3 className="font-semibold text-slate-900 dark:text-gray-100">
             {task.title}
           </h3>
 
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">
             {task.subject}
           </p>
         </div>
@@ -384,11 +384,11 @@ function TaskCard({
 
       <div className="mt-4 flex items-center justify-between">
 
-        <span className="text-xs px-3 py-1 rounded-full bg-slate-100">
+        <span className="text-xs px-3 py-1 rounded-full bg-slate-100 dark:bg-gray-700 dark:text-gray-300">
           {task.deadline}
         </span>
 
-        <span className="text-xs text-slate-500">
+        <span className="text-xs text-slate-500 dark:text-gray-400">
           {getBadge()}
         </span>
 

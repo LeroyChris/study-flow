@@ -19,11 +19,11 @@ export default function LofiPlayer({
   const strokeColor = colors?.stroke || '#8B5CF6' // Warna ungu/biru tema aktif
 
   return (
-    <div className="bg-white rounded-[32px] p-8 shadow-sm border border-gray-100/50 relative">
+    <div className="bg-white dark:bg-gray-800 rounded-[32px] p-8 shadow-sm border border-gray-100/50 dark:border-gray-700/50 relative">
       
       {/* JUDUL DAN AUDIO EQUALIZER MINI */}
       <div className="flex justify-between items-center mb-5">
-        <h2 className="text-xl font-bold text-gray-900">Lo-Fi Player</h2>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">Lo-Fi Player</h2>
         {isAudioPlaying && (
           <div className="flex items-end gap-0.5 h-4 mb-1">
             <style>{`
@@ -49,7 +49,7 @@ export default function LofiPlayer({
             className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-semibold transition-all duration-200 cursor-pointer ${
               i === currentTrack
                 ? `${activeBorder} ${activeBg} ${activeText} shadow-sm scale-[1.02]`
-                : 'border-gray-200 bg-white hover:bg-gray-50 text-gray-500 hover:text-gray-700'
+                : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
             }`}
           >
             <span className="text-base">{track.icon}</span>
@@ -59,7 +59,7 @@ export default function LofiPlayer({
       </div>
 
       {/* DESKRIPSI AMBIENCE */}
-      <p className="text-sm font-medium text-gray-400 mb-6 min-h-[20px] px-0.5">
+      <p className="text-sm font-medium text-gray-400 dark:text-gray-500 mb-6 min-h-[20px] px-0.5">
         {PLAYLIST[currentTrack]?.desc || 'Nature ambience'}
       </p>
       
@@ -85,7 +85,7 @@ export default function LofiPlayer({
         </button>
 
         {/* Slider Volume dengan Isian Warna Sisi Kiri Simetris */}
-        <div className="flex-1 flex items-center gap-2.5 bg-[#fcfbfa] px-4 py-2 rounded-2xl border border-gray-100">
+        <div className="flex-1 flex items-center gap-2.5 bg-[#fcfbfa] dark:bg-gray-700 px-4 py-2 rounded-2xl border border-gray-100 dark:border-gray-600">
           <span className="text-xs opacity-60 select-none">🔈</span>
           
           <div className="flex-1 flex items-center">

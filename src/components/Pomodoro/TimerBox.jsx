@@ -20,8 +20,8 @@ export default function TimerBox({
   const offset = circumference * (1 - progress)
 
   return (
-    <div className="bg-white rounded-[32px] w-full max-w-md p-8 text-center shadow-sm relative">
-      <div className="flex bg-[#f0efe9]/60 p-1 rounded-full justify-between items-center mb-8">
+    <div className="bg-white dark:bg-gray-800 rounded-[32px] w-full max-w-md p-8 text-center shadow-sm relative">
+      <div className="flex bg-[#f0efe9]/60 dark:bg-gray-700/60 p-1 rounded-full justify-between items-center mb-8">
         {tabs.map((tab, i) => (
           <button
             key={tab.label}
@@ -54,17 +54,17 @@ export default function TimerBox({
           />
         </svg>
         <div className="z-10">
-          <h1 className="text-6xl font-bold text-gray-900 tracking-tight">
+          <h1 className="text-6xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
             {minutes}:{seconds}
           </h1>
-          <p className="text-sm text-gray-400 font-medium mt-1 capitalize tracking-widest">
+          <p className="text-sm text-gray-400 dark:text-gray-500 font-medium mt-1 capitalize tracking-widest">
             {tabs[activeTab]?.label}
           </p>
         </div>
       </div>
 
       <div className="flex items-center justify-center gap-6 mb-6">
-        <button onClick={onReset} className="w-12 h-12 bg-[#f0efe9]/80 text-gray-500 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 transition">
+        <button onClick={onReset} className="w-12 h-12 bg-[#f0efe9]/80 dark:bg-gray-700/80 text-gray-500 dark:text-gray-400 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition">
           ↺
         </button>
         <button onClick={onTogglePlay} className={`w-16 h-16 text-white rounded-full flex items-center justify-center shadow-lg ${colors.shadow} ${colors.primary} ${colors.hover} cursor-pointer transition`}>
@@ -74,7 +74,7 @@ export default function TimerBox({
             <svg className="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
           )}
         </button>
-        <button onClick={() => onSwitchTab((activeTab + 1) % tabs.length)} className="w-12 h-12 bg-[#f0efe9]/80 text-gray-500 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 transition">
+        <button onClick={() => onSwitchTab((activeTab + 1) % tabs.length)} className="w-12 h-12 bg-[#f0efe9]/80 dark:bg-gray-700/80 text-gray-500 dark:text-gray-400 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition">
           ⇥
         </button>
       </div>
@@ -84,13 +84,13 @@ export default function TimerBox({
           <span key={idx} className={idx < completedSessions % 4 || (completedSessions > 0 && completedSessions % 4 === 0) ? 'opacity-100' : 'opacity-70'}>🍅</span>
         ))}
       </div>
-      <p className="text-sm font-medium text-gray-500 mb-5">{completedSessions} sessions completed</p>
+      <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-5">{completedSessions} sessions completed</p>
 
-      <div className="flex items-center justify-center gap-3 pt-4 border-t border-gray-100">
+      <div className="flex items-center justify-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
         <div onClick={onToggleAutoSwitch} className={`w-9 h-5 rounded-full p-0.5 flex items-center cursor-pointer transition-colors ${autoSwitch ? colors.primary : 'bg-[#e4e3dd]'}`}>
           <div className={`w-4 h-4 bg-white rounded-full shadow-sm transform transition-transform ${autoSwitch ? 'translate-x-4' : 'translate-x-0'}`}></div>
         </div>
-        <span className="text-sm font-semibold text-gray-400">Auto-switch</span>
+        <span className="text-sm font-semibold text-gray-400 dark:text-gray-500">Auto-switch</span>
       </div>
     </div>
   )

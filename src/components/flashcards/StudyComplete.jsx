@@ -32,23 +32,23 @@ const StudyComplete = ({ result, onStudyAgain, onBackToDeck, onBackToDashboard }
       </div>
 
       {/* Stats card */}
-      <div className="w-full bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+      <div className="w-full bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-sm p-6">
         <div className="grid grid-cols-3 gap-4 text-center">
           <div>
             <p className="text-2xl font-bold text-gray-800">{total}</p>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mt-1">
+            <p className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider mt-1">
               Total
             </p>
           </div>
           <div>
             <p className="text-2xl font-bold text-emerald-600">{known}</p>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mt-1">
+            <p className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider mt-1">
               Known
             </p>
           </div>
           <div>
             <p className="text-2xl font-bold text-rose-600">{unknown}</p>
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mt-1">
+            <p className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider mt-1">
               Unknown
             </p>
           </div>
