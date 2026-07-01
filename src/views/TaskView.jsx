@@ -120,7 +120,7 @@ export default function TaskView({ onNavigate }) {
   }
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-gray-900">
+    <div className="flex min-h-screen bg-brand-warm dark:bg-gray-900">
 
       <Sidebar
         currentView="task"
@@ -132,11 +132,11 @@ export default function TaskView({ onNavigate }) {
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-8 py-5 flex justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-gray-100">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 font-poppins">
               Tasks Board
             </h1>
 
-            <p className="text-slate-500 dark:text-gray-400 mt-1">
+            <p className="text-gray-500 dark:text-gray-400 mt-1">
               Priorities are automatically calculated from deadlines.
             </p>
           </div>
@@ -320,7 +320,7 @@ function KanbanColumn({
       <div className="space-y-4">
 
         {tasks.length === 0 && (
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-dashed border-slate-300 dark:border-gray-600 p-4 text-center text-sm text-slate-400 dark:text-gray-500">
+          <div className="bg-white dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 p-4 text-center text-sm text-gray-400 dark:text-gray-500">
             No tasks
           </div>
         )}
@@ -359,16 +359,16 @@ function TaskCard({
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-gray-700 hover:shadow-md transition">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
 
       <div className="flex justify-between items-start">
 
         <div>
-          <h3 className="font-semibold text-slate-900 dark:text-gray-100">
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100">
             {task.title}
           </h3>
 
-          <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
             {task.subject}
           </p>
         </div>
@@ -384,11 +384,11 @@ function TaskCard({
 
       <div className="mt-4 flex items-center justify-between">
 
-        <span className="text-xs px-3 py-1 rounded-full bg-slate-100 dark:bg-gray-700 dark:text-gray-300">
+        <span className="text-xs px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300">
           {task.deadline}
         </span>
 
-        <span className="text-xs text-slate-500 dark:text-gray-400">
+        <span className="text-xs text-gray-500 dark:text-gray-400">
           {getBadge()}
         </span>
 
