@@ -29,7 +29,7 @@ export default function TimerBox({
             className={`font-semibold py-2.5 px-6 rounded-full text-base transition-all cursor-pointer ${
               i === activeTab
                 ? `${colors.primary} text-white shadow-sm`
-                : 'text-gray-400 font-medium hover:text-gray-600'
+                : 'text-gray-400 dark:text-gray-500 font-medium hover:text-gray-600 dark:hover:text-gray-300'
             }`}
           >
             {tab.label}
