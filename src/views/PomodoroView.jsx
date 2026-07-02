@@ -1,141 +1,24 @@
-import { useState, useEffect, useRef } from 'react'
 import Sidebar from '../components/Sidebar'
 import TimerBox from '../components/Pomodoro/TimerBox'
 import LofiPlayer from '../components/Pomodoro/LofiPlayer'
 import WeeklyStats from '../components/Pomodoro/WeeklyStats'
 import TimerSettingsModal from '../components/Pomodoro/TimerSettingsModal'
-import { DEFAULT_TIMERS } from '../data/pomodoro/timerData'
-import { PLAYLIST } from '../data/pomodoro/lofiData'
+import { usePomodoro } from '../hooks/usePomodoro'
 
 export default function PomodoroView({ onNavigate }) {
-  const [timers, setTimers] = useState(DEFAULT_TIMERS)
-  const [activeTab, setActiveTab] = useState(0)
-  const [timeLeft, setTimeLeft] = useState(DEFAULT_TIMERS[0].minutes * 60)
-  const [isRunning, setIsRunning] = useState(false)
-  const [autoSwitch, setAutoSwitch] = useState(true)
-  const [completedSessions, setCompletedSessions] = useState(0)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [weeklyData, setWeeklyData] = useState([0, 0, 0, 0, 0, 0, 0])
-
-  // state kontrol buat urusan musik lofi dan deteksi eror link mati
-  const [currentTrack, setCurrentTrack] = useState(0)
-  const [isAudioPlaying, setIsAudioPlaying] = useState(false)
-  const [volume, setVolume] = useState(0.45)
-  const [audioError, setAudioError] = useState(null)
-
-  const intervalRef = useRef(null)
-  const audioRef = useRef(null)
-  const loadedTrackRef = useRef(null)
-
-  // fungsi buat ganti tab fokus/istirahat sekaligus nge-reset sisa waktu di timer
-  const switchTab = (index) => {
-    clearInterval(intervalRef.current)
-    setIsRunning(false)
-    setActiveTab(index)
-    setTimeLeft(timers[index].minutes * 60)
-  }
-
-  // timer effect: ngatur jalannya hitung mundur pomodoro per satu detik
-  useEffect(() => {
-    if (!isRunning) return clearInterval(intervalRef.current)
-    intervalRef.current = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev > 1) return prev - 1
-        clearInterval(intervalRef.current)
-        setIsRunning(false)
-        if (timers[activeTab].value === 'focus') {
-          setCompletedSessions((c) => c + 1)
-          setWeeklyData((w) => {
-            const n = [...w]; const d = new Date().getDay()
-            n[d === 0 ? 6 : d - 1] += 1; return n
-          })
-        }
-        if (autoSwitch) switchTab(activeTab === 0 ? ((completedSessions + 1) % 4 === 0 ? 2 : 1) : 0)
-        return 0
-      })
-    }, 1000)
-    return () => clearInterval(intervalRef.current)
-  }, [isRunning, activeTab, autoSwitch, completedSessions, timers])
-
-  // audio effect: perbaikan anti-bug autoplay browser pake sistem antrean async
-  useEffect(() => {
-    let ignore = false
-
-    if (!audioRef.current) {
-      audioRef.current = new Audio()
-      audioRef.current.loop = true
-    }
-
-    const audio = audioRef.current
-    audio.volume = volume
-
-    const syncAudio = async () => {
-      try {
-        const isNewTrack = loadedTrackRef.current !== currentTrack
-
-        if (isNewTrack) {
-          setAudioError(null)
-          audio.pause()
-          audio.src = PLAYLIST[currentTrack].url
-
-          // nunggu event canplay browser selesai biar proses pre-load lagunya aman
-          await new Promise((resolve, reject) => {
-            const onCanPlay = () => { cleanup(); resolve() }
-            const onError = () => { cleanup(); reject(new Error('load-failed')) }
-            const cleanup = () => {
-              audio.removeEventListener('canplay', onCanPlay)
-              audio.removeEventListener('error', onError)
-            }
-            audio.addEventListener('canplay', onCanPlay)
-            audio.addEventListener('error', onError)
-            audio.load()
-          })
-
-          if (ignore) return
-          loadedTrackRef.current = currentTrack
-        }
-
-        if (ignore) return
-
-        // eksekusi play pause dilindungi biar gak diblokir chrome
-        if (isAudioPlaying) await audio.play() 
-        else audio.pause()
-
-      } catch (err) {
-        if (ignore) return
-        const isLoadError = err?.message === 'load-failed'
-        setIsAudioPlaying(false)
-        setAudioError(isLoadError ? 'gagal memuat audio, coba track lain.' : null)
-      }
-    }
-
-    syncAudio()
-    return () => { ignore = true }
-  }, [currentTrack, isAudioPlaying, volume])
-
-  // matiin musik total secara paksa pas user pindah dari halaman pomodoro
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current.src = ''
-      }
-    }
-  }, [])
-
-  // nampung durasi baru hasil ketikan user di dalam modal settings durasi
-  const handleSaveSettings = (arr) => {
-    const updated = timers.map((t, idx) => ({ ...t, minutes: arr[idx] }))
-    setTimers(updated); setIsModalOpen(false); setIsRunning(false)
-    clearInterval(intervalRef.current); setTimeLeft(updated[activeTab].minutes * 60)
-  }
+  const {
+    timers, activeTab, timeLeft, isRunning, autoSwitch,
+    completedSessions, isModalOpen, weeklyData,
+    currentTrack, isAudioPlaying, volume, audioError,
+    setIsModalOpen, switchTab, setIsRunning, setAutoSwitch,
+    setCurrentTrack, setIsAudioPlaying, setVolume,
+    handleSaveSettings,
+  } = usePomodoro()
 
   return (
     <div className="min-h-screen flex">
       <Sidebar currentView="pomodoro" onNavigate={onNavigate} />
       <main className="flex-1 bg-[#f4f3ef] dark:bg-gray-900 p-10">
-        
-        {/* bagian header atas: judul views dan tombol buat buka modal settings */}
         <div className="flex justify-between items-center max-w-5xl mx-auto mb-6 px-2">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 tracking-tight font-poppins">Pomodoro Timer</h1>
           <button onClick={() => setIsModalOpen(true)} className="w-10 h-10 bg-[#e4e3dd]/60 dark:bg-gray-700 text-black dark:text-gray-100 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-200">
@@ -143,16 +26,35 @@ export default function PomodoroView({ onNavigate }) {
           </button>
         </div>
 
-        {/* layout grid: kotak timer kiri, player lofi dan stats mingguan di kanan */}
         <div className="flex flex-col lg:flex-row justify-center items-start gap-8 max-w-5xl mx-auto">
-          <TimerBox tabs={timers} activeTab={activeTab} timeLeft={timeLeft} isRunning={isRunning} colors={timers[activeTab]?.colors} completedSessions={completedSessions} autoSwitch={autoSwitch} onSwitchTab={switchTab} onTogglePlay={() => setIsRunning(!isRunning)} onReset={() => switchTab(activeTab)} onToggleAutoSwitch={() => setAutoSwitch(!autoSwitch)} />
+          <TimerBox
+            tabs={timers} activeTab={activeTab} timeLeft={timeLeft}
+            isRunning={isRunning} colors={timers[activeTab]?.colors}
+            completedSessions={completedSessions} autoSwitch={autoSwitch}
+            onSwitchTab={switchTab}
+            onTogglePlay={() => setIsRunning(!isRunning)}
+            onReset={() => switchTab(activeTab)}
+            onToggleAutoSwitch={() => setAutoSwitch(!autoSwitch)}
+          />
           <div className="w-full max-w-md space-y-6">
-            <LofiPlayer colors={timers[activeTab]?.colors} currentTrack={currentTrack} isAudioPlaying={isAudioPlaying} volume={volume} audioError={audioError} onTrackChange={(i) => { setCurrentTrack(i); setIsAudioPlaying(true) }} onToggleAudio={() => setIsAudioPlaying(!isAudioPlaying)} onVolumeChange={setVolume} />
+            <LofiPlayer
+              colors={timers[activeTab]?.colors}
+              currentTrack={currentTrack} isAudioPlaying={isAudioPlaying}
+              volume={volume} audioError={audioError}
+              onTrackChange={(i) => { setCurrentTrack(i); setIsAudioPlaying(true) }}
+              onToggleAudio={() => setIsAudioPlaying(!isAudioPlaying)}
+              onVolumeChange={setVolume}
+            />
             <WeeklyStats weeklyData={weeklyData} colors={timers[activeTab]?.colors} />
           </div>
         </div>
-        
-        <TimerSettingsModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} currentSettings={timers} onSave={handleSaveSettings} />
+
+        <TimerSettingsModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          currentSettings={timers}
+          onSave={handleSaveSettings}
+        />
       </main>
     </div>
   )
