@@ -1,79 +1,39 @@
 import Sidebar from '../components/Sidebar'
-
-import { DAYS_OF_WEEK, PRIORITY_STYLES, PRIORITY_STATS } from '../data/calendar'
-import { isToday, formatSelectedDateText, getTasksForDay } from '../lib/calendarUtils'
-
-import useCalendarGrid from '../hooks/Calendar/useCalendarGrid'
-import useOverdueTasks from '../hooks/Calendar/useOverdueTasks'
-import useTaskActions from '../hooks/Calendar/useTaskActions'
-import useCurrentDateTime from '../hooks/Calendar/useCurrentDateTime'
+import { DAYS_OF_WEEK, MONTH_NAMES, PRIORITY_STYLES, PRIORITY_STATS } from '../data/calendar'
+import { isToday } from '../lib/calendarUtils'
+import { useCalendar } from '../hooks/useCalendar'
 
 export default function CalendarView({ onNavigate }) {
-  const { todayStr } = useCurrentDateTime()
-  // formatSelectedDateText imported from lib/calendarUtils
-  
-  const [currentDate, setCurrentDate] = useState(new Date(2026, 5, 21))
-  const currentMonth = currentDate.getMonth()
-  const currentYear = currentDate.getFullYear()
-
   const {
-    tasks,
-    selectedDateStr,
-    setSelectedDateStr,
-    isModalOpen,
-    setIsModalOpen,
-    newTitle,
-    setNewTitle,
-    newDate,
-    setNewDate,
-    newTime,
-    setNewTime,
-    newPriority,
-    setNewPriority,
-    editingTaskId,
-    toggleTaskCompletion,
-    handleEditClick,
-    handleDeleteTask,
-    handleSaveTask,
+    tasks, days, currentMonth, currentYear,
+    selectedDateStr, overdueTasks, activeDayTasks,
+    getTasksForDay: getTasksForDayFn,
+    handlePrev, handleNext, setSelectedDateStr,
+    isModalOpen, setIsModalOpen,
+    newTitle, setNewTitle, newDate, setNewDate, newTime, setNewTime,
+    newPriority, setNewPriority, editingTaskId,
+    toggleTaskCompletion, handleEditClick, handleDeleteTask, handleSaveTask,
     resetForm,
-  } = useTaskActions()
-
-  const days = useCalendarGrid(currentMonth, currentYear)
-  const overdueTasks = useOverdueTasks(tasks)
-  const getTasksForDay = getTasksForDay(tasks)
-
-  const handlePrev = () => setCurrentDate(new Date(currentYear, currentMonth - 1, 1))
-  const handleNext = () => setCurrentDate(new Date(currentYear, currentMonth + 1, 1))
-
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
-
-  // Hitung jumlah tugas khusus untuk tanggal aktif yang sedang diklik pengguna
-  const activeDayTasks = tasks.filter(t => t.date === selectedDateStr)
+    formatSelectedDateText,
+  } = useCalendar()
 
   return (
     <div className="min-h-screen flex bg-brand-warm dark:bg-gray-900 text-gray-800 dark:text-gray-100 relative">
       <Sidebar currentView="calendar" onNavigate={onNavigate} />
 
       <main className="flex-1 p-5 overflow-y-auto">
-        
-        {/* 1. BANNER TUGAS TERLEWAT BERDENYUT & GRADASI EMAS/MERAH */}
         {overdueTasks.length > 0 && (
           <div className="mb-4 p-4 rounded-xl border border-red-200 bg-gradient-to-r from-red-50 to-red-100 flex items-center gap-3 text-red-700 font-semibold shadow-sm animate-pulse">
             <span className="text-lg select-none">⚠️</span>
             <div>
-              <p className="font-bold">
-                Anda memiliki {overdueTasks.length} tugas yang terlewat!
-              </p>
-              <p className="text-xs text-red-500 font-medium">
-                Segera selesaikan agar tidak menumpuk.
-              </p>
+              <p className="font-bold">Anda memiliki {overdueTasks.length} tugas yang terlewat!</p>
+              <p className="text-xs text-red-500 font-medium">Segera selesaikan agar tidak menumpuk.</p>
             </div>
           </div>
         )}
 
         <div className="grid grid-cols-[1fr_280px] gap-5 items-start">
-          
-          {/* AREA KIRI: KALENDER & CARD GLOW BAWAH */}
+          {/* ── Calendar grid ── */}
           <div className="flex flex-col gap-4">
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <div className="flex justify-between items-center mb-5">
@@ -83,7 +43,6 @@ export default function CalendarView({ onNavigate }) {
                 </div>
               </div>
 
-              {/* Statistik Prioritas Atas */}
               <div className="grid grid-cols-4 gap-3 mb-5">
                 {PRIORITY_STATS.map((stat) => (
                   <div key={stat.key} className={`border rounded-xl p-3 ${stat.styles}`}>
@@ -95,7 +54,6 @@ export default function CalendarView({ onNavigate }) {
                 ))}
               </div>
 
-              {/* Kontainer Kalender Utama */}
               <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800">
                 <div className="flex justify-between items-center p-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                   <button onClick={handlePrev} className="w-8 h-8 rounded-lg border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-600 dark:text-gray-300">‹</button>
@@ -111,12 +69,10 @@ export default function CalendarView({ onNavigate }) {
                   ))}
                 </div>
 
-                {/* Grid Hari Kalender */}
                 <div className="grid grid-cols-7 divide-x divide-y divide-gray-100 dark:divide-gray-700 border-t border-l border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800">
                   {days.map((d, i) => {
-                    const dayTasks = getTasksForDay(d)
+                    const dayTasks = getTasksForDayFn(d)
                     const currentDayIsToday = isToday(d)
-                    
                     const currentGridStr = `${d.year}-${String(d.month + 1).padStart(2, '0')}-${String(d.day).padStart(2, '0')}`
                     const isSelected = selectedDateStr === currentGridStr
 
@@ -130,15 +86,11 @@ export default function CalendarView({ onNavigate }) {
                       >
                         <div className="flex justify-between items-center w-full p-0.5">
                           {currentDayIsToday ? (
-                            <div className="w-5 h-5 rounded-full bg-brand-primary text-white flex items-center justify-center text-[10px] font-bold shadow-sm shadow-brand-primary/30">
-                              {d.day}
-                            </div>
+                            <div className="w-5 h-5 rounded-full bg-brand-primary text-white flex items-center justify-center text-[10px] font-bold shadow-sm shadow-brand-primary/30">{d.day}</div>
                           ) : (
                             <span className={`text-[11px] font-medium pl-0.5 ${isSelected ? 'text-brand-primary font-bold' : ''}`}>{d.day}</span>
                           )}
                         </div>
-
-                        {/* Titik Penanda Tugas Kecil */}
                         <div className="flex items-center justify-center gap-0.5 min-h-[8px] pb-1">
                           {dayTasks.slice(0, 3).map((task) => (
                             <div
@@ -158,31 +110,24 @@ export default function CalendarView({ onNavigate }) {
 
             <div className="mt-2 relative overflow-hidden rounded-2xl border border-brand-primary/20 dark:border-brand-primary/40 bg-gradient-to-r from-brand-primary-light to-white dark:from-gray-800 dark:to-gray-800 p-5 flex justify-between items-center hover:shadow-xl hover:shadow-brand-primary/10 dark:hover:shadow-brand-primary/20 transition-all duration-500 cursor-pointer">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-brand-primary-light flex items-center justify-center text-2xl select-none">
-                  🕒
-                </div>
+                <div className="w-14 h-14 rounded-full bg-brand-primary-light flex items-center justify-center text-2xl select-none">🕒</div>
                 <div>
-                  <h3 className="font-bold text-[#1f2340] dark:text-gray-100 font-poppins">
-                    {formatSelectedDateText(selectedDateStr)}
-                  </h3>
+                  <h3 className="font-bold text-[#1f2340] dark:text-gray-100 font-poppins">{formatSelectedDateText(selectedDateStr)}</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
                     {activeDayTasks.length === 0
-                      ? "No task scheduled. Add a task for this day."
+                      ? 'No task scheduled. Add a task for this day.'
                       : `You have ${activeDayTasks.length} task(s) scheduled.`}
                   </p>
                 </div>
               </div>
-              
               <div className="relative pr-2">
                 <div className="sparkle" />
-                <div className="text-5xl select-none calendar-float">
-                  📅
-                </div>
+                <div className="text-5xl select-none calendar-float">📅</div>
               </div>
             </div>
           </div>
 
-          {/* KOLOM KANAN: UPCOMING TASKS */}
+          {/* ── Upcoming Tasks panel ── */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between min-h-[400px] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
             <div>
               <h2 className="text-md font-bold text-[#1f2340] dark:text-gray-100 mb-4 font-poppins">Upcoming Tasks</h2>
@@ -224,17 +169,16 @@ export default function CalendarView({ onNavigate }) {
               </div>
             </div>
             <button
-              onClick={() => { resetForm(); setIsModalOpen(true); }}
+              onClick={() => { resetForm(); setIsModalOpen(true) }}
               className="mt-4 w-full bg-brand-primary text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-brand-primary/90 transition"
             >
               + Add New Task
             </button>
           </div>
-
         </div>
       </main>
 
-      {/* Modal Input/Edit */}
+      {/* ── Modal ── */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-sm shadow-xl">
@@ -242,58 +186,28 @@ export default function CalendarView({ onNavigate }) {
             <form onSubmit={handleSaveTask} className="space-y-4">
               <div>
                 <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">Task Name</label>
-                <input
-                  type="text"
-                  required
-                  value={newTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
-                  className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm"
-                  placeholder="e.g. Finish Essay"
-                />
+                <input type="text" required value={newTitle} onChange={(e) => setNewTitle(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm" placeholder="e.g. Finish Essay" />
               </div>
-
               <div>
                 <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">Date</label>
-                <input
-                  type="date"
-                  required
-                  min={todayStr}
-                  value={newDate}
-                  onChange={(e) => setNewDate(e.target.value)}
-                  className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm bg-white dark:bg-gray-700"
-                />
+                <input type="date" required value={newDate} onChange={(e) => setNewDate(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm bg-white dark:bg-gray-700" />
               </div>
-
               <div>
                 <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">Time</label>
-                <input
-                  type="time"
-                  required
-                  value={newTime}
-                  onChange={(e) => setNewTime(e.target.value)}
-                  className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm bg-white dark:bg-gray-700"
-                />
+                <input type="time" required value={newTime} onChange={(e) => setNewTime(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm bg-white dark:bg-gray-700" />
               </div>
-
               <div>
                 <label className="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1">Priority</label>
-                <select
-                  value={newPriority}
-                  onChange={(e) => setNewPriority(e.target.value)}
-                  className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm bg-white dark:bg-gray-700"
-                >
+                <select value={newPriority} onChange={(e) => setNewPriority(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2 text-sm bg-white dark:bg-gray-700">
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
                   <option value="high">High</option>
                   <option value="urgent">Urgent</option>
                 </select>
               </div>
-
               <div className="flex gap-2 pt-2">
                 <button type="button" onClick={resetForm} className="flex-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-bold py-2.5 rounded-xl">Cancel</button>
-                <button type="submit" className="flex-1 bg-brand-primary text-white text-xs font-bold py-2.5 rounded-xl">
-                  {editingTaskId ? 'Update Task' : 'Save Task'}
-                </button>
+                <button type="submit" className="flex-1 bg-brand-primary text-white text-xs font-bold py-2.5 rounded-xl">{editingTaskId ? 'Update Task' : 'Save Task'}</button>
               </div>
             </form>
           </div>
