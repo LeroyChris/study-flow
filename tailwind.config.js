@@ -8,17 +8,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-dark': '#0B2E33',
-        'brand-blue': '#2563EB',
-        'brand-teal': '#4F7C82',
-        'brand-footer': '#111319',
+        // NEW clean hierarchy (use these going forward)
+        brand: {
+          primary:        '#2563EB',
+          'primary-hover': '#1d4ed8',
+          'primary-light': '#eff6ff',
+          teal:           '#4F7C82',
+          warm:           '#f4f3ef',
+          dark:           '#0B2E33',
+          footer:         '#111319',
+        },
+        // OLD names — kept so existing code still works
+        'brand-blue':   '#2563EB',
         'brand-purple': '#6d00e7',
-        'brand-warm': '#f4f3ef',
-        'brand-mist': '#F8FAFB',
+        'brand-teal':   '#4F7C82',
+        'brand-warm':   '#f4f3ef',
+        'brand-dark':   '#0B2E33',
+        'brand-footer': '#111319',
       },
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
-        'Jakarta': ['"Plus Jakarta Sans"', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       animation: {
         'marquee': 'marquee 25s linear infinite',
