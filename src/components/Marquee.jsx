@@ -21,7 +21,7 @@ export function Marquee() {
     ));
 
   return (
-    <div className="border-y border-[#0B2E33]/10 dark:border-gray-500/20 bg-brand-warm dark:bg-gray-800/80 backdrop-blur-sm py-4">
+    <div className="border-y border-brand-dark/10 dark:border-gray-500/20 bg-brand-warm dark:bg-gray-800/80 backdrop-blur-sm py-4">
       <div className="relative flex overflow-hidden">
         {/* Blok Utama */}
         <div className="animate-marquee flex shrink-0 items-center gap-8 whitespace-nowrap pr-8 w-max">

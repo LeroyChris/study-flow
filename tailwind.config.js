@@ -18,13 +18,6 @@ export default {
           dark:           '#0B2E33',
           footer:         '#111319',
         },
-        // OLD names — kept so existing code still works
-        'brand-blue':   '#2563EB',
-        'brand-purple': '#6d00e7',
-        'brand-teal':   '#4F7C82',
-        'brand-warm':   '#f4f3ef',
-        'brand-dark':   '#0B2E33',
-        'brand-footer': '#111319',
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
