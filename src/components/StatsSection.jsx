@@ -1,10 +1,5 @@
 import { useCountAnimation } from '../hooks/useCountAnimation'
-
-const STATS = [
-  { target: 10, label: 'Students Trusted', suffix: 'K+' },
-  { target: 500, label: 'Task Completed', suffix: 'M+' },
-  { target: 2000, label: 'Study Minutes', suffix: 'K+' },
-]
+import { STATS } from '../data/landing'
 
 function StatItem({ target, label }) {
   const { value, suffix } = useCountAnimation(target)

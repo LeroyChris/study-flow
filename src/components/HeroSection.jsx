@@ -1,8 +1,7 @@
 import { useTypewriter } from '../hooks/useTypewriter'
 import HeroCards from './HeroCards'
 import { useTilt } from '../hooks/useTilt'
-
-const WORDS = ['focus', 'learn', 'grow', 'achieve']
+import { WORDS } from '../data/landing'
 
 
 export default function HeroSection({ onNavigate }) {
