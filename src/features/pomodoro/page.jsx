@@ -1,9 +1,9 @@
-import Sidebar from '../components/Sidebar'
-import TimerBox from '../components/Pomodoro/TimerBox'
-import LofiPlayer from '../components/Pomodoro/LofiPlayer'
-import WeeklyStats from '../components/Pomodoro/WeeklyStats'
-import TimerSettingsModal from '../components/Pomodoro/TimerSettingsModal'
-import { usePomodoro } from '../hooks/usePomodoro'
+import Sidebar from '../../components/Sidebar'
+import TimerBox from './components/TimerBox'
+import LofiPlayer from './components/LofiPlayer'
+import WeeklyStats from './components/WeeklyStats'
+import TimerSettingsModal from './components/TimerSettingsModal'
+import { usePomodoro } from './hooks/usePomodoro'
 
 export default function PomodoroView({ onNavigate }) {
   const {

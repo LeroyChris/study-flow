@@ -1,4 +1,4 @@
-import { PLAYLIST } from '../../data/pomodoro/lofiData'
+import { PLAYLIST } from '../data/lofiData'
 
 export default function LofiPlayer({
   colors,

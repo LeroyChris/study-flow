@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { DEFAULT_TIMERS } from '../data/pomodoro/timerData'
-import { PLAYLIST } from '../data/pomodoro/lofiData'
+import { DEFAULT_TIMERS } from '../data/timerData'
+import { PLAYLIST } from '../data/lofiData'
 
 export function usePomodoro() {
   const [timers, setTimers] = useState(DEFAULT_TIMERS)
