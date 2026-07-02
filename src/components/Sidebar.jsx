@@ -1,15 +1,6 @@
-import
-  { House, ListTodo, CalendarDays, Timer, Book, Moon, Sun } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import { useDarkMode } from '../hooks/useDarkMode'
-
-
-const NAV_ITEMS = [
-  { label: 'Home', view: 'landing', icon: House},
-  { label: 'Task', view: 'task', icon: ListTodo},
-  { label: 'Calendar', view: 'calendar', icon: CalendarDays},
-  { label: 'Pomodoro', view: 'pomodoro', icon: Timer},
-  { label: 'Flashcards', view: 'flashcard', icon: Book},
-]
+import { NAV_ITEMS } from '../data/navigation'
 
 export default function Sidebar({ currentView, onNavigate }) {
   const { isDark, toggle } = useDarkMode()
