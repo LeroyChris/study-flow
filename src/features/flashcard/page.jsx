@@ -1,13 +1,13 @@
-import Sidebar from '../components/Sidebar'
-import FlashcardList from '../components/flashcards/FlashcardList'
-import StudyComplete from '../components/flashcards/StudyComplete'
-import TiltCard from '../components/TiltCard'
-import { BULLET_COLORS } from '../data/flashcards'
-import { useDecks } from '../hooks/useDecks'
-import HeaderShell from '../components/HeaderShell'
-import StatCard from '../components/StatCard'
-import ConfirmModal from '../components/ConfirmModal'
-import DeckForm from '../components/DeckForm'
+import Sidebar from '../../components/Sidebar'
+import FlashcardList from './components/FlashcardList'
+import StudyComplete from './components/StudyComplete'
+import TiltCard from './components/TiltCard'
+import { BULLET_COLORS } from './data/'
+import { useDecks } from './hooks/useDecks'
+import HeaderShell from './components/HeaderShell'
+import StatCard from './components/StatCard'
+import ConfirmModal from './components/ConfirmModal'
+import DeckForm from './components/DeckForm'
 
 /* ════════════════════════════════════════════════
    PAGE: FLASHCARD VIEW — pure UI, no state/logic

@@ -1,6 +1,6 @@
 // components/TiltCard.jsx
 
-import { useTilt } from '../hooks/useTilt'
+import { useTilt } from '../../../hooks/useTilt'
 
 export default function TiltCard({
   children,

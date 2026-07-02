@@ -1,6 +1,6 @@
 import { useState, useEffect, useId } from 'react'
-import { BULLET_COLORS } from '../data/flashcards'
-import { loadDecks, saveDecks, nowISO, nextCardId } from '../lib/flashcardStorage'
+import { BULLET_COLORS } from '../data/'
+import { loadDecks, saveDecks, nowISO, nextCardId } from '../storage'
 
 export function useDecks() {
   /* ─── Core data ─── */

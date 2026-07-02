@@ -1,4 +1,4 @@
-import { SEED_DECKS } from '../data/flashcards';
+import { SEED_DECKS } from './data/'
 
 const STORAGE_KEY_DECKS = 'flashcard-decks';
 
