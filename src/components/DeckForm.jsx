@@ -13,7 +13,7 @@ export default function DeckForm({ mode, values, onChange, onSave, onCancel, err
             value={values.title}
             onChange={(e) => onChange({ ...values, title: e.target.value })}
             placeholder="My Awesome Deck"
-            className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+            className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary"
           />
           {errors[`${errorKeyPrefix}DeckTitle`] && (
             <p className="text-xs text-red-500 mt-1">{errors[`${errorKeyPrefix}DeckTitle`]}</p>
@@ -26,7 +26,7 @@ export default function DeckForm({ mode, values, onChange, onSave, onCancel, err
             value={values.description}
             onChange={(e) => onChange({ ...values, description: e.target.value })}
             placeholder="A deck about..."
-            className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+            className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary"
           />
         </div>
         <div>
@@ -36,13 +36,13 @@ export default function DeckForm({ mode, values, onChange, onSave, onCancel, err
             value={values.category}
             onChange={(e) => onChange({ ...values, category: e.target.value })}
             placeholder="Web Development, Science, etc."
-            className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
+            className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary"
           />
         </div>
         <div className="flex gap-3 pt-1">
           <button
             onClick={onSave}
-            className="bg-brand-purple text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition"
+            className="bg-brand-primary text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-brand-primary/90 transition"
           >
             {isEdit ? 'Save' : 'Create'}
           </button>

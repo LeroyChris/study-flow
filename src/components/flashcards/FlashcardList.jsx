@@ -124,7 +124,7 @@ const FlashcardList = ({ cards = [], onComplete }) => {
         </div>
         <div className="w-full h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
           <div
-            className="h-full bg-brand-purple rounded-full transition-all duration-300"
+            className="h-full bg-brand-primary rounded-full transition-all duration-300"
             style={{ width: `${((answered.size) / cards.length) * 100}%` }}
           />
         </div>

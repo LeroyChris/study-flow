@@ -63,7 +63,7 @@ export default function FlashcardView({ onNavigate }) {
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 font-poppins">Flashcards</h1>
                 <button
                   onClick={() => { setShowNewDeckForm((v) => !v); setErrors({}) }}
-                  className="bg-brand-purple text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition cursor-pointer"
+                  className="bg-brand-primary text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-brand-primary/90 transition cursor-pointer"
                 >
                   + New Deck
                 </button>
@@ -108,7 +108,7 @@ export default function FlashcardView({ onNavigate }) {
                   <div className="text-6xl mb-4">📚</div>
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">No decks yet</h3>
                   <p className="text-gray-400 dark:text-gray-500 max-w-sm mb-6">Create your first flashcard deck to get started with studying.</p>
-                  <button onClick={() => setShowNewDeckForm(true)} className="bg-brand-purple text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Create Your First Deck</button>
+                  <button onClick={() => setShowNewDeckForm(true)} className="bg-brand-primary text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-brand-primary/90 transition">Create Your First Deck</button>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -141,7 +141,7 @@ export default function FlashcardView({ onNavigate }) {
                         <hr className="border-gray-50 dark:border-gray-700 mb-4" />
                         <button
                           onClick={(e) => { e.stopPropagation(); setActiveDeckId(deck.id) }}
-                          className="w-full bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-brand-purple hover:text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all mt-auto"
+                          className="w-full bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-brand-primary hover:text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all mt-auto"
                         >
                           Open Deck →
                         </button>
@@ -212,7 +212,7 @@ export default function FlashcardView({ onNavigate }) {
                     <button
                       onClick={startStudy}
                       disabled={activeDeck.cards.length === 0}
-                      className="w-full bg-brand-purple text-white px-5 py-3 rounded-xl text-sm font-medium hover:bg-[#5b00c2] transition disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-brand-primary text-white px-5 py-3 rounded-xl text-sm font-medium hover:bg-brand-primary/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {activeDeck.cards.length === 0 ? 'No cards to study' : 'Start Studying →'}
                     </button>
@@ -235,14 +235,14 @@ export default function FlashcardView({ onNavigate }) {
                   <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-4">Add a Card</h3>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <div className="flex-1">
-                      <input type="text" value={newCard.question} onChange={(e) => setNewCard((prev) => ({ ...prev, question: e.target.value }))} placeholder="Question" className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                      <input type="text" value={newCard.question} onChange={(e) => setNewCard((prev) => ({ ...prev, question: e.target.value }))} placeholder="Question" className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary" />
                       {renderError('newQuestion')}
                     </div>
                     <div className="flex-1">
-                      <input type="text" value={newCard.answer} onChange={(e) => setNewCard((prev) => ({ ...prev, answer: e.target.value }))} placeholder="Answer" className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                      <input type="text" value={newCard.answer} onChange={(e) => setNewCard((prev) => ({ ...prev, answer: e.target.value }))} placeholder="Answer" className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary" />
                       {renderError('newAnswer')}
                     </div>
-                    <button onClick={addCardToDeck} className="bg-brand-purple text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-[#5b00c2] transition whitespace-nowrap self-start">+ Add Card</button>
+                    <button onClick={addCardToDeck} className="bg-brand-primary text-white px-5 py-2.5 rounded-xl text-sm font-medium hover:bg-brand-primary/90 transition whitespace-nowrap self-start">+ Add Card</button>
                   </div>
                 </div>
 
@@ -260,15 +260,15 @@ export default function FlashcardView({ onNavigate }) {
                           {editingCardId === card.id ? (
                             <div className="flex-1 flex flex-col sm:flex-row gap-2">
                               <div className="flex-1">
-                                <input type="text" value={editCard.question} onChange={(e) => setEditCard((prev) => ({ ...prev, question: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                                <input type="text" value={editCard.question} onChange={(e) => setEditCard((prev) => ({ ...prev, question: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary" />
                                 {renderError('editQuestion')}
                               </div>
                               <div className="flex-1">
-                                <input type="text" value={editCard.answer} onChange={(e) => setEditCard((prev) => ({ ...prev, answer: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                                <input type="text" value={editCard.answer} onChange={(e) => setEditCard((prev) => ({ ...prev, answer: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary" />
                                 {renderError('editAnswer')}
                               </div>
                               <div className="flex gap-2">
-                                <button onClick={saveEditCard} className="bg-brand-purple text-white px-3 py-2 rounded-lg text-xs font-medium hover:bg-[#5b00c2] transition">Save</button>
+                                <button onClick={saveEditCard} className="bg-brand-primary text-white px-3 py-2 rounded-lg text-xs font-medium hover:bg-brand-primary/90 transition">Save</button>
                                 <button onClick={() => { setEditingCardId(null); setErrors({}) }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-2 rounded-lg text-xs font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
                               </div>
                             </div>

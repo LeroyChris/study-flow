@@ -77,7 +77,7 @@ const StudyComplete = ({ result, onStudyAgain, onBackToDeck, onBackToDashboard }
       <div className="w-full flex flex-col sm:flex-row gap-3">
         <button
           onClick={onStudyAgain}
-          className="flex-1 bg-brand-purple text-white px-5 py-3 rounded-xl text-sm font-medium hover:bg-[#5b00c2] transition-all"
+          className="flex-1 bg-brand-primary text-white px-5 py-3 rounded-xl text-sm font-medium hover:bg-brand-primary/90 transition-all"
         >
           Study Again
         </button>
