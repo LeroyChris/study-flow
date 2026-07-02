@@ -47,7 +47,7 @@ export default function TimerSettingsModal({ isOpen, onClose, currentSettings, o
           {/* aksi tombol cancel atau save di bagian bawah modal */}
           <div className="flex justify-end gap-3 pt-4">
             <button type="button" onClick={onClose} className="px-6 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 cursor-pointer">Cancel</button>
-            <button type="submit" className="px-6 py-2.5 rounded-xl bg-blue-600 text-white cursor-pointer shadow-md shadow-blue-200">Save</button>
+            <button type="submit" className="px-6 py-2.5 rounded-xl bg-brand-primary text-white cursor-pointer shadow-md shadow-brand-primary/30">Save</button>
           </div>
         </form>
 

@@ -130,17 +130,17 @@ export default function CalendarView({ onNavigate }) {
                       <div
                         key={i}
                         onClick={() => setSelectedDateStr(currentGridStr)}
-                        className={`h-16 p-1 flex flex-col justify-between hover:bg-blue-50/30 dark:hover:bg-blue-900/20 transition-all cursor-pointer ${
-                          isSelected ? 'bg-blue-50/60 dark:bg-blue-900/30 ring-1 ring-blue-400 ring-inset' : ''
+                        className={`h-16 p-1 flex flex-col justify-between hover:bg-brand-primary/5 dark:hover:bg-brand-primary/20 transition-all cursor-pointer ${
+                          isSelected ? 'bg-brand-primary-light dark:bg-brand-primary/20 ring-1 ring-brand-primary ring-inset' : ''
                         } ${!d.currentMonth ? 'bg-gray-50/40 dark:bg-gray-800/40 text-gray-300 dark:text-gray-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}
                       >
                         <div className="flex justify-between items-center w-full p-0.5">
                           {currentDayIsToday ? (
-                            <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold shadow-sm shadow-blue-100">
+                            <div className="w-5 h-5 rounded-full bg-brand-primary text-white flex items-center justify-center text-[10px] font-bold shadow-sm shadow-brand-primary/30">
                               {d.day}
                             </div>
                           ) : (
-                            <span className={`text-[11px] font-medium pl-0.5 ${isSelected ? 'text-blue-600 font-bold' : ''}`}>{d.day}</span>
+                            <span className={`text-[11px] font-medium pl-0.5 ${isSelected ? 'text-brand-primary font-bold' : ''}`}>{d.day}</span>
                           )}
                         </div>
 
@@ -162,9 +162,9 @@ export default function CalendarView({ onNavigate }) {
               </div>
             </div>
 
-            <div className="mt-2 relative overflow-hidden rounded-2xl border border-blue-100 dark:border-blue-800 bg-gradient-to-r from-blue-50 to-white dark:from-gray-800 dark:to-gray-800 p-5 flex justify-between items-center hover:shadow-xl hover:shadow-blue-100/70 dark:hover:shadow-blue-900/30 transition-all duration-500 cursor-pointer">
+            <div className="mt-2 relative overflow-hidden rounded-2xl border border-brand-primary/20 dark:border-brand-primary/40 bg-gradient-to-r from-brand-primary-light to-white dark:from-gray-800 dark:to-gray-800 p-5 flex justify-between items-center hover:shadow-xl hover:shadow-brand-primary/10 dark:hover:shadow-brand-primary/20 transition-all duration-500 cursor-pointer">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-2xl shadow-3xs select-none">
+                <div className="w-14 h-14 rounded-full bg-brand-primary-light flex items-center justify-center text-2xl shadow-3xs select-none">
                   🕒
                 </div>
                 <div>
@@ -207,7 +207,7 @@ export default function CalendarView({ onNavigate }) {
                           type="checkbox"
                           checked={task.isCompleted}
                           onChange={() => toggleTaskCompletion(task.id)}
-                          className="mt-1 w-3.5 h-3.5 rounded border-gray-300 dark:border-gray-600 text-blue-600 cursor-pointer shrink-0"
+                          className="mt-1 w-3.5 h-3.5 rounded border-gray-300 dark:border-gray-600 text-brand-primary cursor-pointer shrink-0"
                         />
                         <div className="min-w-0 flex-1">
                           <span className={`text-[10px] font-bold ${task.isCompleted ? 'text-gray-400 dark:text-gray-500' : style.text}`}>
@@ -219,7 +219,7 @@ export default function CalendarView({ onNavigate }) {
                       <div className="flex items-center justify-between border-t border-gray-200/60 dark:border-gray-700/60 pt-1.5 text-[10px] text-gray-400 dark:text-gray-500">
                         <span className="font-medium">📅 {task.date}</span>
                         <div className="flex items-center gap-2">
-                          <button onClick={() => handleEditClick(task)} className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded text-gray-500 dark:text-gray-400 hover:text-blue-600 text-[11px]">✏️</button>
+                          <button onClick={() => handleEditClick(task)} className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded text-gray-500 dark:text-gray-400 hover:text-brand-primary text-[11px]">✏️</button>
                           <button onClick={() => handleDeleteTask(task.id)} className="p-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded text-gray-500 dark:text-gray-400 hover:text-red-600 text-[11px]">❌</button>
                           <div className={`w-2 h-2 rounded-full flex-shrink-0 ml-1 ${task.isCompleted ? 'bg-gray-300 dark:bg-gray-600' : style.dot}`} />
                         </div>
@@ -231,7 +231,7 @@ export default function CalendarView({ onNavigate }) {
             </div>
             <button
               onClick={() => { resetForm(); setIsModalOpen(true); }}
-              className="mt-4 w-full bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-blue-700 transition"
+              className="mt-4 w-full bg-brand-primary text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-brand-primary/90 transition"
             >
               + Add New Task
             </button>
@@ -297,7 +297,7 @@ export default function CalendarView({ onNavigate }) {
 
               <div className="flex gap-2 pt-2">
                 <button type="button" onClick={resetForm} className="flex-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-bold py-2.5 rounded-xl">Cancel</button>
-                <button type="submit" className="flex-1 bg-blue-600 text-white text-xs font-bold py-2.5 rounded-xl">
+                <button type="submit" className="flex-1 bg-brand-primary text-white text-xs font-bold py-2.5 rounded-xl">
                   {editingTaskId ? 'Update Task' : 'Save Task'}
                 </button>
               </div>

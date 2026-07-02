@@ -127,7 +127,7 @@ export default function FlashcardView({ onNavigate }) {
                             <h3 className="text-base font-bold text-gray-800 dark:text-gray-100 truncate">{deck.title}</h3>
                           </div>
                           <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity" onClick={(e) => e.stopPropagation()}>
-                            <button onClick={() => openEditDeck(deck)} className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors" title="Edit deck">
+                            <button onClick={() => openEditDeck(deck)} className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-brand-primary rounded-lg hover:bg-brand-primary-light dark:hover:bg-gray-700 transition-colors" title="Edit deck">
                               <EditIcon />
                             </button>
                             <button onClick={() => requestDeleteDeck(deck)} className="p-1.5 text-gray-500 dark:text-gray-400 hover:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-gray-700 transition-colors" title="Delete deck">
@@ -204,7 +204,7 @@ export default function FlashcardView({ onNavigate }) {
                         {activeDeck.updatedAt && <> &middot; Last updated {new Date(activeDeck.updatedAt).toLocaleDateString()}</>}
                       </p>
                     </div>
-                    <button onClick={() => openEditDeck(activeDeck)} className="bg-gray-50 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-600 p-2 rounded-lg transition-colors" title="Edit deck">
+                    <button onClick={() => openEditDeck(activeDeck)} className="bg-gray-50 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:text-brand-primary hover:bg-brand-primary-light dark:hover:bg-gray-600 p-2 rounded-lg transition-colors" title="Edit deck">
                       <EditIcon />
                     </button>
                   </div>
@@ -279,7 +279,7 @@ export default function FlashcardView({ onNavigate }) {
                                 <p className="text-xs text-gray-400 dark:text-gray-500 truncate mt-0.5">{card.answer}</p>
                               </div>
                               <div className="flex items-center gap-1 flex-shrink-0">
-                                <button onClick={() => openEditCard(card)} className="p-1.5 text-gray-300 dark:text-gray-600 hover:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors" title="Edit card"><EditIcon /></button>
+                                <button onClick={() => openEditCard(card)} className="p-1.5 text-gray-300 dark:text-gray-600 hover:text-brand-primary rounded-lg hover:bg-brand-primary-light dark:hover:bg-gray-700 transition-colors" title="Edit card"><EditIcon /></button>
                                 <button onClick={() => requestDeleteCard(card)} className="p-1.5 text-gray-300 dark:text-gray-600 hover:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-gray-700 transition-colors" title="Delete card"><TrashIcon /></button>
                               </div>
                             </>
