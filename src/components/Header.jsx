@@ -6,7 +6,7 @@ export default function Header({ onNavigate }) {
       <button onClick={() => onNavigate?.('landing')}>
         <img className="rounded-xl" src={logoSrc} alt="selasar" width={50} />
       </button>
-      <nav className="flex space-x-4 font-[family-name:var(--font-family-poppins)] font-semibold text-gray-700 dark:text-gray-200">
+      <nav className="flex space-x-4 font-poppins font-semibold text-gray-700 dark:text-gray-200">
         <button onClick={() => onNavigate?.('landing')} className="hover:text-brand-blue transition-colors">Home</button>
         <button onClick={() => onNavigate?.('landing')} className="hover:text-brand-blue transition-colors">About us</button>
         <button onClick={() => onNavigate?.('landing')} className="hover:text-brand-blue transition-colors">Contact</button>

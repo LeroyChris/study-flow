@@ -164,7 +164,7 @@ export default function CalendarView({ onNavigate }) {
 
             <div className="mt-2 relative overflow-hidden rounded-2xl border border-brand-primary/20 dark:border-brand-primary/40 bg-gradient-to-r from-brand-primary-light to-white dark:from-gray-800 dark:to-gray-800 p-5 flex justify-between items-center hover:shadow-xl hover:shadow-brand-primary/10 dark:hover:shadow-brand-primary/20 transition-all duration-500 cursor-pointer">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-brand-primary-light flex items-center justify-center text-2xl shadow-3xs select-none">
+                <div className="w-14 h-14 rounded-full bg-brand-primary-light flex items-center justify-center text-2xl select-none">
                   🕒
                 </div>
                 <div>
