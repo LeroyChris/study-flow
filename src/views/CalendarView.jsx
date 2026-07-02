@@ -1,22 +1,16 @@
-import { useState } from 'react'
 import Sidebar from '../components/Sidebar'
 
-import DAYS_OF_WEEK from '../hooks/Calendar/days'
-import monthNames from '../hooks/Calendar/months'
-import priorityStyles from '../hooks/Calendar/priorityStyles'
-import priorityStats from '../hooks/Calendar/priorityStats'
-import isToday from '../hooks/Calendar/isToday'
+import { DAYS_OF_WEEK, PRIORITY_STYLES, PRIORITY_STATS } from '../data/calendar'
+import { isToday, formatSelectedDateText, getTasksForDay } from '../lib/calendarUtils'
 
 import useCalendarGrid from '../hooks/Calendar/useCalendarGrid'
 import useOverdueTasks from '../hooks/Calendar/useOverdueTasks'
-import useTasksForDay from '../hooks/Calendar/useTasksForDay'
 import useTaskActions from '../hooks/Calendar/useTaskActions'
 import useCurrentDateTime from '../hooks/Calendar/useCurrentDateTime'
-import useSelectedDate from '../hooks/Calendar/useSelectedDate'
 
 export default function CalendarView({ onNavigate }) {
   const { todayStr } = useCurrentDateTime()
-  const { formatSelectedDateText } = useSelectedDate()
+  // formatSelectedDateText imported from lib/calendarUtils
   
   const [currentDate, setCurrentDate] = useState(new Date(2026, 5, 21))
   const currentMonth = currentDate.getMonth()
@@ -46,7 +40,7 @@ export default function CalendarView({ onNavigate }) {
 
   const days = useCalendarGrid(currentMonth, currentYear)
   const overdueTasks = useOverdueTasks(tasks)
-  const getTasksForDay = useTasksForDay(tasks)
+  const getTasksForDay = getTasksForDay(tasks)
 
   const handlePrev = () => setCurrentDate(new Date(currentYear, currentMonth - 1, 1))
   const handleNext = () => setCurrentDate(new Date(currentYear, currentMonth + 1, 1))
@@ -91,7 +85,7 @@ export default function CalendarView({ onNavigate }) {
 
               {/* Statistik Prioritas Atas */}
               <div className="grid grid-cols-4 gap-3 mb-5">
-                {priorityStats.map((stat) => (
+                {PRIORITY_STATS.map((stat) => (
                   <div key={stat.key} className={`border rounded-xl p-3 ${stat.styles}`}>
                     <p className="text-xs font-medium text-gray-500 dark:text-gray-400">{stat.label}</p>
                     <h3 className="text-xl font-bold mt-1 text-gray-900 dark:text-gray-100">
@@ -106,7 +100,7 @@ export default function CalendarView({ onNavigate }) {
                 <div className="flex justify-between items-center p-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                   <button onClick={handlePrev} className="w-8 h-8 rounded-lg border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-600 dark:text-gray-300">‹</button>
                   <h2 className="text-sm font-bold text-[#1f2340] dark:text-gray-100 font-poppins">
-                    {monthNames[currentMonth]} {currentYear}
+                    {MONTH_NAMES[currentMonth]} {currentYear}
                   </h2>
                   <button onClick={handleNext} className="w-8 h-8 rounded-lg border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-600 dark:text-gray-300">›</button>
                 </div>
@@ -150,7 +144,7 @@ export default function CalendarView({ onNavigate }) {
                             <div
                               key={task.id}
                               className={`w-1.5 h-1.5 rounded-full ${
-                                task.isCompleted ? 'bg-gray-300 dark:bg-gray-600' : priorityStyles[task.priority]?.dot || 'bg-yellow-500'
+                                task.isCompleted ? 'bg-gray-300 dark:bg-gray-600' : PRIORITY_STYLES[task.priority]?.dot || 'bg-yellow-500'
                               }`}
                             />
                           ))}
@@ -194,7 +188,7 @@ export default function CalendarView({ onNavigate }) {
               <h2 className="text-md font-bold text-[#1f2340] dark:text-gray-100 mb-4 font-poppins">Upcoming Tasks</h2>
               <div className="space-y-3">
                 {tasks.map((task) => {
-                  const style = priorityStyles[task.priority] || priorityStyles.medium
+                  const style = PRIORITY_STYLES[task.priority] || PRIORITY_STYLES.medium
                   return (
                     <div
                       key={task.id}
