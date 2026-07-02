@@ -12,7 +12,7 @@ export default function CTASection({ onNavigate }) {
         <div className="flex justify-center mt-6">
           <button
             onClick={() => onNavigate?.('flashcard')}
-            className="bg-white dark:bg-gray-800 hover:bg-[#2563EB] text-gray-700 dark:text-gray-200 hover:text-white font-semibold px-6 py-3 rounded-lg shadow-lg shadow-[#2563EB]/50 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+            className="bg-white dark:bg-gray-800 hover:bg-brand-primary text-gray-700 dark:text-gray-200 hover:text-white font-semibold px-6 py-3 rounded-lg shadow-lg shadow-brand-primary/50 transition-all duration-300 hover:-translate-y-2 cursor-pointer"
           >
             Get Started → For Free
           </button>

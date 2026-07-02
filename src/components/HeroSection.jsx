@@ -28,11 +28,11 @@ export default function HeroSection({ onNavigate }) {
 
           <h1 className="mt-12 font-bold text-[clamp(2rem,4vw,4rem)] leading-[1.1] text-slate-900 dark:text-white">
             Your Space to{' '}
-            <span className="text-blue-600">
+            <span className="text-brand-primary">
               {display}
             </span>
 
-            <span className="inline-block w-[3px] h-[1em] bg-blue-600 ml-1 animate-pulse align-middle" />
+            <span className="inline-block w-[3px] h-[1em] bg-brand-primary ml-1 animate-pulse align-middle" />
           </h1>
 
           <p className="text-lg text-left font-medium pt-8 pb-10 text-slate-700 dark:text-gray-300">
@@ -54,7 +54,7 @@ export default function HeroSection({ onNavigate }) {
                 `
               }}
               onClick={() => onNavigate?.('flashcard')}
-              className="bg-white dark:bg-gray-800 hover:bg-[#2563EB] text-black dark:text-white hover:text-white transition-transform duration-100 will-change-transform font-semibold px-6 py-3 rounded-lg shadow-lg shadow-[#2563EB]/30 transition-all duration-300 hover:-translate-y-2"
+              className="bg-white dark:bg-gray-800 hover:bg-brand-primary text-black dark:text-white hover:text-white transition-transform duration-100 will-change-transform font-semibold px-6 py-3 rounded-lg shadow-lg shadow-brand-primary/30 transition-all duration-300 hover:-translate-y-2"
             >
               Enter App →
             </button>
@@ -67,7 +67,7 @@ export default function HeroSection({ onNavigate }) {
                     behavior: 'smooth',
                   })
               }
-              className="border-2 border-slate-300 dark:border-gray-600 hover:border-blue-400 px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-gray-700 dark:text-gray-300"
+              className="border-2 border-slate-300 dark:border-gray-600 hover:border-brand-primary px-6 py-3 rounded-lg font-semibold transition-all duration-300 text-gray-700 dark:text-gray-300"
             >
               See Features
             </button>

@@ -28,13 +28,13 @@ export default function Sidebar({ currentView, onNavigate }) {
                 onClick={() => onNavigate(item.view)}
                 className={`w-full text-left flex items-center gap-3 px-4 py-2.5 rounded-lg transition text-sm font-medium ${
                   currentView === item.view
-                    ? 'bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400'
+                    ? 'bg-brand-primary-light dark:bg-brand-primary/20 text-brand-primary dark:text-brand-primary'
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
                 <Icon size={18}
                 className={currentView === item.view
-                  ? 'text-blue-600 dark:text-blue-400'
+                  ? 'text-brand-primary dark:text-brand-primary'
                   : 'text-gray-400 dark:text-gray-500'
                   }/>
                 <span>{item.label}</span>
@@ -54,7 +54,7 @@ export default function Sidebar({ currentView, onNavigate }) {
         </button>
 
         <div className="flex items-center gap-3 px-4 py-2">
-          <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">
+          <div className="w-9 h-9 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-sm">
             S
           </div>
           <div className="flex flex-col">
