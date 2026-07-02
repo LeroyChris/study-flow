@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import FlashcardView from './features/flashcard/page'
 import PomodoroView from './features/pomodoro/page'
 import CalendarView from './features/calendar/page'
-import TaskView from './views/TaskView'
+import TaskView from './features/task/page'
 import { Marquee } from './components/Marquee'
 import { DarkModeProvider } from './hooks/useDarkMode'
 

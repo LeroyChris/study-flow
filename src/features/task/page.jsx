@@ -1,35 +1,12 @@
 import { useMemo, useState } from 'react'
-import Sidebar from '../components/Sidebar'
-import KanbanColumn from '../components/KanbanColumn'
-import highIcon from '../assets/icons/circle-chevron-up.svg'
-import urgentIcon from '../assets/icons/shield-alert (1).svg'
-import mediumIcon from '../assets/icons/bookmark.svg'
-import lowIcon from '../assets/icons/turtle.svg'
-import completedIcon from '../assets/icons/circle-check-big.svg'
-
-const INITIAL_TASKS = [
-  {
-    id: 1,
-    title: 'Database Assignment',
-    subject: 'Database',
-    deadline: '2026-06-16',
-    completed: false,
-  },
-  {
-    id: 2,
-    title: 'Machine Learning Quiz',
-    subject: 'AI',
-    deadline: '2026-06-18',
-    completed: false,
-  },
-  {
-    id: 3,
-    title: 'Calculus Homework',
-    subject: 'Math',
-    deadline: '2026-06-24',
-    completed: false,
-  },
-]
+import Sidebar from '../../components/Sidebar'
+import KanbanColumn from './components/KanbanColumn'
+import highIcon from '../../assets/icons/circle-chevron-up.svg'
+import urgentIcon from '../../assets/icons/shield-alert (1).svg'
+import mediumIcon from '../../assets/icons/bookmark.svg'
+import lowIcon from '../../assets/icons/turtle.svg'
+import completedIcon from '../../assets/icons/circle-check-big.svg'
+import { INITIAL_TASKS } from './data/'
 
 export default function TaskView({ onNavigate }) {
   const [tasks, setTasks] = useState(INITIAL_TASKS)
