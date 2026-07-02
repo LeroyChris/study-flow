@@ -1,7 +1,7 @@
-import clockIcon from '../assets/icons/clock.svg'
-import pomodoroIcon from '../assets/icons/Pomodoro.svg'
-import flashcardIcon from '../assets/icons/flashcard.svg'
-import taskIcon from '../assets/icons/list-todo.svg'
+import clockIcon from '../../../assets/icons/clock.svg'
+import pomodoroIcon from '../../../assets/icons/Pomodoro.svg'
+import flashcardIcon from '../../../assets/icons/flashcard.svg'
+import taskIcon from '../../../assets/icons/list-todo.svg'
 
 export const FEATURES = [
   {

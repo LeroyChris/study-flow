@@ -1,5 +1,5 @@
 import { useCountAnimation } from '../hooks/useCountAnimation'
-import { STATS } from '../data/landing'
+import { STATS } from '../data/'
 
 function StatItem({ target, label }) {
   const { value, suffix } = useCountAnimation(target)

@@ -1,7 +1,7 @@
 import { useTypewriter } from '../hooks/useTypewriter'
 import HeroCards from './HeroCards'
-import { useTilt } from '../hooks/useTilt'
-import { WORDS } from '../data/landing'
+import { useTilt } from '../../../hooks/useTilt'
+import { WORDS } from '../data/'
 
 
 export default function HeroSection({ onNavigate }) {

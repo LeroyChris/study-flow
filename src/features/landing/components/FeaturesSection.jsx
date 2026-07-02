@@ -1,4 +1,4 @@
-import { FEATURES } from '../data/landing'
+import { FEATURES } from '../data/'
 
 const viewMap = {
   'Time Management': 'calendar',
