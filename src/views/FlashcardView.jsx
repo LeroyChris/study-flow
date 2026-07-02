@@ -1,244 +1,63 @@
-import { useState, useEffect, useId } from 'react';
-import Sidebar from '../components/Sidebar';
-import FlashcardList from '../components/flashcards/FlashcardList';
-import StudyComplete from '../components/flashcards/StudyComplete';
+import Sidebar from '../components/Sidebar'
+import FlashcardList from '../components/flashcards/FlashcardList'
+import StudyComplete from '../components/flashcards/StudyComplete'
 import TiltCard from '../components/TiltCard'
-import { BULLET_COLORS } from '../data/flashcards';
-import { loadDecks, saveDecks, nowISO, nextCardId } from '../lib/flashcardStorage';
+import { BULLET_COLORS } from '../data/flashcards'
+import { useDecks } from '../hooks/useDecks'
+import HeaderShell from '../components/HeaderShell'
+import StatCard from '../components/StatCard'
 
-/* ─── Component ─── */
+/* ════════════════════════════════════════════════
+   PAGE: FLASHCARD VIEW — pure UI, no state/logic
+   ════════════════════════════════════════════════ */
 export default function FlashcardView({ onNavigate }) {
-  const [decks, setDecks] = useState(loadDecks);
-  const [activeDeckId, setActiveDeckId] = useState(null);
-  const [isStudying, setIsStudying] = useState(false);
-  const [studyResult, setStudyResult] = useState(null);
+  const {
+    /* Data */
+    decks, activeDeck, totalDecks, totalCards, studiedCards, avgScore,
+    isStudying, studyResult,
 
-  // UI toggles
-  const [showNewDeckForm, setShowNewDeckForm] = useState(false);
-  const [editingDeckId, setEditingDeckId] = useState(null);
-  const [editingCardId, setEditingCardId] = useState(null);
-  const [confirmDelete, setConfirmDelete] = useState(null); // { type: 'deck'|'card', id, title }
+    /* UI toggles */
+    showNewDeckForm, editingDeckId, editingCardId, confirmDelete,
 
-  // Form fields
-  const [newDeckTitle, setNewDeckTitle] = useState('');
-  const [newDeckDesc, setNewDeckDesc] = useState('');
-  const [newDeckCategory, setNewDeckCategory] = useState('');
-  const [editDeckTitle, setEditDeckTitle] = useState('');
-  const [editDeckDesc, setEditDeckDesc] = useState('');
-  const [editDeckCategory, setEditDeckCategory] = useState('');
-  const [newQuestion, setNewQuestion] = useState('');
-  const [newAnswer, setNewAnswer] = useState('');
-  const [editQuestion, setEditQuestion] = useState('');
-  const [editAnswer, setEditAnswer] = useState('');
+    /* Form state */
+    newDeck, setNewDeck,
+    editDeck, setEditDeck,
+    newCard, setNewCard,
+    editCard, setEditCard,
+    errors,
 
-  // Validation errors
-  const [errors, setErrors] = useState({});
+    /* Actions — UI */
+    setShowNewDeckForm, setActiveDeckId, setErrors,
 
-  const idRef = useId();
+    /* Actions — Deck CRUD */
+    createDeck, saveEditDeck, openEditDeck, requestDeleteDeck, confirmDeleteAction,
 
-  // Persist decks
-  useEffect(() => {
-    saveDecks(decks);
-  }, [decks]);
+    /* Actions — Card CRUD */
+    addCardToDeck, openEditCard, saveEditCard, requestDeleteCard,
 
-  const activeDeck = activeDeckId
-    ? decks.find((d) => d.id === activeDeckId) || null
-    : null;
+    /* Actions — Study */
+    startStudy, handleStudyComplete, handleStudyAgain,
+    handleBackToDeck, handleBackToDashboard,
+  } = useDecks()
 
-  /* ─── Dashboard stats ─── */
-  const totalDecks = decks.length;
-  const totalCards = decks.reduce((sum, d) => sum + d.cards.length, 0);
-  let studiedCards = 0;
-  let avgScore = 0;
-  try {
-    const progress = JSON.parse(localStorage.getItem('flashcard-progress') || '{}');
-    if (progress.score) {
-      studiedCards = progress.score.total || 0;
-      avgScore = studiedCards > 0 ? Math.round((progress.score.correct / studiedCards) * 100) : 0;
-    }
-  } catch {
-    // ignore
-  }
-
-  /* ─── Deck CRUD ─── */
-  const createDeck = () => {
-    const errs = {};
-    if (!newDeckTitle.trim()) errs.deckTitle = 'Deck title is required.';
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-    setErrors({});
-
-    const deck = {
-      id: `${idRef}-${Date.now()}`,
-      title: newDeckTitle.trim(),
-      description: newDeckDesc.trim(),
-      category: newDeckCategory.trim(),
-      colorIndex: decks.length % BULLET_COLORS.length,
-      createdAt: nowISO(),
-      updatedAt: nowISO(),
-      cards: [
-        { id: nextCardId(), question: 'New question?', answer: 'New answer.' },
-      ],
-    };
-    setDecks((prev) => [...prev, deck]);
-    setNewDeckTitle('');
-    setNewDeckDesc('');
-    setNewDeckCategory('');
-    setShowNewDeckForm(false);
-  };
-
-  const saveEditDeck = () => {
-    const errs = {};
-    if (!editDeckTitle.trim()) errs.editDeckTitle = 'Deck title is required.';
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-    setErrors({});
-
-    setDecks((prev) =>
-      prev.map((d) =>
-        d.id === editingDeckId
-          ? { ...d, title: editDeckTitle.trim(), description: editDeckDesc.trim(), category: editDeckCategory.trim(), updatedAt: nowISO() }
-          : d
-      )
-    );
-    setEditingDeckId(null);
-    setEditDeckTitle('');
-    setEditDeckDesc('');
-    setEditDeckCategory('');
-  };
-
-  const openEditDeck = (deck) => {
-    setEditingDeckId(deck.id);
-    setEditDeckTitle(deck.title);
-    setEditDeckDesc(deck.description || '');
-    setEditDeckCategory(deck.category || '');
-  };
-
-  const requestDeleteDeck = (deck) => {
-    setConfirmDelete({ type: 'deck', id: deck.id, title: deck.title });
-  };
-
-  const confirmDeleteAction = () => {
-    if (!confirmDelete) return;
-    if (confirmDelete.type === 'deck') {
-      setDecks((prev) => prev.filter((d) => d.id !== confirmDelete.id));
-      if (activeDeckId === confirmDelete.id) {
-        setActiveDeckId(null);
-        setIsStudying(false);
-        setStudyResult(null);
-      }
-    } else if (confirmDelete.type === 'card') {
-      setDecks((prev) =>
-        prev.map((d) => ({
-          ...d,
-          cards: d.cards.filter((c) => c.id !== confirmDelete.id),
-          updatedAt: nowISO(),
-        }))
-      );
-    }
-    setConfirmDelete(null);
-  };
-
-  /* ─── Card CRUD ─── */
-  const addCardToDeck = () => {
-    const errs = {};
-    if (!newQuestion.trim()) errs.newQuestion = 'Question is required.';
-    if (!newAnswer.trim()) errs.newAnswer = 'Answer is required.';
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-    setErrors({});
-
-    setDecks((prev) =>
-      prev.map((d) => {
-        if (d.id !== activeDeckId) return d;
-        return {
-          ...d,
-          cards: [...d.cards, { id: nextCardId(), question: newQuestion.trim(), answer: newAnswer.trim() }],
-          updatedAt: nowISO(),
-        };
-      })
-    );
-    setNewQuestion('');
-    setNewAnswer('');
-  };
-
-  const openEditCard = (card) => {
-    setEditingCardId(card.id);
-    setEditQuestion(card.question);
-    setEditAnswer(card.answer);
-  };
-
-  const saveEditCard = () => {
-    const errs = {};
-    if (!editQuestion.trim()) errs.editQuestion = 'Question is required.';
-    if (!editAnswer.trim()) errs.editAnswer = 'Answer is required.';
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-    setErrors({});
-
-    setDecks((prev) =>
-      prev.map((d) => {
-        if (d.id !== activeDeckId) return d;
-        return {
-          ...d,
-          cards: d.cards.map((c) =>
-            c.id === editingCardId
-              ? { ...c, question: editQuestion.trim(), answer: editAnswer.trim() }
-              : c
-          ),
-          updatedAt: nowISO(),
-        };
-      })
-    );
-    setEditingCardId(null);
-    setEditQuestion('');
-    setEditAnswer('');
-  };
-
-  const requestDeleteCard = (card) => {
-    setConfirmDelete({ type: 'card', id: card.id, title: card.question });
-  };
-
-  /* ─── Study mode handlers ─── */
-  const startStudy = () => {
-    setIsStudying(true);
-    setStudyResult(null);
-  };
-
-  const handleStudyComplete = (result) => {
-    setStudyResult(result);
-    setIsStudying(false);
-  };
-
-  const handleStudyAgain = () => {
-    setIsStudying(true);
-    setStudyResult(null);
-  };
-
-  const handleBackToDeck = () => {
-    setIsStudying(false);
-    setStudyResult(null);
-  };
-
-  const handleBackToDashboard = () => {
-    setActiveDeckId(null);
-    setIsStudying(false);
-    setStudyResult(null);
-  };
-
-  /* ─── Render helpers ─── */
-
+  /* ════════════════════════════════════════════════
+     RENDER HELPERS
+     ════════════════════════════════════════════════ */
   function renderError(key) {
     return errors[key] ? (
       <p className="text-xs text-red-500 mt-1">{errors[key]}</p>
-    ) : null;
+    ) : null
   }
 
   /* ─── Confirm Delete Modal ─── */
   function renderConfirmModal() {
-    if (!confirmDelete) return null;
+    if (!confirmDelete) return null
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 dark:bg-black/50 backdrop-blur-sm">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-sm w-full mx-4 space-y-4">
           <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Delete {confirmDelete.type === 'deck' ? 'Deck' : 'Card'}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Are you sure you want to delete "<span className="font-medium text-gray-700 dark:text-gray-200">{confirmDelete.title}</span>"? This action cannot be undone.
+            Are you sure you want to delete &ldquo;<span className="font-medium text-gray-700 dark:text-gray-200">{confirmDelete.title}</span>&rdquo;? This action cannot be undone.
           </p>
           <div className="flex gap-3 justify-end pt-2">
             <button
@@ -256,7 +75,7 @@ export default function FlashcardView({ onNavigate }) {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   /* ════════════════════════════════════════════════
@@ -276,8 +95,8 @@ export default function FlashcardView({ onNavigate }) {
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 font-poppins">Flashcards</h1>
                 <button
                   onClick={() => {
-                    setShowNewDeckForm((v) => !v);
-                    setErrors({});
+                    setShowNewDeckForm((v) => !v)
+                    setErrors({})
                   }}
                   className="bg-brand-purple text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition cursor-pointer"
                 >
@@ -302,8 +121,8 @@ export default function FlashcardView({ onNavigate }) {
                       <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Title *</label>
                       <input
                         type="text"
-                        value={newDeckTitle}
-                        onChange={(e) => setNewDeckTitle(e.target.value)}
+                        value={newDeck.title}
+                        onChange={(e) => setNewDeck((prev) => ({ ...prev, title: e.target.value }))}
                         placeholder="My Awesome Deck"
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
@@ -313,8 +132,8 @@ export default function FlashcardView({ onNavigate }) {
                       <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Description</label>
                       <input
                         type="text"
-                        value={newDeckDesc}
-                        onChange={(e) => setNewDeckDesc(e.target.value)}
+                        value={newDeck.description}
+                        onChange={(e) => setNewDeck((prev) => ({ ...prev, description: e.target.value }))}
                         placeholder="A deck about..."
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
@@ -323,15 +142,15 @@ export default function FlashcardView({ onNavigate }) {
                       <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Category</label>
                       <input
                         type="text"
-                        value={newDeckCategory}
-                        onChange={(e) => setNewDeckCategory(e.target.value)}
+                        value={newDeck.category}
+                        onChange={(e) => setNewDeck((prev) => ({ ...prev, category: e.target.value }))}
                         placeholder="Web Development, Science, etc."
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
                     </div>
                     <div className="flex gap-3 pt-1">
                       <button onClick={createDeck} className="bg-brand-purple text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Create</button>
-                      <button onClick={() => { setShowNewDeckForm(false); setErrors({}); }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
+                      <button onClick={() => { setShowNewDeckForm(false); setErrors({}) }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
                     </div>
                   </div>
                 </div>
@@ -346,8 +165,8 @@ export default function FlashcardView({ onNavigate }) {
                       <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Title *</label>
                       <input
                         type="text"
-                        value={editDeckTitle}
-                        onChange={(e) => setEditDeckTitle(e.target.value)}
+                        value={editDeck.title}
+                        onChange={(e) => setEditDeck((prev) => ({ ...prev, title: e.target.value }))}
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
                       {renderError('editDeckTitle')}
@@ -356,8 +175,8 @@ export default function FlashcardView({ onNavigate }) {
                       <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Description</label>
                       <input
                         type="text"
-                        value={editDeckDesc}
-                        onChange={(e) => setEditDeckDesc(e.target.value)}
+                        value={editDeck.description}
+                        onChange={(e) => setEditDeck((prev) => ({ ...prev, description: e.target.value }))}
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
                     </div>
@@ -365,14 +184,14 @@ export default function FlashcardView({ onNavigate }) {
                       <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Category</label>
                       <input
                         type="text"
-                        value={editDeckCategory}
-                        onChange={(e) => setEditDeckCategory(e.target.value)}
+                        value={editDeck.category}
+                        onChange={(e) => setEditDeck((prev) => ({ ...prev, category: e.target.value }))}
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
                     </div>
                     <div className="flex gap-3 pt-1">
                       <button onClick={saveEditDeck} className="bg-brand-purple text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Save</button>
-                      <button onClick={() => { setEditingDeckId(null); setErrors({}); }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
+                      <button onClick={() => { setEditingDeckId(null); setErrors({}) }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
                     </div>
                   </div>
                 </div>
@@ -390,8 +209,8 @@ export default function FlashcardView({ onNavigate }) {
                 /* Deck grid */
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {decks.map((deck) => {
-                    const cardCount = deck.cards.length;
-                    const dueCount = Math.max(0, cardCount - 2);
+                    const cardCount = deck.cards.length
+                    const dueCount = Math.max(0, cardCount - 2)
                     return (
                       <TiltCard
                         key={deck.id}
@@ -427,13 +246,13 @@ export default function FlashcardView({ onNavigate }) {
                         <hr className="border-gray-50 dark:border-gray-700 mb-4" />
 
                         <button
-                          onClick={(e) => { e.stopPropagation(); setActiveDeckId(deck.id); }}
+                          onClick={(e) => { e.stopPropagation(); setActiveDeckId(deck.id) }}
                           className="w-full bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-brand-purple hover:text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all mt-auto"
                         >
                           Open Deck →
                         </button>
                       </TiltCard>
-                    );
+                    )
                   })}
                 </div>
               )}
@@ -442,7 +261,7 @@ export default function FlashcardView({ onNavigate }) {
         </div>
         {renderConfirmModal()}
       </div>
-    );
+    )
   }
 
   /* ════════════════════════════════════════════════
@@ -525,20 +344,20 @@ export default function FlashcardView({ onNavigate }) {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Title *</label>
-                        <input type="text" value={editDeckTitle} onChange={(e) => setEditDeckTitle(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                        <input type="text" value={editDeck.title} onChange={(e) => setEditDeck((prev) => ({ ...prev, title: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
                         {renderError('editDeckTitle')}
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Description</label>
-                        <input type="text" value={editDeckDesc} onChange={(e) => setEditDeckDesc(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                        <input type="text" value={editDeck.description} onChange={(e) => setEditDeck((prev) => ({ ...prev, description: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">Category</label>
-                        <input type="text" value={editDeckCategory} onChange={(e) => setEditDeckCategory(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                        <input type="text" value={editDeck.category} onChange={(e) => setEditDeck((prev) => ({ ...prev, category: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
                       </div>
                       <div className="flex gap-3 pt-1">
                         <button onClick={saveEditDeck} className="bg-brand-purple text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#5b00c2] transition">Save</button>
-                        <button onClick={() => { setEditingDeckId(null); setErrors({}); }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
+                        <button onClick={() => { setEditingDeckId(null); setErrors({}) }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-5 py-2 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
                       </div>
                     </div>
                   </div>
@@ -551,8 +370,8 @@ export default function FlashcardView({ onNavigate }) {
                     <div className="flex-1">
                       <input
                         type="text"
-                        value={newQuestion}
-                        onChange={(e) => setNewQuestion(e.target.value)}
+                        value={newCard.question}
+                        onChange={(e) => setNewCard((prev) => ({ ...prev, question: e.target.value }))}
                         placeholder="Question"
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
@@ -561,8 +380,8 @@ export default function FlashcardView({ onNavigate }) {
                     <div className="flex-1">
                       <input
                         type="text"
-                        value={newAnswer}
-                        onChange={(e) => setNewAnswer(e.target.value)}
+                        value={newCard.answer}
+                        onChange={(e) => setNewCard((prev) => ({ ...prev, answer: e.target.value }))}
                         placeholder="Answer"
                         className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple"
                       />
@@ -593,16 +412,16 @@ export default function FlashcardView({ onNavigate }) {
                             /* Edit card form */
                             <div className="flex-1 flex flex-col sm:flex-row gap-2">
                               <div className="flex-1">
-                                <input type="text" value={editQuestion} onChange={(e) => setEditQuestion(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                                <input type="text" value={editCard.question} onChange={(e) => setEditCard((prev) => ({ ...prev, question: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
                                 {renderError('editQuestion')}
                               </div>
                               <div className="flex-1">
-                                <input type="text" value={editAnswer} onChange={(e) => setEditAnswer(e.target.value)} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
+                                <input type="text" value={editCard.answer} onChange={(e) => setEditCard((prev) => ({ ...prev, answer: e.target.value }))} className="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/30 focus:border-brand-purple" />
                                 {renderError('editAnswer')}
                               </div>
                               <div className="flex gap-2">
                                 <button onClick={saveEditCard} className="bg-brand-purple text-white px-3 py-2 rounded-lg text-xs font-medium hover:bg-[#5b00c2] transition">Save</button>
-                                <button onClick={() => { setEditingCardId(null); setErrors({}); }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-2 rounded-lg text-xs font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
+                                <button onClick={() => { setEditingCardId(null); setErrors({}) }} className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-2 rounded-lg text-xs font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">Cancel</button>
                               </div>
                             </div>
                           ) : (
@@ -633,34 +452,5 @@ export default function FlashcardView({ onNavigate }) {
       </div>
       {renderConfirmModal()}
     </div>
-  );
-}
-
-/* ─── Sub-components ─── */
-
-function HeaderShell({ title }) {
-  return (
-    <header className="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-6">
-      <div className="flex items-center gap-3">
-        <span className="text-gray-500 dark:text-gray-400">☰</span>
-        <h2 className="font-semibold text-gray-700 dark:text-gray-200">{title}</h2>
-      </div>
-      <div>
-        <button type="button" className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition relative focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-          </svg>
-        </button>
-      </div>
-    </header>
-  );
-}
-
-function StatCard({ label, value }) {
-  return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl shadow-sm p-4 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-      <p className="text-xl font-bold text-gray-800 dark:text-gray-100">{value}</p>
-      <p className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wider mt-1">{label}</p>
-    </div>
-  );
+  )
 }
