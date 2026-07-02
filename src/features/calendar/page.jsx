@@ -1,7 +1,7 @@
-import Sidebar from '../components/Sidebar'
-import { DAYS_OF_WEEK, MONTH_NAMES, PRIORITY_STYLES, PRIORITY_STATS } from '../data/calendar'
-import { isToday } from '../lib/calendarUtils'
-import { useCalendar } from '../hooks/useCalendar'
+import Sidebar from '../../components/Sidebar'
+import { DAYS_OF_WEEK, MONTH_NAMES, PRIORITY_STYLES, PRIORITY_STATS } from './data/'
+import { isToday } from './calendarUtils'
+import { useCalendar } from './hooks/useCalendar'
 
 export default function CalendarView({ onNavigate }) {
   const {

@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import useCalendarGrid from './Calendar/useCalendarGrid'
-import useOverdueTasks from './Calendar/useOverdueTasks'
-import useTaskActions from './Calendar/useTaskActions'
-import useCurrentDateTime from './Calendar/useCurrentDateTime'
-import { formatSelectedDateText, getTasksForDay } from '../lib/calendarUtils'
+import useCalendarGrid from './useCalendarGrid'
+import useOverdueTasks from './useOverdueTasks'
+import useTaskActions from './useTaskActions'
+import useCurrentDateTime from './useCurrentDateTime'
+import { formatSelectedDateText, getTasksForDay } from '../calendarUtils'
 
 export function useCalendar() {
   const { todayStr } = useCurrentDateTime()
