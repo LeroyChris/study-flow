@@ -56,4 +56,4 @@ export const BULLET_COLORS = [
     },
   ];
 
-  export default SEED_DECKS;
+  export { SEED_DECKS };

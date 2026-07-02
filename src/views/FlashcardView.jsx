@@ -3,42 +3,8 @@ import Sidebar from '../components/Sidebar';
 import FlashcardList from '../components/flashcards/FlashcardList';
 import StudyComplete from '../components/flashcards/StudyComplete';
 import TiltCard from '../components/TiltCard'
-import { BULLET_COLORS, SEED_DECKS } from '../data/flashcards';
-
-/* ─── Constants ─── */
-const STORAGE_KEY_DECKS = 'flashcard-decks';
-
-//#endregion
-
-/* ─── Helpers ─── */
-function loadDecks() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY_DECKS);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
-    }
-  } catch {
-    // corrupted data — reset to seed
-  }
-  // Seed data on first visit
-  localStorage.setItem(STORAGE_KEY_DECKS, JSON.stringify(SEED_DECKS));
-  return SEED_DECKS;
-}
-
-function saveDecks(decks) {
-  localStorage.setItem(STORAGE_KEY_DECKS, JSON.stringify(decks));
-}
-
-function nowISO() {
-  return new Date().toISOString();
-}
-
-let cardIdCounter = Date.now();
-function nextCardId() {
-  return `card-${++cardIdCounter}`;
-}
-
+import { BULLET_COLORS } from '../data/flashcards';
+import { loadDecks, saveDecks, nowISO, nextCardId } from '../lib/flashcardStorage';
 
 /* ─── Component ─── */
 export default function FlashcardView({ onNavigate }) {
