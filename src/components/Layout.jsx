@@ -8,10 +8,19 @@ function BellIcon() {
   )
 }
 
+import { useState } from 'react'
+
 export default function Layout({ children, title, currentView, onNavigate }) {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+
   return (
     <div className="min-h-screen flex">
-      <Sidebar currentView={currentView} onNavigate={onNavigate} />
+      <Sidebar
+        currentView={currentView}
+        onNavigate={onNavigate}
+        isCollapsed={sidebarCollapsed}
+        onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
+      />
       <div className="flex-1 flex flex-col">
         <header className="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-6 shrink-0">
           <h2 className="font-semibold text-gray-700 dark:text-gray-200">{title}</h2>
