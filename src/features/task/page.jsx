@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react'
-import Sidebar from '../../components/Sidebar'
 import KanbanColumn from './components/KanbanColumn'
 import highIcon from '../../assets/icons/circle-chevron-up.svg'
 import urgentIcon from '../../assets/icons/shield-alert (1).svg'
@@ -7,6 +6,7 @@ import mediumIcon from '../../assets/icons/bookmark.svg'
 import lowIcon from '../../assets/icons/turtle.svg'
 import completedIcon from '../../assets/icons/circle-check-big.svg'
 import { INITIAL_TASKS } from './data/'
+import Layout from '../../components/Layout'
 
 export default function TaskView({ onNavigate }) {
   const [tasks, setTasks] = useState(INITIAL_TASKS)
@@ -98,44 +98,22 @@ export default function TaskView({ onNavigate }) {
   }
 
   return (
-    <div className="min-h-screen flex">
-
-      <Sidebar
-        currentView="task"
-        onNavigate={onNavigate}
-      />
-
-      <main className="flex-1 bg-brand-warm dark:bg-gray-900 overflow-y-auto">
-
-        {/* Header */}
-        <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-8 py-5 flex justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 font-poppins">
-              Tasks Board
-            </h1>
-
-            <p className="text-gray-500 dark:text-gray-400 mt-1">
-              Priorities are automatically calculated from deadlines.
-            </p>
-          </div>
-          <button
-            onClick={() => setShowModal(true)}
-            className="
-              px-5 py-2.5
-              rounded-lg
-              bg-brand-primary
-              text-white
-              text-sm font-medium
-              hover:bg-brand-primary/90
-              transition
-            ">
-              + New Task
-          </button>
+    <Layout title="Tasks Board" currentView="task" onNavigate={onNavigate}>
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">
+            Priorities are automatically calculated from deadlines.
+          </p>
         </div>
-      
+        <button
+          onClick={() => setShowModal(true)}
+          className="px-5 py-2.5 rounded-lg bg-brand-primary text-white text-sm font-medium hover:bg-brand-primary/90 transition"
+        >
+            + New Task
+        </button>
+      </div>
 
-        {/* Kanban */}
-        <div className="p-8 overflow-x-auto h-[calc(90vh-80px)]">
+      <div className="overflow-x-auto">
           <div className="flex gap-6 min-w-max">
 
             <KanbanColumn
@@ -259,9 +237,6 @@ export default function TaskView({ onNavigate }) {
         </div>
       )}
 
-      </main>
-
-    </div>
-        
+    </Layout>
   )
 }

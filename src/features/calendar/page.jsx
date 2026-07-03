@@ -1,7 +1,7 @@
-import Sidebar from '../../components/Sidebar'
 import { DAYS_OF_WEEK, MONTH_NAMES, PRIORITY_STYLES, PRIORITY_STATS } from './data/'
 import { isToday } from './calendarUtils'
 import { useCalendar } from './hooks/useCalendar'
+import Layout from '../../components/Layout'
 
 export default function CalendarView({ onNavigate }) {
   const {
@@ -18,30 +18,27 @@ export default function CalendarView({ onNavigate }) {
   } = useCalendar()
 
   return (
-    <div className="min-h-screen flex bg-brand-warm dark:bg-gray-900 text-gray-800 dark:text-gray-100 relative">
-      <Sidebar currentView="calendar" onNavigate={onNavigate} />
-
-      <main className="flex-1 p-5 overflow-y-auto">
-        {overdueTasks.length > 0 && (
-          <div className="mb-4 p-4 rounded-xl border border-red-200 bg-gradient-to-r from-red-50 to-red-100 flex items-center gap-3 text-red-700 font-semibold shadow-sm animate-pulse">
-            <span className="text-lg select-none">⚠️</span>
-            <div>
-              <p className="font-bold">Anda memiliki {overdueTasks.length} tugas yang terlewat!</p>
-              <p className="text-xs text-red-500 font-medium">Segera selesaikan agar tidak menumpuk.</p>
-            </div>
+    <Layout title="Calendar" currentView="calendar" onNavigate={onNavigate}>
+      {overdueTasks.length > 0 && (
+        <div className="mb-4 p-4 rounded-xl border border-red-200 bg-gradient-to-r from-red-50 to-red-100 flex items-center gap-3 text-red-700 font-semibold shadow-sm animate-pulse">
+          <span className="text-lg select-none">⚠️</span>
+          <div>
+            <p className="font-bold">Anda memiliki {overdueTasks.length} tugas yang terlewat!</p>
+            <p className="text-xs text-red-500 font-medium">Segera selesaikan agar tidak menumpuk.</p>
           </div>
-        )}
+        </div>
+      )}
 
-        <div className="grid grid-cols-[1fr_280px] gap-5 items-start">
-          {/* ── Calendar grid ── */}
-          <div className="flex flex-col gap-4">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-              <div className="flex justify-between items-center mb-5">
-                <div>
-                  <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 font-poppins">Calendar</h1>
-                  <p className="text-gray-400 dark:text-gray-500 text-xs mt-0.5">Manage deadlines and study schedules</p>
-                </div>
+      <div className="grid grid-cols-[1fr_280px] gap-5 items-start">
+        {/* ── Calendar grid ── */}
+        <div className="flex flex-col gap-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <div className="flex justify-between items-center mb-5">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 font-poppins">Calendar</h1>
+                <p className="text-gray-400 dark:text-gray-500 text-xs mt-0.5">Manage deadlines and study schedules</p>
               </div>
+            </div>
 
               <div className="grid grid-cols-4 gap-3 mb-5">
                 {PRIORITY_STATS.map((stat) => (
@@ -176,8 +173,6 @@ export default function CalendarView({ onNavigate }) {
             </button>
           </div>
         </div>
-      </main>
-
       {/* ── Modal ── */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
@@ -213,6 +208,6 @@ export default function CalendarView({ onNavigate }) {
           </div>
         </div>
       )}
-    </div>
+    </Layout>
   )
 }
