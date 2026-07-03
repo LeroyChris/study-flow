@@ -98,19 +98,19 @@ export default function TaskView({ onNavigate }) {
   }
 
   return (
-    <div className="flex min-h-screen bg-brand-warm dark:bg-gray-900">
+    <div className="min-h-screen flex">
 
       <Sidebar
         currentView="task"
         onNavigate={onNavigate}
       />
 
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1 bg-brand-warm dark:bg-gray-900 overflow-y-auto">
 
         {/* Header */}
         <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-8 py-5 flex justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 font-poppins">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 font-poppins">
               Tasks Board
             </h1>
 

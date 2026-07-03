@@ -38,7 +38,7 @@ export default function CalendarView({ onNavigate }) {
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <div className="flex justify-between items-center mb-5">
                 <div>
-                  <h1 className="text-2xl font-bold text-[#1f2340] dark:text-gray-100 font-poppins">Calendar</h1>
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 font-poppins">Calendar</h1>
                   <p className="text-gray-400 dark:text-gray-500 text-xs mt-0.5">Manage deadlines and study schedules</p>
                 </div>
               </div>
@@ -57,7 +57,7 @@ export default function CalendarView({ onNavigate }) {
               <div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden bg-white dark:bg-gray-800">
                 <div className="flex justify-between items-center p-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                   <button onClick={handlePrev} className="w-8 h-8 rounded-lg border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-600 dark:text-gray-300">‹</button>
-                  <h2 className="text-sm font-bold text-[#1f2340] dark:text-gray-100 font-poppins">
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 font-poppins">
                     {MONTH_NAMES[currentMonth]} {currentYear}
                   </h2>
                   <button onClick={handleNext} className="w-8 h-8 rounded-lg border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition text-gray-600 dark:text-gray-300">›</button>
@@ -112,7 +112,7 @@ export default function CalendarView({ onNavigate }) {
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-full bg-brand-primary-light flex items-center justify-center text-2xl select-none">🕒</div>
                 <div>
-                  <h3 className="font-bold text-[#1f2340] dark:text-gray-100 font-poppins">{formatSelectedDateText(selectedDateStr)}</h3>
+                  <h3 className="font-bold text-gray-900 dark:text-gray-100 font-poppins">{formatSelectedDateText(selectedDateStr)}</h3>
                   <p className="text-gray-500 dark:text-gray-400 text-sm mt-0.5">
                     {activeDayTasks.length === 0
                       ? 'No task scheduled. Add a task for this day.'
@@ -130,7 +130,7 @@ export default function CalendarView({ onNavigate }) {
           {/* ── Upcoming Tasks panel ── */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between min-h-[400px] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
             <div>
-              <h2 className="text-md font-bold text-[#1f2340] dark:text-gray-100 mb-4 font-poppins">Upcoming Tasks</h2>
+              <h2 className="text-md font-bold text-gray-900 dark:text-gray-100 mb-4 font-poppins">Upcoming Tasks</h2>
               <div className="space-y-3">
                 {tasks.map((task) => {
                   const style = PRIORITY_STYLES[task.priority] || PRIORITY_STYLES.medium
