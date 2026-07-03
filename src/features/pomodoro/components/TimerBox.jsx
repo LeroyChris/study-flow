@@ -24,7 +24,7 @@ export default function TimerBox({
     <div className="bg-white dark:bg-gray-800 rounded-[32px] w-full max-w-md p-8 text-center shadow-sm relative">
       
       {/* tombol navigasi buat ganti jenis tab fokus atau istirahat */}
-      <div className="flex bg-[#f0efe9]/60 dark:bg-gray-700/60 p-1 rounded-full justify-between items-center mb-8">
+      <div className="flex bg-gray-100/60 dark:bg-gray-700/60 p-1 rounded-full justify-between items-center mb-8">
         {tabs.map((tab, i) => (
           <button
             key={tab.label} onClick={() => onSwitchTab(i)}
@@ -54,7 +54,7 @@ export default function TimerBox({
 
       {/* kontrol utama u/ ngatur tombol reset, play/pause, dan skip tab */}
       <div className="flex items-center justify-center gap-6 mb-6">
-        <button onClick={onReset} className="w-12 h-12 bg-[#f0efe9]/80 dark:bg-gray-700/80 text-gray-500 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 transition">↺</button>
+        <button onClick={onReset} className="w-12 h-12 bg-gray-100/80 dark:bg-gray-700/80 text-gray-500 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 transition">↺</button>
         <button onClick={onTogglePlay} className={`w-16 h-16 text-white rounded-full flex items-center justify-center shadow-lg ${colors.shadow} ${colors.primary} ${colors.hover} cursor-pointer transition`}>
           {isRunning ? (
             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg>
@@ -62,7 +62,7 @@ export default function TimerBox({
             <svg className="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
           )}
         </button>
-        <button onClick={() => onSwitchTab((activeTab + 1) % tabs.length)} className="w-12 h-12 bg-[#f0efe9]/80 dark:bg-gray-700/80 text-gray-500 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 transition">⇥</button>
+        <button onClick={() => onSwitchTab((activeTab + 1) % tabs.length)} className="w-12 h-12 bg-gray-100/80 dark:bg-gray-700/80 text-gray-500 rounded-2xl flex items-center justify-center text-xl cursor-pointer hover:bg-gray-200 transition">⇥</button>
       </div>
 
       {/* tracker total tomat atau target session yang berhasil diselesaikan */}
@@ -75,7 +75,7 @@ export default function TimerBox({
 
       {/* switch otomatis tombol buat pindah dari fokus ke break langsung tanpa klik */}
       <div className="flex items-center justify-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
-        <div onClick={onToggleAutoSwitch} className={`w-9 h-5 rounded-full p-0.5 flex items-center cursor-pointer transition-colors ${autoSwitch ? colors.primary : 'bg-[#e4e3dd]'}`}>
+        <div onClick={onToggleAutoSwitch} className={`w-9 h-5 rounded-full p-0.5 flex items-center cursor-pointer transition-colors ${autoSwitch ? colors.primary : 'bg-gray-200'}`}>
           <div className={`w-4 h-4 bg-white rounded-full shadow-sm transform transition-transform ${autoSwitch ? 'translate-x-4' : 'translate-x-0'}`}></div>
         </div>
         <span className="text-sm font-semibold text-gray-400">Auto-switch</span>

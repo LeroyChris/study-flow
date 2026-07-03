@@ -33,15 +33,15 @@ export default function TimerSettingsModal({ isOpen, onClose, currentSettings, o
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-sm font-semibold text-gray-400 mb-2">Focus Duration (minutes)</label>
-            <input type="number" value={focusInput} onChange={(e) => setFocusInput(e.target.value)} className="w-full bg-[#f0efe9]/60 dark:bg-gray-700 px-4 py-3 rounded-xl font-medium text-gray-800 dark:text-gray-100 focus:outline-none" />
+            <input type="number" value={focusInput} onChange={(e) => setFocusInput(e.target.value)} className="w-full bg-gray-100/60 dark:bg-gray-700 px-4 py-3 rounded-xl font-medium text-gray-800 dark:text-gray-100 focus:outline-none" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-400 mb-2">Short Break (minutes)</label>
-            <input type="number" value={shortInput} onChange={(e) => setShortInput(e.target.value)} className="w-full bg-[#f0efe9]/60 dark:bg-gray-700 px-4 py-3 rounded-xl font-medium text-gray-800 dark:text-gray-100 focus:outline-none" />
+            <input type="number" value={shortInput} onChange={(e) => setShortInput(e.target.value)} className="w-full bg-gray-100/60 dark:bg-gray-700 px-4 py-3 rounded-xl font-medium text-gray-800 dark:text-gray-100 focus:outline-none" />
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-400 mb-2">Long Break (minutes)</label>
-            <input type="number" value={longInput} onChange={(e) => setLongInput(e.target.value)} className="w-full bg-[#f0efe9]/60 dark:bg-gray-700 px-4 py-3 rounded-xl font-medium text-gray-800 dark:text-gray-100 focus:outline-none" />
+            <input type="number" value={longInput} onChange={(e) => setLongInput(e.target.value)} className="w-full bg-gray-100/60 dark:bg-gray-700 px-4 py-3 rounded-xl font-medium text-gray-800 dark:text-gray-100 focus:outline-none" />
           </div>
           
           {/* aksi tombol cancel atau save di bagian bawah modal */}

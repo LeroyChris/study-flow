@@ -95,7 +95,7 @@ export default function LofiPlayer({
         </button>
 
         {/* slider volume ngikutin warna fill kiri (pake css linear gradient) */}
-        <div className="flex-1 flex items-center gap-2.5 bg-[#fcfbfa] dark:bg-gray-700 px-4 py-2 rounded-2xl border border-gray-100 dark:border-gray-600">
+        <div className="flex-1 flex items-center gap-2.5 bg-gray-50 dark:bg-gray-700 px-4 py-2 rounded-2xl border border-gray-100 dark:border-gray-600">
           <span className="text-xs opacity-60 select-none">🔈</span>
           <div className="flex-1 flex items-center">
             <input
