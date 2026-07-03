@@ -46,18 +46,6 @@ export default function Sidebar({ currentView, onNavigate, isCollapsed, onToggle
           {!isCollapsed && <span className="font-medium">{isDark ? 'Light Mode' : 'Dark Mode'}</span>}
         </button>
 
-        <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'} px-4 py-2`}>
-          <div className="w-9 h-9 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-sm shrink-0">
-            S
-          </div>
-          {!isCollapsed && (
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold text-gray-700 dark:text-gray-200 leading-none">Scholar</span>
-              <span className="text-xs text-gray-400 dark:text-gray-500 mt-1">University Student</span>
-            </div>
-          )}
-        </div>
-
         <button
           onClick={onToggleCollapse}
           className={`w-full flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'} px-4 py-2 text-sm text-gray-400 dark:text-gray-500 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition`}

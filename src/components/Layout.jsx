@@ -23,7 +23,12 @@ export default function Layout({ children, title, currentView, onNavigate }) {
       />
       <div className="flex-1 flex flex-col">
         <header className="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-6 shrink-0">
-          <h2 className="font-semibold text-gray-700 dark:text-gray-200">{title}</h2>
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-brand-primary flex items-center justify-center text-white font-bold text-sm shrink-0">
+              S
+            </div>
+            <h2 className="font-semibold text-gray-700 dark:text-gray-200">{title}</h2>
+          </div>
           <button
             type="button"
             className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition cursor-pointer"
