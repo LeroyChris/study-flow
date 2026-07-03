@@ -121,11 +121,11 @@ export default function TaskView({ onNavigate }) {
           <button
             onClick={() => setShowModal(true)}
             className="
-              px-5 py-3
-              rounded-xl
+              px-5 py-2.5
+              rounded-lg
               bg-brand-primary
               text-white
-              font-semibold
+              text-sm font-medium
               hover:bg-brand-primary/90
               transition
             ">
@@ -247,12 +247,7 @@ export default function TaskView({ onNavigate }) {
 
               <button
                 onClick={addTask}
-                className="
-                  px-4 py-2
-                  rounded-xl
-                  bg-brand-primary
-                  text-white
-                "
+                className="px-5 py-2.5 rounded-lg bg-brand-primary text-white text-sm font-medium hover:bg-brand-primary/90 transition"
               >
                 Add Task
               </button>

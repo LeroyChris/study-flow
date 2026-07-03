@@ -170,7 +170,7 @@ export default function CalendarView({ onNavigate }) {
             </div>
             <button
               onClick={() => { resetForm(); setIsModalOpen(true) }}
-              className="mt-4 w-full bg-brand-primary text-white text-xs font-bold py-2.5 rounded-xl shadow-sm hover:bg-brand-primary/90 transition"
+              className="mt-4 w-full bg-brand-primary text-white text-sm font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-brand-primary/90 transition"
             >
               + Add New Task
             </button>
@@ -207,7 +207,7 @@ export default function CalendarView({ onNavigate }) {
               </div>
               <div className="flex gap-2 pt-2">
                 <button type="button" onClick={resetForm} className="flex-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-bold py-2.5 rounded-xl">Cancel</button>
-                <button type="submit" className="flex-1 bg-brand-primary text-white text-xs font-bold py-2.5 rounded-xl">{editingTaskId ? 'Update Task' : 'Save Task'}</button>
+                <button type="submit" className="flex-1 bg-brand-primary text-white text-sm font-medium px-5 py-2.5 rounded-lg">{editingTaskId ? 'Update Task' : 'Save Task'}</button>
               </div>
             </form>
           </div>
